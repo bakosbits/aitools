@@ -1,0 +1,9 @@
+# *
+User-agent: *
+Allow: /
+
+# Host
+Host: https://aitoolpouch.com
+
+# Sitemaps
+Sitemap: https://aitoolpouch.com/sitemap.xml
