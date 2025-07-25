@@ -16,6 +16,7 @@ export default function MiniToolCard({ tool }) {
                     <LogoCard
                         name={tool.Name}
                         domain={tool.Domain}
+                        title={tool.Name}
                         className="object-contain h-10 w-10 mb-4"
                     />
                     <h1 className="text-lg font-bold text-headingWhite mb-4">

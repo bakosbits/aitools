@@ -1,7 +1,8 @@
+import { getAllTools, getToolBySlug } from "@/lib/shared/tools";
+
 import React from "react";
-import { getAllTools, getToolBySlug } from "@/lib/airTable";
-import DetailToolCard from "@/components/DetailToolCard";
 import Link from "next/link";
+import DetailToolCard from "@/components/DetailToolCard";
 import MetaProps from "@/components/MetaProps";
 import LogoCard from "@/components/LogoCard";
 
@@ -58,12 +59,12 @@ export default function ToolPage({ tool }) {
                             <DetailToolCard tool={tool} />
                         </div>
                         {/* Right column */}
-                        <div className="w-full md:w-[20%] flex flex-col items-start text-left mt-6 md:mt-0">
+                        <div className="w-full md:w-[20%] flex flex-col items-start text-left">
                             <LogoCard
                                 name={tool.Name}
                                 domain={tool.Domain}
                                 title={tool.Name}
-                                className="object-cover rounded-lg shadow-4xl shadow-[0_6px_16px_rgba(0,255,128,0.25)] mb-4"
+                                className="object-contain mb-2 md:mb-6"
                             />
                             <h1 className="text-xl font-bold text-headingWhite mb-2">
                                 Found in:

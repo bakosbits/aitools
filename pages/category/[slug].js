@@ -1,5 +1,6 @@
 import { useState, useEffect, useCallback, useMemo } from "react";
-import { getAllCategories, getToolsByCategory } from "@/lib/airTable";
+import { getToolsByCategory } from "@/lib/shared/tools";
+import { getAllCategories } from "@/lib/shared/categories";
 
 import ToolCard from "@/components/ToolCard";
 import MetaProps from "@/components/MetaProps";

@@ -1,10 +1,9 @@
-import { getAllArticles, getArticleBySlug } from "@/lib/airTable";
-import ReactMarkdown from "react-markdown";
+import { getArticleBySlug } from "@/lib/shared/articles";
 import { MarkdownImage, MarkdownLink } from "@/components/MarkdownComponents";
+import ReactMarkdown from "react-markdown";
 import MetaProps from "@/components/MetaProps";
 
 export async function getStaticPaths() {
-    const articles = await getAllArticles();
     const paths = [];
     
     return {
@@ -14,8 +13,8 @@ export async function getStaticPaths() {
 }
 
 export async function getStaticProps({ params }) {
-    const articles = await getAllArticles();
-    const article = articles.find((a) => a.Slug === params.slug);
+    
+    const article = await getArticleBySlug(params.slug);    
     if (!article) {
         return {
             notFound: true,

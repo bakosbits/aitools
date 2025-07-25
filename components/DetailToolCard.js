@@ -27,6 +27,7 @@ export default function DetailToolCard({ tool }) {
                 <LogoCard
                     name={tool.Name}
                     domain={tool.Domain}
+                    title={tool.Name}   
                     className="object-contain h-14 w-14"
                 />
                 <h1 className="text-2xl font-bold text-headingWhite">

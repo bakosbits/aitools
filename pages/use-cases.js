@@ -1,5 +1,6 @@
 import React, { useReducer, useMemo, useState, useEffect } from "react";
-import { getAllTools, getAllAliases } from "@/lib/airTable";
+import { getAllTools } from "@/lib/shared/tools";
+import { getAllAliases } from "@/lib/shared/aliases";
 import { useCaseReducer, getInitialState, toggleSelection, getSortedFilterOptions } from "@/lib/useCaseUtils";
 import { matchTools } from "@/lib/matchTools";
 

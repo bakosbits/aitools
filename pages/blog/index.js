@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { getAllArticles } from "@/lib/airTable";
+import { getAllArticles } from "@/lib/shared/articles";
 import MetaProps from "@/components/MetaProps";
 
 export async function getStaticProps() {

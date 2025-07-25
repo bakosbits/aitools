@@ -1,4 +1,4 @@
-import { getAllTools, getFeaturedTools } from "@/lib/airTable";
+import { getAllTools, getFeaturedTools } from "@/lib/shared/tools";
 import { getLatestSortedTools } from "@/lib/indexUtils";
 import Link from "next/link";
 
@@ -158,7 +158,7 @@ export default function Home({ tools, latestTools, featuredTools }) {
                                         <LogoCard
                                             name={tool.Name}
                                             domain={tool.Domain}
-                                            className="w-[180px] h-auto bg-headingWhite object-contain rounded-lg shadow-4xl shadow-[0_6px_16px_rgba(0,255,128,0.25)]"
+                                            className="w-[180px] h-auto bg-headingWhite object-contain"
                                         />
                                     </Link>
                                 ))}

@@ -1,4 +1,4 @@
-import { getToolBySlug } from "@/lib/airTable";
+import { getToolBySlug } from "@/lib/shared/airtable";
 
 export async function getServerSideProps(context) {
     const { slug } = context.params;
