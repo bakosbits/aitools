@@ -158,6 +158,7 @@ export default function Home({ tools, latestTools, featuredTools }) {
                                         <LogoCard
                                             name={tool.Name}
                                             domain={tool.Domain}
+                                            title={tool.Name}
                                             className="w-[180px] h-auto bg-headingWhite object-contain"
                                         />
                                     </Link>
