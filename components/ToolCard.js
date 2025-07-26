@@ -1,5 +1,4 @@
 import Link from "next/link";
-import LogoCard from "@/components/LogoCard";
 import BlogLinkCard from "@/components/BlogLinkCard";
 
 export default function ToolCard({ tool, compareList = [], toggleCompare }) {
@@ -12,20 +11,20 @@ export default function ToolCard({ tool, compareList = [], toggleCompare }) {
             title={tool.Name}
             passHref
         >
-            <div className="h-full flex flex-col border border-gray-700 p-6 rounded-lg bg-cardDark group-hover:bg-gray-800 transition-colors">
-                <div className="flex items-center space-x-4 mb-2">
-                    <LogoCard
-                        name={tool.Name}
-                        domain={tool.Domain}
-                        title={tool.Name}   
-                        className="object-contain h-14 w-14"
+              <div className="h-full bg-cardDark p-6 rounded-lg shadow-lg flex flex-col items-start group-hover:bg-gray-800 transition-colors">
+                <div className="w-full flex items-center space-x-4">
+                    <img
+                        src={tool.Logo}
+                        alt={`${tool.Name} logo`}
+                        title={tool.Name}
+                        className="object-contain bg-headingWhite h-14 w-14"
                     />
                     <h1 className="text-2xl font-bold text-headingWhite">
                         {tool.Name}
                     </h1>
                 </div>
                 {tool["Base_Model"] && (
-                    <p className="text-headingWhite mb-4">
+                    <p className="text-headingWhite mb-4 mt-6">
                         Powered by {tool["Base_Model"]}
                     </p>
                 )}

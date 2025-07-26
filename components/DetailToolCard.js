@@ -1,4 +1,3 @@
-import LogoCard from "./LogoCard";
 import BlogLinkCard from "./BlogLinkCard";
 
 export default function DetailToolCard({ tool }) {
@@ -24,11 +23,11 @@ export default function DetailToolCard({ tool }) {
     return (
         <div className="h-full flex flex-col border border-gray-700 p-6 rounded-lg bg-cardDark">
             <div className="flex items-center space-x-4 mb-4">
-                <LogoCard
-                    name={tool.Name}
-                    domain={tool.Domain}
+                <img
+                    src={tool.Logo}
+                    alt={`${tool.Name} logo`}
                     title={tool.Name}   
-                    className="object-contain h-14 w-14"
+                    className="object-contain bg-headingWhite h-16 w-16"
                 />
                 <h1 className="text-2xl font-bold text-headingWhite">
                     {tool.Name}

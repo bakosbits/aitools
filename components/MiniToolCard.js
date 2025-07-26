@@ -1,5 +1,4 @@
 import Link from "next/link";
-import LogoCard from "@/components/LogoCard";
 import BlogLinkCard from "./BlogLinkCard";
 
 export default function MiniToolCard({ tool }) {
@@ -13,17 +12,17 @@ export default function MiniToolCard({ tool }) {
         >
             <div className="h-full bg-cardDark p-4 rounded-lg shadow-lg flex flex-col items-start group-hover:bg-gray-800 transition-colors">
                 <div className="w-full flex items-center space-x-4">
-                    <LogoCard
-                        name={tool.Name}
-                        domain={tool.Domain}
+                    <img
+                        src={tool.Logo}
+                        alt={`${tool.Name} logo`}
                         title={tool.Name}
-                        className="object-contain h-10 w-10 mb-4"
+                        className="object-contain bg-headingWhite h-10 w-10"
                     />
-                    <h1 className="text-lg font-bold text-headingWhite mb-4">
+                    <h1 className="text-lg font-bold text-headingWhite">
                         {tool.Name}
                     </h1>
                 </div>
-                <p className="text-sm text-whiteText">
+                <p className="text-sm text-whiteText mt-4">
                     {tool.Why?.length > 100
                         ? tool.Why.slice(0, 100) + "..."
                         : tool.Why}

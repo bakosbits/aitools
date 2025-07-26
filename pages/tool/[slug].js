@@ -4,7 +4,6 @@ import React from "react";
 import Link from "next/link";
 import DetailToolCard from "@/components/DetailToolCard";
 import MetaProps from "@/components/MetaProps";
-import LogoCard from "@/components/LogoCard";
 
 export async function getStaticPaths() {
     try {
@@ -60,11 +59,11 @@ export default function ToolPage({ tool }) {
                         </div>
                         {/* Right column */}
                         <div className="w-full md:w-[20%] flex flex-col items-start text-left">
-                            <LogoCard
-                                name={tool.Name}
-                                domain={tool.Domain}
+                            <img
+                                src={tool.Logo}
+                                alt={`${tool.Name} logo`}
                                 title={tool.Name}
-                                className="object-contain mb-2 md:mb-6"
+                                className="object-contain bg-headingWhite mb-6"
                             />
                             <h1 className="text-xl font-bold text-headingWhite mb-2">
                                 Found in:
@@ -72,16 +71,16 @@ export default function ToolPage({ tool }) {
                             <p className="text-left">
                                 {tool.Categories?.length > 0
                                     ? tool.Categories.map((cat, idx) => (
-                                          <React.Fragment key={cat.Slug || cat.Name}>
-                                              {idx > 0 && ", "}
-                                              <Link
-                                                  href={`/category/${cat.Slug || cat.Name.toLowerCase()}`}
-                                                  className="text-accentGreen hover:text-headingWhite"
-                                              >
-                                                  {cat.Name}
-                                              </Link>
-                                          </React.Fragment>
-                                      ))
+                                        <React.Fragment key={cat.Slug || cat.Name}>
+                                            {idx > 0 && ", "}
+                                            <Link
+                                                href={`/category/${cat.Slug || cat.Name.toLowerCase()}`}
+                                                className="text-accentGreen hover:text-headingWhite"
+                                            >
+                                                {cat.Name}
+                                            </Link>
+                                        </React.Fragment>
+                                    ))
                                     : "Uncategorized"}
                             </p>
                         </div>

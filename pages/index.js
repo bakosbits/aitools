@@ -4,7 +4,6 @@ import Link from "next/link";
 
 import SearchBar from "@/components/SearchBar";
 import MiniToolCard from "@/components/MiniToolCard";
-import LogoCard from "@/components/LogoCard";
 import MetaProps from "@/components/MetaProps";
 
 export async function getStaticProps() {
@@ -155,9 +154,9 @@ export default function Home({ tools, latestTools, featuredTools }) {
                                         className="block h-full group"
                                         passHref
                                     >
-                                        <LogoCard
-                                            name={tool.Name}
-                                            domain={tool.Domain}
+                                        <img
+                                            src={tool.Logo}
+                                            alt={`${tool.Name} logo`}
                                             title={tool.Name}
                                             className="w-[180px] h-auto bg-headingWhite object-contain"
                                         />
