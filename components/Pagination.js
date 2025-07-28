@@ -56,20 +56,9 @@ const Pagination = ({ currentPage, totalPages, onPageChange }) => {
         <div className="flex overflow-x-auto space-x-2 sm:flex-wrap justify-center w-full mt-10">
             {visiblePages.map((page, idx) => (
                 <button
-                    key={idx}
+                    key={page === "…" ? `ellipsis-${idx}` : page}
                     disabled={page === "…"}
-                    onClick={() => {
-                        if (typeof page === "number") {
-                            console.log(
-                                `Pagination button clicked: Navigating to page ${page}`,
-                            );
-                            onPageChange(page);
-                        } else {
-                            console.log(
-                                `Ellipsis button clicked (should be disabled): ${page}`,
-                            );
-                        }
-                    }}
+                    onClick={() => typeof page === "number" && onPageChange(page)}
                     className={`py-2 rounded text-sm min-w-[40px] text-center ${
                         page === currentPage
                             ? "bg-emerald-500 text-white font-bold"

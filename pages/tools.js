@@ -33,17 +33,28 @@ export default function ToolsPage({ tools }) {
     const router = useRouter();
     const query = router.query.q?.toLowerCase() || "";
 
-    const [currentPage, setCurrentPage] = useState(1);
+    // The source of truth for the current page is now the URL query parameter.
+    // Default to 1 if the parameter is not present or invalid.
+    const currentPage = parseInt(router.query.page, 10) || 1;
     const [compareList, setCompareList] = useState([]);
+
+    const handlePageChange = (page) => {
+        router.push(
+            {
+                pathname: router.pathname,
+                query: { ...router.query, page },
+            },
+            undefined,
+            { shallow: true },
+        );
+    };
 
     const toggleCompare = (tool) => {
         setCompareList((prev) => {
             const exists = prev.find((t) => t.id === tool.id);
-            if (exists) {
-                return prev.filter((t) => t.id !== tool.id);
-            } else {
-                return prev.length < 2 ? [...prev, tool] : prev;
-            }
+            return exists
+                ? prev.filter((t) => t.id !== tool.id)
+                : prev.length < 2 ? [...prev, tool] : prev;
         });
     };
 
@@ -76,11 +87,6 @@ export default function ToolsPage({ tools }) {
             );
         });
     }, [query, sortedTools]);
-
-    // Reset to the first page whenever the search query changes
-    useEffect(() => {
-        setCurrentPage(1);
-    }, [query]);
 
     const totalPages = Math.ceil(filteredTools.length / ITEMS_PER_PAGE);
     const startIndex = (currentPage - 1) * ITEMS_PER_PAGE;
@@ -148,7 +154,7 @@ export default function ToolsPage({ tools }) {
                     <Pagination
                         currentPage={currentPage}
                         totalPages={totalPages}
-                        onPageChange={(page) => setCurrentPage(page)}
+                        onPageChange={handlePageChange}
                     />
                 )}
             </div>

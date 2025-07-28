@@ -1,4 +1,5 @@
 import { useState, useEffect, useCallback, useMemo } from "react";
+import { useRouter } from "next/router";
 import { getToolsByCategory } from "@/lib/shared/tools";
 import { getAllCategories } from "@/lib/shared/categories";
 
@@ -52,11 +53,26 @@ export async function getStaticProps({ params }) {
 }
 
 export default function CategoryPage({ tools, category, slug }) {
+    const router = useRouter();
 
     const validTools = Array.isArray(tools) ? tools : [];
     const validCategory = typeof category === "string" ? category : "Unknown";
     const [compareList, setCompareList] = useState([]);
-    const [currentPage, setCurrentPage] = useState(1);
+
+    // The source of truth for the current page is now the URL query parameter.
+    // Default to 1 if the parameter is not present or invalid.
+    const currentPage = parseInt(router.query.page, 10) || 1;
+
+    const handlePageChange = (page) => {
+        router.push(
+            {
+                pathname: router.pathname,
+                query: { ...router.query, page },
+            },
+            undefined,
+            { shallow: true },
+        );
+    };
 
     const toggleCompare = useCallback((tool) => {
         setCompareList((prev) => {
@@ -127,9 +143,7 @@ export default function CategoryPage({ tools, category, slug }) {
                     <Pagination
                         currentPage={currentPage}
                         totalPages={totalPages}
-                        onPageChange={(page) => {
-                            setCurrentPage(page);
-                        }}
+                        onPageChange={handlePageChange}
                     />
                 )}
             </div>
