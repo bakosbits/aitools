@@ -44,7 +44,7 @@ export default function CompareBar({ compareList = [], toggleCompare }) {
                     <Link
                         href={`/compare/${compareList[0].Slug}/vs/${compareList[1].Slug}`}
                         className="inline-flex items-left justify-center space-x-2 flex-nowrap
-                            bg-emerald-300 hover:bg-emerald-400 transition-colors
+                            bg-emerald-500 hover:bg-emerald-600 transition-colors
                             text-gray-100 font-semibold border border-gray-700 p-1 space-x-2 rounded-lg whitespace-nowrap"
                     >
                         <span>Compare Now</span>
