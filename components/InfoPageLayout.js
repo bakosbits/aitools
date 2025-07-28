@@ -18,7 +18,7 @@ export default function InfoPageLayout({ title, children, imageSrc, imageAlt }) 
                 {/* INNER WRAPPER: 75% of left column, padded on mobile */}
                 <div className="w-full md:w-[75%] text-left flex flex-col">
                     <div>
-                        <h1 className="text-3xl text-headingWhite font-bold mb-6">
+                        <h1 className="text-3xl font-bold mb-6">
                             {title}
                         </h1>
                         {children}

@@ -26,33 +26,33 @@ export default function BlogIndex({ articles }) {
             />
             <div className="w-full max-w-4xl mx-auto">
                 <div
-                    className="relative rounded-lg shadow-3xl shadow-[0_6px_16px_rgba(0,255,128,0.25)] overflow-hidden mb-8 h-[357px] flex items-center justify-left bg-cover bg-center px-2 md:px-12"
+                    className="relative rounded-lg shadow-3xl overflow-hidden mb-8 h-[357px] flex items-center justify-left bg-cover bg-center px-2 md:px-12"
                     style={{ backgroundImage: "url('/images/blog_hero.png')" }}
                 >
-                    <div className="absolute inset-0 bg-backgroundDark opacity-50" />
-                    <h1 className="relative z-10 text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-bold text-headingWhite">
+                    <div className="absolute inset-0 bg-gray-800 opacity-50" />
+                    <h1 className="relative z-10 text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-bold">
                         Bit by Bit
                     </h1>
                 </div>
                 <ul className="space-y-6">
                     {validArticles.map((article) => (
-                        <li
-                            key={article.id}
-                            className="border border-gray-700 p-6 rounded-lg hover:bg-gray-800 transition-colors"
-                        >
-                            <Link href={`/blog/${article.Slug}`}>
-                                <h1 className="text-xl font-semibold text-accentGreen hover:underline">
+                        <li key={article.id}>
+                            <Link
+                                href={`/blog/${article.Slug}`}
+                                className="block bg-cardDark border border-gray-600 p-6 rounded-lg shadow-3xl hover:bg-gray-800 transition-colors"
+                            >
+                                <h1 className="text-xl font-semibold text-emerald-400">
                                     {article.Title}
                                 </h1>
-                            </Link>
-                            <p className="text-gray-400 text-xs mt-1">
-                                {article.Date}
-                            </p>
-                            {article.Summary && (
-                                <p className="text-grayText mt-2">
-                                    {article.Summary}
+                                <p className="text-gray-400 text-xs mt-1">
+                                    {article.Date}
                                 </p>
-                            )}
+                                {article.Summary && (
+                                    <p className="text-gray-400 mt-2">
+                                        {article.Summary}
+                                    </p>
+                                )}
+                            </Link>
                         </li>
                     ))}
                 </ul>

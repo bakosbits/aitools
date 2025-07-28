@@ -16,10 +16,10 @@ export default function LegalPage() {
                 imageAlt="A pouch with AI-themed tools, representing legal disclosures"
             >
                 {/* Affiliate Disclosure */}
-                <h2 className="text-xl text-headingWhite font-semibold mb-1">
+                <h2 className="text-xl text-gray-100 font-semibold mb-1">
                     Affiliate Disclosure
                 </h2>
-                <p className="mb-4 text-grayText">
+                <p className="mb-4 text-gray-400">
                     AI Tool Pouch participates in various affiliate marketing
                     programs, which means we may earn commissions on qualifying
                     purchases made through links on this site to third-party
@@ -37,10 +37,10 @@ export default function LegalPage() {
                     audience.
                 </p>
                 {/* Expanded No Guarantees */}
-                <h2 className="text-xl text-headingWhite font-semibold mb-1">
+                <h2 className="text-xl text-gray-100 font-semibold mb-1">
                     Disclaimer & No Guarantees
                 </h2>
-                <p className="mb-4 text-grayText">
+                <p className="mb-4 text-gray-400">
                     The information provided on AI Tool Pouch is for general
                     informational purposes only. While we strive to ensure that
                     all details about the tools listed, including their
@@ -58,10 +58,10 @@ export default function LegalPage() {
                     commitments.
                 </p>
                 {/* Expanded Privacy Section */}
-                <h2 className="text-xl text-headingWhite font-semibold mb-1">
+                <h2 className="text-xl text-gray-100 font-semibold mb-1">
                     Privacy & Data Use
                 </h2>
-                <p className="mb-4 text-grayText">
+                <p className="mb-4 text-gray-400">
                     Your privacy is important to us. AI Tool Pouch does not
                     collect any personally identifiable information from your
                     visit beyond basic, aggregated, and anonymized analytics
@@ -76,10 +76,10 @@ export default function LegalPage() {
                     please refer to our full Privacy Policy.
                 </p>
                 {/* Expanded Copyright */}
-                <h2 className="text-xl text-headingWhite font-semibold mb-1">
+                <h2 className="text-xl text-gray-100 font-semibold mb-1">
                     Copyright
                 </h2>
-                <p className="text-grayText mb-4">
+                <p className="text-gray-400 mb-4">
                     © {new Date().getFullYear()} AI Tool Pouch. All content and
                     materials on this website, including but not limited to
                     text, graphics, logos, images, and tool descriptions, are

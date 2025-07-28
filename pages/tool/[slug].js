@@ -48,7 +48,7 @@ export default function ToolPage({ tool }) {
                 <div className="w-full max-w-6xl">
                     {/* Top Row */}
                     <div className="flex flex-col md:flex-row md:items-center md:justify-between mb-6">
-                        <h1 className="text-2xl text-headingWhite font-bold">
+                        <h1 className="text-2xl text-gray-100 font-bold">
                             Reviewing {tool.Name}
                         </h1>
                     </div>
@@ -63,9 +63,9 @@ export default function ToolPage({ tool }) {
                                 src={tool.Logo}
                                 alt={`${tool.Name} logo`}
                                 title={tool.Name}
-                                className="object-contain bg-headingWhite mb-6"
+                                className="object-contain bg-gray-100 mb-6"
                             />
-                            <h1 className="text-xl font-bold text-headingWhite mb-2">
+                            <h1 className="text-xl font-bold text-gray-100 mb-2">
                                 Found in:
                             </h1>
                             <p className="text-left">
@@ -75,7 +75,7 @@ export default function ToolPage({ tool }) {
                                             {idx > 0 && ", "}
                                             <Link
                                                 href={`/category/${cat.Slug || cat.Name.toLowerCase()}`}
-                                                className="text-accentGreen hover:text-headingWhite"
+                                                className="text-emerald-300 hover:text-emerald-400 transition"
                                             >
                                                 {cat.Name}
                                             </Link>

@@ -1,6 +1,11 @@
 import { useState } from "react";
 import { useRouter } from "next/router";
 
+/**
+ * Renders a search input field and a submit button.
+ * When the form is submitted, it navigates the user to the `/tools` page,
+ * appending the search query as a URL parameter (e.g., `/tools?q=search-term`).
+ */
 export default function SearchBar() {
     const [query, setQuery] = useState("");
     const router = useRouter();
@@ -26,16 +31,16 @@ export default function SearchBar() {
                             setQuery(e.target.value);
                         }}
                         placeholder="Search tools..."
-                        className="w-full px-4 py-2 rounded-md bg-backgroundDark text-whiteHeading placeholder-text-whiteHeading border border-accentGreen"
+                        className="w-full px-4 py-2 rounded-md bg-gray-800 text-gray-100 placeholder-text-gray-400 border border-gray-600"
                     />
                 </div>
                 <button
                     type="submit"
-                    className="flex items-center gap-1 bg-accentGreen text-backgroundDark px-3 py-1.5 rounded font-semibold hover:bg-headingWhite transition"
+                    className="flex items-center gap-1 bg-emerald-500 text-gray-100 px-3 py-1.5 rounded font-semibold hover:bg-emerald-600 transition"
                     aria-label="Search"
                 >
                     <svg
-                        className="w-6 h-6 text-black"
+                        className="w-6 h-6 text-gray-100"
                         fill="currentColor"
                         viewBox="0 0 20 20"
                         xmlns="http://www.w3.org/2000/svg"

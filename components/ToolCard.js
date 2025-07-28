@@ -1,6 +1,25 @@
 import Link from "next/link";
 import BlogLinkCard from "@/components/BlogLinkCard";
 
+/**
+ * Renders a card for a single AI tool with interactive elements.
+ * The card displays summary information like the tool's name, logo, description, and "Why it matters".
+ * The entire card links to the tool's detailed page. It also contains separate interactive
+ * elements for visiting the tool's external website and for adding/removing the tool
+ * from a comparison list, which stop the main link navigation.
+ * @param {object} props - The component props.
+ * @param {object} props.tool - The tool object containing its details.
+ * @param {string} props.tool.id - A unique identifier for the tool.
+ * @param {string} props.tool.Slug - The URL slug for the tool's detail page.
+ * @param {string} props.tool.Name - The name of the tool.
+ * @param {string} props.tool.Logo - The URL for the tool's logo.
+ * @param {string} [props.tool.Base_Model] - The base model the tool is powered by.
+ * @param {string} [props.tool.Description] - A short description of the tool.
+ * @param {string} [props.tool.Why] - A brief explanation of the tool's importance.
+ * @param {string} [props.tool.articleSlug] - The slug for a related blog article (optional).
+ * @param {Array<object>} [props.compareList=[]] - An array of tool objects currently selected for comparison.
+ * @param {function(object): void} props.toggleCompare - Function to add or remove a tool from the compare list.
+ */
 export default function ToolCard({ tool, compareList = [], toggleCompare }) {
     const isChecked = compareList.some((t) => t.id === tool.id);
 
@@ -11,32 +30,32 @@ export default function ToolCard({ tool, compareList = [], toggleCompare }) {
             title={tool.Name}
             passHref
         >
-              <div className="h-full bg-cardDark p-6 rounded-lg shadow-lg flex flex-col items-start group-hover:bg-gray-800 transition-colors">
+              <div className="h-full bg-cardDark p-6 border border-gray-600 rounded-lg shadow-lg flex flex-col items-start group-hover:bg-gray-800 transition-colors">
                 <div className="w-full flex items-center space-x-4">
                     <img
                         src={tool.Logo}
                         alt={`${tool.Name} logo`}
                         title={tool.Name}
-                        className="object-contain bg-headingWhite h-14 w-14"
+                        className="object-contain h-14 w-14"
                     />
-                    <h1 className="text-2xl font-bold text-headingWhite">
+                    <h1 className="text-2xl font-bold">
                         {tool.Name}
                     </h1>
                 </div>
                 {tool["Base_Model"] && (
-                    <p className="text-headingWhite mb-4 mt-6">
+                    <p className="text-gray-100 mb-2 mt-6">
                         Powered by {tool["Base_Model"]}
                     </p>
                 )}
-                <p className=" text-grayText mb-4">
+                <p className="mb-4">
                     {tool.Description?.length > 100
                         ? tool.Description.slice(0, 100) + "..."
                         : tool.Description}
                 </p>
-                <h1 className="text-xl text-headingWhite font-bold">
+                <h1 className="text-xl font-bold">
                     Why it matters:
                 </h1>
-                <p className="text-grayText mb-4">
+                <p className="mb-4">
                     {tool.Why?.length > 100
                         ? tool.Why.slice(0, 100) + "..."
                         : tool.Why}
@@ -45,7 +64,7 @@ export default function ToolCard({ tool, compareList = [], toggleCompare }) {
                 <div className="mt-auto text-sm">
                     <a
                         href={`/go/${tool.Slug}`}
-                        className="flex items-center text-accentGreen hover:text-headingWhite font-medium mb-2"
+                        className="flex items-center text-emerald-300 hover:text-emerald-400 transition font-medium mb-2"
                         target="_blank"
                         rel="noopener noreferrer"
                         onClick={(e) => e.stopPropagation()}
@@ -67,7 +86,7 @@ export default function ToolCard({ tool, compareList = [], toggleCompare }) {
                             checked={isChecked} // Use the derived `isChecked` state
                             onChange={() => toggleCompare(tool)} // `onChange` is for input elements
                         />
-                        <span className="text-accentGreen font-medium">
+                        <span className="text-emerald-300 font-medium">
                             Compare
                         </span>
                     </label>

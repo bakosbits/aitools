@@ -36,10 +36,10 @@ export default function CategoriesPage({ categories }) {
             />
             <div className="max-w-7xl mx-auto">
                 <div className="w-full grid grid-cols-1 justify-between items-center mb-4">
-                    <h1 className="text-2xl text-headingWhite font-bold mb-4">
+                    <h1 className="text-2xl text-gray-100 font-bold mb-4">
                         Alignment By Profession | Skill | Trade | Craft
                     </h1>
-                    <p className="text-grayText mb-4">
+                    <p className="text-gray-400 mb-4">
                         Each category below contains a listing of top AI tools
                         best suited for the category. This enables you to
                         quickly sharpen your focus by aligning with tools that
@@ -60,16 +60,16 @@ export default function CategoriesPage({ categories }) {
                             <Link
                                 key={cat.id}
                                 href={`/category/${cat.Slug}`}
-                                className="block border border-gray-700 p-4 rounded-lg bg-cardDark hover:bg-gray-800 transition-colors flex flex-col"
+                                className="block border border-gray-600 p-4 rounded-lg bg-cardDark hover:bg-gray-800 transition-colors flex flex-col"
                             >
-                                <h2 className="text-xl text-accentGreen hover:text-headingWhite font-bold mb-2">
+                                <h2 className="text-emerald-400 text-xl font-bold mb-2">
                                     {cat.Name}
                                 </h2>
-                                <p className=" text-grayText mb-2">
+                                <p className=" text-gray-400 mb-2">
                                     {cat.Description}
                                 </p>
                                 <div className="mt-auto">
-                                    <p className="text-xs text-headingWhite">
+                                    <p className="text-xs text-gray-100">
                                         {cat.Count} tools
                                     </p>
                                 </div>

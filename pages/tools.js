@@ -116,7 +116,7 @@ export default function ToolsPage({ tools }) {
                     />
                 </div>
                 <div className="w-full justify-between items-center mb-4">
-                    <h1 className="text-2xl text-headingWhite font-bold">
+                    <h1 className="text-2xl text-gray-100 font-bold">
                         {isSearch
                             ? `Search Results for "${query}"`
                             : "Browsing All Tools"}
@@ -139,7 +139,7 @@ export default function ToolsPage({ tools }) {
                             ))
                         ) : (
                             <div className="col-span-full text-center py-10">
-                                <p className="text-grayText">No tools found matching your search.</p>
+                                <p className="text-gray-400">No tools found matching your search.</p>
                             </div>
                         )}
                     </ul>

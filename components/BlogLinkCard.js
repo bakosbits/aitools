@@ -1,6 +1,13 @@
 import Link from "next/link";
 import React from "react";
 
+/**
+ * Renders a card with a link to a related blog post for a tool.
+ *
+ * @param {object} props - The component props.
+ * @param {string} props.articleSlug - The slug of the related blog article.
+ * @param {string} props.toolName - The name of the tool, used in the link text.
+ */
 export default function BlogLinkCard({ articleSlug, toolName }) {
     if (!articleSlug) {
         return null; // Don't render anything if no linked article
@@ -11,7 +18,7 @@ export default function BlogLinkCard({ articleSlug, toolName }) {
         <div className="mb-4 text-sm">
             <a
                 href={`/blog/${articleSlug}`}
-                className="text-accentGreen hover:text-headingWhite"
+                className="text-emerald-300 hover:text-emerald-400 transition"
                 onClick={(e) => {
                     e.stopPropagation();
                 }}

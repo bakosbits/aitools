@@ -31,7 +31,7 @@ export default function ContactForm() {
 
     return (
         <div className="max-w-xl mx-auto py-12 px-6 bg-cardDark rounded-md">
-            <h1 className="text-2xl font-bold text-headingWhite mb-6">
+            <h1 className="text-2xl font-bold text-gray-100 mb-6">
                 Contact Us
             </h1>
             <form onSubmit={handleSubmit} className="space-y-4">
@@ -42,7 +42,7 @@ export default function ContactForm() {
                     onChange={handleChange}
                     placeholder="Your name"
                     required
-                    className="w-full p-2 rounded bg-gray-800 text-white"
+                    className="w-full p-2 rounded bg-gray-800 text-gray-100"
                 />
                 <input
                     type="email"
@@ -51,7 +51,7 @@ export default function ContactForm() {
                     onChange={handleChange}
                     placeholder="Your email"
                     required
-                    className="w-full p-2 rounded bg-gray-800 text-white"
+                    className="w-full p-2 rounded bg-gray-800 text-gray-100"
                 />
                 <textarea
                     name="message"
@@ -64,7 +64,7 @@ export default function ContactForm() {
                 />
                 <button
                     type="submit"
-                    className="px-4 py-2 bg-accentGreen text-black font-bold rounded"
+                    className="px-4 py-2 bg-emerald-500 text-gray-100 hover:bg-emerald-600 transition font-bold rounded"
                 >
                     Send
                 </button>

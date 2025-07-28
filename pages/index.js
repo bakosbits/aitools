@@ -51,10 +51,10 @@ export default function Home({ tools, latestTools, featuredTools }) {
                 <div className="w-full md:w-[60%] mt-[0%] md:mt-[5%] flex justify-center">
                     {/* INNER WRAPPER: 60% of left column, padded on mobile */}
                     <div className="w-full md:w-[80%] justify-start text-left flex flex-col">
-                        <h1 className="text-headingWhite text-3xl font-bold mb-2 ">
+                        <h1 className="text-gray-100 text-3xl font-bold mb-2 ">
                             Welcome!
                         </h1>
-                        <p className="text-grayText mb-8">
+                        <p className="text-gray-400 mb-8">
                             You can't help but notice the endless sea of AI
                             driven tools in the market. Did you know there are
                             +10,000 tools out there with some type of AI
@@ -67,7 +67,7 @@ export default function Home({ tools, latestTools, featuredTools }) {
                         </p>
                         <div className="flex flex-col items-left sm:items-left justify-left">
                             <div className="flex justify-between items-center mb-4">
-                                <h1 className="text-headingWhite text-xl font-bold">
+                                <h1 className="text-gray-100 text-xl font-bold">
                                     Discover powerful AI tools tailored to your
                                     profession or use case.
                                 </h1>
@@ -77,8 +77,8 @@ export default function Home({ tools, latestTools, featuredTools }) {
                                     href="/categories"
                                     title="Find Your Category"
                                     className="inline-flex items-left justify-center space-x-2
-                                        bg-accentGreen hover:bg-headingWhite transition-colors
-                                        text-backgroundDark font-semibold border border-gray-700 p-2 rounded-lg mb-4 whitespace-nowrap"
+                                        bg-emerald-500 hover:bg-emerald-600 transition-colors
+                                        text-gray-100 font-semibold border border-gray-700 p-2 rounded-lg mb-4 whitespace-nowrap"
                                 >
                                     <span>Find Your Category</span>
                                     <svg
@@ -98,8 +98,8 @@ export default function Home({ tools, latestTools, featuredTools }) {
                                     href="/use-cases"
                                     title="Define Your Use Case"
                                     className="inline-flex items-left justify-center space-x-2
-                                        bg-accentGreen hover:bg-headingWhite transition-colors
-                                        text-backgroundDark font-semibold border border-gray-700 p-2 rounded-lg shadow-md
+                                        bg-emerald-500 hover:bg-emerald-600 transition-colors
+                                        text-gray-100 font-semibold border border-gray-700 p-2 rounded-lg shadow-md
                                         mb-4 whitespace-nowrap"
                                 >
                                     <span>Define Your Use Case</span>
@@ -118,7 +118,7 @@ export default function Home({ tools, latestTools, featuredTools }) {
                                 </a>
                             </div>
                         </div>
-                        <p className="text-grayText mb-4 md:mb-8">
+                        <p className="text-gray-400 mb-4 md:mb-8">
                             We'll show you a manageable list of tools to choose
                             from. You can conduct side-by-side comparisons to help you
                             narrow down your search to something that best fits
@@ -128,21 +128,21 @@ export default function Home({ tools, latestTools, featuredTools }) {
                             browse our
                             <Link
                                 href="/categories"
-                                className="text-accentGreen hover:text-headingWhite transition"
+                                className="text-emerald-300 hover:text-emerald-400 transition"
                             >
                                 {" "}categories{" "}
                             </Link>
                             or define your
                             <Link
-                                href="/usecases"
-                                className="text-accentGreen hover:text-headingWhite transition"
+                                href="/use-cases"
+                                className="text-emerald-300 hover:text-emerald-400 transition"
                             >
                                 {" "}use case{" "}
                             </Link>
                             to get started.
                         </p>
                         <div className="hidden md:block">
-                            <h1 className="text-headingWhite text-3xl font-bold mb-4">
+                            <h1 className="text-gray-100 text-3xl font-bold mb-4">
                                 Hot Topics:
                             </h1>
                             <div className="grid grid-cols-2 lg:grid-cols-4 gap-8">
@@ -158,7 +158,7 @@ export default function Home({ tools, latestTools, featuredTools }) {
                                             src={tool.Logo}
                                             alt={`${tool.Name} logo`}
                                             title={tool.Name}
-                                            className="w-[180px] h-auto bg-headingWhite object-contain"
+                                            className="w-[180px] h-auto bg-white object-contain"
                                         />
                                     </Link>
                                 ))}
@@ -172,7 +172,7 @@ export default function Home({ tools, latestTools, featuredTools }) {
                         <div className="mb-6">
                             <SearchBar tools={tools} />
                         </div>
-                        <h1 className="text-headingWhite text-xl font-bold mb-4">
+                        <h1 className="text-gray-100 text-xl font-bold mb-4">
                             Latest Additions:
                         </h1>
                         <div className="grid grid-cols-1 xl:grid-cols-2 gap-4">

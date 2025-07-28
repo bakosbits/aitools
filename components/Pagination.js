@@ -1,5 +1,23 @@
+/**
+ * Renders a pagination control for navigating between pages.
+ * It displays a series of page numbers, including ellipses (...) for long ranges,
+ * to allow users to jump to different pages of a list.
+ * @param {object} props - The component props.
+ * @param {number} props.currentPage - The currently active page number.
+ * @param {number} props.totalPages - The total number of pages available.
+ * @param {function(number): void} props.onPageChange - Callback function that is invoked when a page button is clicked. It receives the new page number as an argument.
+ */
 const Pagination = ({ currentPage, totalPages, onPageChange }) => {
-    
+
+    /**
+     * Generates an array of page numbers and ellipses to be displayed.
+     * This logic ensures that the pagination control remains compact by showing
+     * a limited set of page numbers around the current page, with ellipses
+     * representing the omitted pages.
+     * @param {number} current - The current page number.
+     * @param {number} total - The total number of pages.
+     * @returns {Array<number|string>} An array of page numbers and/or '…' strings.
+     */
     const getVisiblePages = (current, total) => {
         const range = [];
         const delta = 2;
@@ -54,9 +72,9 @@ const Pagination = ({ currentPage, totalPages, onPageChange }) => {
                     }}
                     className={`py-2 rounded text-sm min-w-[40px] text-center ${
                         page === currentPage
-                            ? "bg-accentGreen text-black font-bold"
+                            ? "bg-emerald-500 text-white font-bold"
                             : page === "…"
-                              ? "cursor-default text-gray-400"
+                              ? "cursor-default text-gray-100"
                               : "bg-gray-700 text-white hover:bg-gray-600"
                     }`}
                 >

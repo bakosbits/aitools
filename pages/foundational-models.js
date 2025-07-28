@@ -10,7 +10,7 @@ export default function FoundationalModelsPage() {
                 url={`https://aitoolpouch.com/foundational-models/`}
             />
             <div className="max-w-5xl mx-auto w-full ">
-                <h1 className="text-2xl text-headingWhite font-bold mb-6">
+                <h1 className="text-2xl text-gray-100 font-bold mb-6">
                     Foundational Models: Understanding the Core of Modern AI
                 </h1>
                 <p className="mb-6">
@@ -30,16 +30,16 @@ export default function FoundationalModelsPage() {
                             alt="GPT logo"
                             className="h-12 w-12 object-contain"
                         />
-                        <h1 className="text-xl text-headingWhite font-bold leading-none">
+                        <h1 className="text-xl text-gray-100 font-bold leading-none">
                             1. GPT (OpenAI)
                         </h1>
                     </div>
                 </div>
-                <p className="text-headingWhite">
+                <p className="text-gray-100">
                     <strong>Created by:</strong>{" "}
                     <a href="https://openai.com/">OpenAI</a>
                 </p>
-                <p className="text-headingWhite">
+                <p className="text-gray-100">
                     <strong>Best Known For:</strong> ChatGPT, code generation,
                     summarization
                 </p>
@@ -60,16 +60,16 @@ export default function FoundationalModelsPage() {
                             alt="GPT logo"
                             className="h-12 w-12 object-contain"
                         />
-                        <h1 className="text-xl text-headingWhite font-bold leading-none">
+                        <h1 className="text-xl text-gray-100 font-bold leading-none">
                             2. Claude
                         </h1>
                     </div>
                 </div>
-                <p className="text-headingWhite">
+                <p className="text-gray-100">
                     <strong>Created by:</strong>{" "}
                     <a href="https://anthropic.com/">Anthropic</a>
                 </p>
-                <p className="text-headingWhite">
+                <p className="text-gray-100">
                     <strong>Best Known For:</strong> Safer, more steerable
                     conversations
                 </p>
@@ -89,16 +89,16 @@ export default function FoundationalModelsPage() {
                             alt="Gemini logo"
                             className="h-12 w-12 object-contain"
                         />
-                        <h1 className="text-xl text-headingWhite font-bold leading-none">
+                        <h1 className="text-xl text-gray-100 font-bold leading-none">
                             3. Gemini (Formerly Bard)
                         </h1>
                     </div>
                 </div>
-                <p className="text-headingWhite">
+                <p className="text-gray-100">
                     <strong>Created by:</strong>{" "}
                     <a href="https://deepmind.google/">Google Deep Mind</a>
                 </p>
-                <p className="text-headingWhite">
+                <p className="text-gray-100">
                     <strong>Best Known For:</strong> Integration with Google
                     Workspace, web-aware search
                 </p>
@@ -117,16 +117,16 @@ export default function FoundationalModelsPage() {
                             alt="Mistral logo"
                             className="h-12 w-12 object-contain"
                         />
-                        <h1 className="text-xl text-headingWhite font-bold leading-none">
+                        <h1 className="text-xl text-gray-100 font-bold leading-none">
                             4. Mistral
                         </h1>
                     </div>
                 </div>
-                <p className="text-headingWhite">
+                <p className="text-gray-100">
                     <strong>Created by:</strong>{" "}
                     <a href="https://Mistral.ai/">Mistral</a>
                 </p>
-                <p className="text-headingWhite">
+                <p className="text-gray-100">
                     <strong>Best Known For:</strong> Open-weight models,
                     performance in multilingual tasks
                 </p>
@@ -145,16 +145,16 @@ export default function FoundationalModelsPage() {
                             alt="LLaMA logo"
                             className="h-12 w-12 object-contain"
                         />
-                        <h1 className="text-xl text-headingWhite font-bold leading-none">
+                        <h1 className="text-xl text-gray-100 font-bold leading-none">
                             5. LLaMA (Large Language Model Meta AI)
                         </h1>
                     </div>
                 </div>
-                <p className="text-headingWhite">
+                <p className="text-gray-100">
                     <strong>Created by:</strong>{" "}
                     <a href="https://meta.com/">Meta (FaceBook)</a>
                 </p>
-                <p className="text-headingWhite">
+                <p className="text-gray-100">
                     <strong>Best Known For:</strong> Research-driven open
                     access, strong performance at scale
                 </p>
@@ -173,16 +173,16 @@ export default function FoundationalModelsPage() {
                             alt="DALL-E logo"
                             className="h-12 w-12 object-contain"
                         />
-                        <h1 className="text-xl text-headingWhite font-bold leading-none">
+                        <h1 className="text-xl text-gray-100 font-bold leading-none">
                             6. DALL·E
                         </h1>
                     </div>
                 </div>
-                <p className="text-headingWhite">
+                <p className="text-gray-100">
                     <strong>Created by:</strong>{" "}
                     <a href="https://openai.com/">OpenAI</a>
                 </p>
-                <p className="text-headingWhite">
+                <p className="text-gray-100">
                     <strong>Best Known For:</strong> Image generation from text
                     prompts
                 </p>
@@ -194,7 +194,7 @@ export default function FoundationalModelsPage() {
                     multimodal, extending beyond just text to manipulate and
                     generate images, audio, and video.
                 </p>
-                <h1 className="text-xl mt-8 text-headingWhite font-bold leading-none">
+                <h1 className="text-xl mt-8 text-gray-100 font-bold leading-none">
                     Why Foundational Models Matter
                 </h1>
                 <p className="mt-4 mb-4">

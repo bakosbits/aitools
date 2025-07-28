@@ -10,7 +10,7 @@
 html,
 body {
     @apply font-body;
-    @apply bg-backgroundDark;
+    @apply bg-gray-800;
     margin: 0;
     padding: 0;
     overflow-x: hidden;
@@ -31,6 +31,27 @@ svg {
 heading {
     @apply font-heading;
 }
+
+@layer base {
+  /* Apply gray-100 to all headings */
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    @apply text-gray-100;
+  }
+
+  /* Apply gray-400 to common body text elements */
+  p,
+  ul,
+  ol,
+  li, /* Include list items as they are common body text */
+  blockquote { /* Often contains body-like text */
+    @apply text-gray-400;
+  }
+}  
 
 /* Optional: your global styles */
 #__next {

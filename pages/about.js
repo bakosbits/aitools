@@ -17,10 +17,10 @@ export default function AboutPage() {
                 imageSrc="/images/pouch01.jpg"
                 imageAlt="A collection of AI tools in a pouch"
             >
-                <h2 className="text-2xl text-headingWhite font-semibold mb-2">
+                <h2 className="text-2xl text-gray-100 font-semibold mb-2">
                     Our Mission & Vision
                 </h2>
-                <p className="mb-4 text-grayText">
+                <p className="mb-4 text-gray-400">
                     In a rapidly evolving landscape of artificial intelligence,
                     finding valuable and relevant tools for your profession can
                     be overwhelming. We intend to cut through the noise,
@@ -31,10 +31,10 @@ export default function AboutPage() {
                     daily routine. We want to help you avoid the paradox of
                     choice.
                 </p>
-                <h2 className="text-2xl text-headingWhite font-semibold mb-2">
+                <h2 className="text-2xl text-gray-100 font-semibold mb-2">
                     How We Curate
                 </h2>
-                <p className="mb-4 text-grayText">
+                <p className="mb-4 text-gray-400">
                     Our process is straightforward. We tear into each tool by
                     assessing its core functionality, unique features, target
                     audience, and real-world benefits. Our goal is to provide
@@ -44,10 +44,10 @@ export default function AboutPage() {
                     problems, ensuring our directory remains a high-quality
                     resource.
                 </p>
-                <h2 className="text-2xl text-headingWhite font-semibold mb-2">
+                <h2 className="text-2xl text-gray-100 font-semibold mb-2">
                     Why Trust Us?
                 </h2>
-                <p className="mb-4 text-grayText">
+                <p className="mb-4 text-gray-400">
                     All tools are independently researched and categorized by
                     us. The reviews and classifications are based on
                     evaluation, not paid placements. While listings may contain
@@ -58,14 +58,14 @@ export default function AboutPage() {
                     commitment is always to transparency and unbiased
                     information.
                 </p>
-                <p className="mb-4 text-grayText">
+                <p className="mb-4 text-gray-400">
                     We’re building a smarter, more practical way to explore the
                     AI landscape.
                 </p>
-                <h2 className="text-2xl text-headingWhite font-semibold mb-2">
+                <h2 className="text-2xl text-gray-100 font-semibold mb-2">
                     Our Future
                 </h2>
-                <p className="mb-4 text-grayText">
+                <p className="mb-4 text-gray-400">
                     As the world of AI continues to evolve, so too will AI Tool
                     Pouch. We will continue to add new tools, refine our
                     categories, and work to make our platform simple and

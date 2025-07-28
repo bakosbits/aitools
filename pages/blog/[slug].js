@@ -43,14 +43,14 @@ export default function BlogPost({ title, summary, content, author, date }) {
             />
             <div className="max-w-4xl mx-auto">
                 <article>
-                    <h1 className="text-4xl font-bold text-white mb-3">
+                    <h1 className="text-4xl font-bold mb-3">
                         {title}
                     </h1>
-                    <div className="text-gray-500 text-sm mb-6">
+                    <div className="text-gray-400 text-sm mb-6">
                         {new Date(date).toLocaleDateString()}
                     </div>
-                    <hr className="border-gray-700 mb-8" />
-                    <div className="text-grayText prose prose-invert max-w-none">
+                    <hr className="border-gray-600 mb-8" />
+                    <div className="text-gray-400 prose prose-invert max-w-none">
                         <ReactMarkdown
                             components={{
                                 img: MarkdownImage,
