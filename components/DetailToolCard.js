@@ -55,7 +55,7 @@ export default function DetailToolCard({ tool }) {
                 </h1>
             </div>
             {tool["Base_Model"] && (
-                <p className="text-gray-100 mt-2 mb-4">
+                <p className="text-slate-300 mt-2 mb-4">
                     Powered by {tool["Base_Model"]}
                 </p>
             )}
@@ -100,7 +100,7 @@ export default function DetailToolCard({ tool }) {
             <div className="mt-auto text-sm ">
                 <a
                     href={`/go/${tool.Slug}`}
-                    className="flex items-center text-sm text-emerald-300 hover:text-emerald-400 transition mt-6 mb-2"
+                    className="flex items-center text-sm text-slate-100 hover:text-slate-300 transition mt-6 mb-2"
                     target="_blank"
                     rel="noopener noreferrer"
                 >

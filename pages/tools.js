@@ -122,7 +122,7 @@ export default function ToolsPage({ tools }) {
                     />
                 </div>
                 <div className="w-full justify-between items-center mb-4">
-                    <h1 className="text-2xl text-gray-100 font-bold">
+                    <h1 className="text-2xl font-bold">
                         {isSearch
                             ? `Search Results for "${query}"`
                             : "Browsing All Tools"}

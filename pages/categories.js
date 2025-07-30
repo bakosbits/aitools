@@ -36,7 +36,7 @@ export default function CategoriesPage({ categories }) {
             />
             <div className="max-w-7xl mx-auto">
                 <div className="w-full grid grid-cols-1 justify-between items-center mb-4">
-                    <h1 className="text-2xl text-gray-100 font-bold mb-4">
+                    <h1 className="text-2xl font-bold mb-4">
                         Alignment By Profession | Skill | Trade | Craft
                     </h1>
                     <p className="text-gray-400 mb-4">
@@ -62,14 +62,14 @@ export default function CategoriesPage({ categories }) {
                                 href={`/category/${cat.Slug}`}
                                 className="block border border-gray-600 p-4 rounded-lg bg-cardDark hover:bg-gray-800 transition-colors flex flex-col"
                             >
-                                <h2 className="text-emerald-400 text-xl font-bold mb-2">
+                                <h2 className="text-slate-300 text-xl font-bold mb-2">
                                     {cat.Name}
                                 </h2>
                                 <p className=" text-gray-400 mb-2">
                                     {cat.Description}
                                 </p>
                                 <div className="mt-auto">
-                                    <p className="text-xs text-gray-100">
+                                    <p className="text-xs text-slate-100">
                                         {cat.Count} tools
                                     </p>
                                 </div>

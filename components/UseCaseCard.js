@@ -53,7 +53,7 @@ export default function UseCaseCard({ tool, compareList = [], toggleCompare,}) {
                         checked={isChecked} // Use the derived `isChecked` state
                         onChange={() => toggleCompare(tool)} // `onChange` is for input elements
                     />
-                    <span className="text-emerald-300 hover:text-emerald-400 transition font-medium">
+                    <span className="text-slate-300 hover:text-slate-400 transition font-medium">
                         Compare
                     </span>
                 </label>

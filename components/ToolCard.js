@@ -43,7 +43,7 @@ export default function ToolCard({ tool, compareList = [], toggleCompare }) {
                     </h1>
                 </div>
                 {tool["Base_Model"] && (
-                    <p className="text-gray-100 mb-2 mt-6">
+                    <p className="text-slate-300 mb-2 mt-6">
                         Powered by {tool["Base_Model"]}
                     </p>
                 )}
@@ -64,7 +64,7 @@ export default function ToolCard({ tool, compareList = [], toggleCompare }) {
                 <div className="mt-auto text-sm">
                     <a
                         href={`/go/${tool.Slug}`}
-                        className="flex items-center text-emerald-300 hover:text-emerald-400 transition font-medium mb-2"
+                        className="flex items-center text-slate-100 hover:text-slate-300 transition font-medium mb-2"
                         target="_blank"
                         rel="noopener noreferrer"
                         onClick={(e) => e.stopPropagation()}
@@ -86,7 +86,7 @@ export default function ToolCard({ tool, compareList = [], toggleCompare }) {
                             checked={isChecked} // Use the derived `isChecked` state
                             onChange={() => toggleCompare(tool)} // `onChange` is for input elements
                         />
-                        <span className="text-emerald-300 font-medium">
+                        <span className="text-slate-100 hover:text-slate-300 transition font-medium">
                             Compare
                         </span>
                     </label>

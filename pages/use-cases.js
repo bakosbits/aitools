@@ -94,7 +94,7 @@ export default function UseCasePage({ allTools, allAliases }) {
                 {/* Top row: spans both columns */}
                 <div className="md:col-span-2">
                     <div>
-                        <h1 className="text-2xl text-gray-100 font-bold mb-4">
+                        <h1 className="text-2xl font-bold mb-4">
                             Alignment By Use Case | Task | Project
                         </h1>
                         <div>
@@ -110,17 +110,14 @@ export default function UseCasePage({ allTools, allAliases }) {
                 {/* Left column */}
                 <div className="flex flex-col">
                     {/* Use Case */}
-                    <h1 className="text-xl text-gray-100 font-bold mb-2">
+                    <h1 className="text-xl font-bold mb-2">
                         💡 What's your use case? What do you want to do?
                     </h1>
-                    <div className="w-full text-gray-400 border border-gray-700 p-4 rounded-lg bg-cardDark mb-6">
+                    <div className="w-full text-gray-400 border border-gray-600 p-4 rounded-lg bg-cardDark mb-6">
                         {USE_CASES.map((useCase) => (
                             <button
                                 key={useCase}
                                 onClick={() => {
-                                    console.log(
-                                        `[UseCasePage] Use Case selected: "${useCase}"`,
-                                    );
                                     dispatch({
                                         type: "SET_USE_CASES",
                                         payload: toggleSelection(
@@ -131,8 +128,8 @@ export default function UseCasePage({ allTools, allAliases }) {
                                 }}
                                 className={
                                     state.useCases.includes(useCase)
-                                        ? "px-2 py-2 text-emerald-400 font-semibold"
-                                        : "px-2 py-2 hover:text-gray-100 transition"
+                                        ? "bg-cardDark text-slate-100 px-2 py-2 font-semibold"
+                                        : "bg-cardDark px-2 py-2 hover:text-slate-100 transition"
                                 }
                             >
                                 {useCase}
@@ -140,7 +137,7 @@ export default function UseCasePage({ allTools, allAliases }) {
                         ))}
                     </div>
                     {/* Modality Selection */}
-                    <h1 className="text-xl text-gray-100 font-bold mb-2">
+                    <h1 className="text-xl font-bold mb-2">
                         🧩 Are you working with data? What format is it in?
                     </h1>
                     <div className="w-full text-gray-400 border border-gray-600 p-4 rounded-lg bg-cardDark mb-6">
@@ -148,9 +145,6 @@ export default function UseCasePage({ allTools, allAliases }) {
                             <button
                                 key={modality}
                                 onClick={() => {
-                                    console.log(
-                                        `[UseCasePage] Modality selected: "${modality}"`,
-                                    );
                                     dispatch({
                                         type: "SET_MODALITIES",
                                         payload: toggleSelection(
@@ -161,8 +155,8 @@ export default function UseCasePage({ allTools, allAliases }) {
                                 }}
                                 className={
                                     state.modalities.includes(modality)
-                                        ? "px-2 py-2 text-emerald-400 font-semibold"
-                                        : "px-2 py-2 hover:text-gray-300 transition"
+                                        ? "bg-cardDark px-2 py-2 text-slate-100 font-semibold"
+                                        : "bg-cardDark px-2 py-2 hover:text-slate-100 transition"
                                 }
                             >
                                 {modality}
@@ -170,7 +164,7 @@ export default function UseCasePage({ allTools, allAliases }) {
                         ))}
                     </div>
                     {/* Preferences */}
-                    <h1 className="text-xl text-gray-100 font-bold mb-2">
+                    <h1 className="text-xl font-bold mb-2">
                         ⚙️ Do you have preferences or constraints you'd like to
                         add?
                     </h1>
@@ -179,9 +173,6 @@ export default function UseCasePage({ allTools, allAliases }) {
                             <button
                                 key={pref}
                                 onClick={() => {
-                                    console.log(
-                                        `[UseCasePage] Preference selected: "${pref}"`,
-                                    );
                                     dispatch({
                                         type: "SET_PREFERENCES",
                                         payload: toggleSelection(
@@ -192,8 +183,8 @@ export default function UseCasePage({ allTools, allAliases }) {
                                 }}
                                 className={
                                     state.preferences.includes(pref)
-                                        ? "px-2 py-2 text-emerald-400 font-semibold"
-                                        : "px-2 py-2 hover:text-gray-100 transition"
+                                        ? "bg-cardDark px-2 py-2 text-slate-100 font-semibold"
+                                        : "bg-cardDark px-2 py-2 hover:text-slate-100 transition"
                                 }
                             >
                                 {pref}
@@ -201,18 +192,15 @@ export default function UseCasePage({ allTools, allAliases }) {
                         ))}
                     </div>
                     {/* Professional Context */}
-                    <h1 className="text-xl text-gray-100 font-bold mb-2">
+                    <h1 className="text-xl font-bold mb-2">
                         ✨ Would you like results that are aligned to a
                         profession?
                     </h1>
-                    <div className="w-full text-gray-400 border border-gray-700 p-4 rounded-lg bg-cardDark mb-6">
+                    <div className="w-full text-gray-400 border border-gray-600 p-4 rounded-lg bg-cardDark mb-6">
                         {CONTEXTS.map((context) => (
                             <button
                                 key={context}
                                 onClick={() => {
-                                    console.log(
-                                        `[UseCasePage] Context selected: "${context}"`,
-                                    );
                                     dispatch({
                                         type: "SET_CONTEXT",
                                         payload: toggleSelection(
@@ -223,8 +211,8 @@ export default function UseCasePage({ allTools, allAliases }) {
                                 }}
                                 className={
                                     state.contexts.includes(context)
-                                        ? "px-2 py-2 text-emerald-400 font-semibold"
-                                        : "px-2 py-2 hover:text-gray-100 transition"
+                                        ? "bg-cardDark px-2 py-2 text-slate-100 font-semibold"
+                                        : "bg-cardDark px-2 py-2 hover:text-slate-100 transition"
                                 }
                             >
                                 {context}
@@ -238,17 +226,14 @@ export default function UseCasePage({ allTools, allAliases }) {
                     {matchedTools.length > 0 ? (
                         // Case 1: Tools are found
                         <>
-                            {console.log(
-                                "[UseCasePage] Displaying matched tools results.",
-                            )}
-                            <h1 className="text-xl text-gray-100 font-bold mb-4">
+                            <h1 className="text-xl text-slate-300 font-bold mb-4">
                                 🧠 Your Results
                             </h1>
                             <div>
                                 <button
                                     supressHydrationWarning
                                     onClick={handleResetFilters}
-                                    className="bg-emerald-500 text-gray-100 hover:bg-emerald-600 font-semibold py-2 px-4 rounded-lg text-lg transition-colors mb-4"
+                                    className="bg-teal-600 text-slate-100 hover:bg-teal-700 font-semibold py-2 px-4 rounded-lg text-lg transition-colors mb-4"
                                 >
                                     Reset Filters
                                 </button>
@@ -270,9 +255,6 @@ export default function UseCasePage({ allTools, allAliases }) {
                             {isAnyFilterActive ? (
                                 // Sub-case 2a: Filters are active, but no tools match
                                 <>
-                                    {console.log(
-                                        "[UseCasePage] Displaying 'Nothing Found' (filters active).",
-                                    )}
                                     <h1 className="text-xl text-gray-100 font-bold mb-4">
                                         🧠 Your Results
                                     </h1>
@@ -285,7 +267,7 @@ export default function UseCasePage({ allTools, allAliases }) {
                                             Reset Filters
                                         </button>
                                     </div>
-                                    <div className="flex flex-col border border-gray-700 p-6 rounded-lg bg-cardDark">
+                                    <div className="flex flex-col border border-gray-600 p-6 rounded-lg bg-cardDark">
                                         <p>
                                             Nothing found. Try adjusting your
                                             selections!
@@ -295,14 +277,11 @@ export default function UseCasePage({ allTools, allAliases }) {
                             ) : (
                                 // Sub-case 2b: No filters are active, show original instructions
                                 <>
-                                    {console.log(
-                                        "[UseCasePage] Displaying instructions (no filters active).",
-                                    )}
                                     <h1 className="text-xl text-gray-100 font-bold mb-2">
                                         {" "}
                                         🌐 Instructions
                                     </h1>
-                                    <div className="w-full border border-gray-700 p-6 rounded-lg bg-cardDark">
+                                    <div className="w-full border border-gray-600 p-6 rounded-lg bg-cardDark">
                                         <p className="text-gray-400">
                                             Answer at least 1 of the questions
                                             to get started. You're not required

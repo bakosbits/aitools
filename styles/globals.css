@@ -39,15 +39,17 @@ heading {
   h3,
   h4,
   h5,
-  h6 {
-    @apply text-gray-100;
+  h6,
+  input,
+  textarea {
+    @apply text-slate-300;
   }
 
   /* Apply gray-400 to common body text elements */
   p,
   ul,
   ol,
-  li, /* Include list items as they are common body text */
+  li,
   blockquote { /* Often contains body-like text */
     @apply text-gray-400;
   }

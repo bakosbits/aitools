@@ -41,10 +41,10 @@ export default function BlogIndex({ articles }) {
                                 href={`/blog/${article.Slug}`}
                                 className="block bg-cardDark border border-gray-600 p-6 rounded-lg shadow-3xl hover:bg-gray-800 transition-colors"
                             >
-                                <h1 className="text-xl font-semibold text-emerald-400">
+                                <h1 className="text-xl font-semibold ">
                                     {article.Title}
                                 </h1>
-                                <p className="text-gray-400 text-xs mt-1">
+                                <p className="text-slate-100 text-xs mt-1">
                                     {article.Date}
                                 </p>
                                 {article.Summary && (

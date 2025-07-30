@@ -48,7 +48,7 @@ export default function ComparePage({ toolA, toolB }) {
         !toolB.Slug
     ){
         return (
-            <div className="max-w-2xl mx-auto py-12 text-center text-gray-100">
+            <div className="max-w-2xl mx-auto py-12 text-center text-slate-300">
                 <h2 className="text-xl font-bold mb-2">
                     Comparison Not Available
                 </h2>
@@ -69,7 +69,7 @@ export default function ComparePage({ toolA, toolB }) {
             />
             <div className="max-w-7xl mx-auto">
                 <div className="h-full flex items-center justify-between mb-6">
-                    <h1 className="text-2xl text-gray-100 font-bold">
+                    <h1 className="text-2xl font-bold">
                         Comparing {toolA.Name} -to- {toolB.Name}
                     </h1>
                 </div>

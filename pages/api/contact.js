@@ -1,8 +1,7 @@
 import nodemailer from "nodemailer";
 
 export default async function handler(req, res) {
-    console.log(`[Contact Form API] Received ${req.method} request.`);
-
+    
     if (req.method !== "POST") {
         console.warn(
             `[Contact Form API] Method Not Allowed: Expected POST, received ${req.method}`,
@@ -11,10 +10,6 @@ export default async function handler(req, res) {
     }
 
     const { name, email, message, contact_company, startTime } = req.body;
-    console.log(
-        `[Contact Form API] Request Body: Name=${name}, Email=${email}, Message_length=${message?.length}, contact_company=${contact_company}, startTime=${startTime}`,
-    );
-
     if (contact_company && contact_company.trim() !== "") {
         console.warn(
             `[Contact Form API] Bot detected (honeypot field filled). IP: ${req.headers["x-forwarded-for"] || req.connection.remoteAddress}. Returning 200 to confuse.`,
@@ -25,9 +20,6 @@ export default async function handler(req, res) {
     }
 
     const elapsed = Date.now() - Number(startTime);
-    console.log(
-        `[Contact Form API] Time elapsed for submission: ${elapsed}ms.`,
-    );
     if (elapsed < 2000) {
         // Adjust threshold as needed
         console.warn(
@@ -64,46 +56,33 @@ export default async function handler(req, res) {
                 pass: process.env.GMAIL_PASS,
             },
         });
-        console.log("[Contact Form API] Nodemailer transporter created.");
 
-        console.log(
-            `[Contact Form API] Attempting to send email to webmaster@aitoolpouch.com from "${email}"`,
-        );
         await transporter.sendMail({
             from: `"AI Tool Pouch" <${process.env.GMAIL_USER}>`,
-            to: "webmaster@aitoolpouch.com", // Your designated recipient for contact forms
+            to: `<${process.env.GMAIL_TO}>`,
             subject: `New Contact Submission from ${name}`,
-            text: `
-New message received:
+            text: 
+`New message received:
 
 Name: ${name}
 Email: ${email}
 
 Message:
-${message}
-                `,
+${message}`
         });
-        console.log(
-            `[Contact Form API] Email to webmaster successfully sent for ${name}.`,
-        );
 
-        console.log(
-            `[Contact Form API] Attempting to send auto-reply to "${email}"`,
-        );
         await transporter.sendMail({
             from: `"AI Tool Pouch" <${process.env.GMAIL_USER}>`,
             to: email,
             subject: `Thanks for contacting AI Tool Pouch!`,
-            text: `Hi ${name},
-                Thanks for reaching out - your message has been received and we'll be in touch shortly.
+            text: 
+`Hi ${name},
+Thanks for reaching out - your message has been received and we'll be in touch shortly.
 
-                If this wasn’t you, feel free to ignore this email.
+If this wasn’t you, feel free to ignore this email.
 
-                - The AI Tool Pouch Team`,
+- The AI Tool Pouch Team`
         });
-        console.log(
-            `[Contact Form API] Auto-reply successfully sent to ${email}.`,
-        );
 
         return res.status(200).json({ success: true });
     } catch (err) {

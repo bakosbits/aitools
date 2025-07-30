@@ -16,14 +16,14 @@ export default function CompareBar({ compareList = [], toggleCompare }) {
     return (
         <div className="fixed top-0 left-0 right-0 z-50 bg-cardDark border border-gray-600 p-6 flex items-center justify-between shadow-lg">
             <div className="flex items-center gap-4 flex-wrap">
-                <span className="text-gray-100 font-bold">Comparing:</span>
+                <span className="text-slate-100 font-bold">Comparing:</span>
                 {compareList.map(
                     (tool) => (
                         <div
                             key={tool.id}
                             className="px-3 py-1 rounded-lg flex items-center gap-2"
                         >
-                            <span className="text-gray-400">{tool.Name}</span>
+                            <span className="text-slate-100">{tool.Name}</span>
                             <button
                                 onClick={() => {
                                     toggleCompare(tool);
@@ -44,8 +44,8 @@ export default function CompareBar({ compareList = [], toggleCompare }) {
                     <Link
                         href={`/compare/${compareList[0].Slug}/vs/${compareList[1].Slug}`}
                         className="inline-flex items-left justify-center space-x-2 flex-nowrap
-                            bg-emerald-500 hover:bg-emerald-600 transition-colors
-                            text-gray-100 font-semibold border border-gray-700 p-1 space-x-2 rounded-lg whitespace-nowrap"
+                            bg-teal-600 hover:bg-teal-700 transition-colors
+                            text-slate-100 font-semibold border border-gray-600 p-1 space-x-2 rounded-lg whitespace-nowrap"
                     >
                         <span>Compare Now</span>
                         <svg
