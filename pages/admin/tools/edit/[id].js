@@ -93,7 +93,7 @@ export async function getServerSideProps({ req, res, params }) {
 
 export default function EditToolPage({ tool, categories, articles, pricingOptions, error }) {
     return (
-        <div className="w-[80%] mx-auto">
+        <div className="w-full w-[80%] mx-auto">
             <Link href="/admin/tools"  className="text-slate-100 hover:text-slate-300 mb-6 inline-block">&larr; Back to Tools</Link>
             <h1 className="text-3xl font-bold mb-6">Edit Tool</h1>
             <ToolForm tool={tool} categories={categories} articles={articles} pricingOptions={pricingOptions} error={error} />

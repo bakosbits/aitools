@@ -42,7 +42,7 @@ export async function getServerSideProps({ req, res, params }) {
 
 export default function EditAliasPage({ alias, error }) {
     return (
-        <div className="w-[80%] mx-auto">
+        <div className="w-full w-[80%] mx-auto">
             <Link href="/admin/aliases" className="text-slate-100 hover:text-slate-300 mb-6 inline-block">&larr; Back to Aliases</Link>
             <h1 className="text-3xl font-bold mb-6">Edit Alias</h1>
             <AliasForm alias={alias} error={error} />

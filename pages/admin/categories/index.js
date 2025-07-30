@@ -28,7 +28,7 @@ export async function getServerSideProps({ req, res }) {
 
 export default function CategoriesPage({ categories }) {
     return (
-        <div className="w-[80%] mx-auto">
+        <div className="w-full w-[80%] mx-auto">
             <div><Link href="/admin" className="text-slate-100 hover:text-slate-300 mb-6 inline-block">&larr; Back to Main Menu</Link></div>
             <div className="flex justify-between items-center mb-6">
                 <h1 className="text-3xl font-bold">Manage Categories</h1>
@@ -36,7 +36,7 @@ export default function CategoriesPage({ categories }) {
                     + New Category
                 </Link>
             </div>
-            <div className="overflow-hidden">
+            <div className="overflow-x-auto">
                 <table className="min-w-full leading-normal">
                     <thead>
                         <tr>

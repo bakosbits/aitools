@@ -28,7 +28,7 @@ export async function getServerSideProps({ req, res }) {
 
 export default function AliasesPage({ aliases }) {
     return (
-        <div className="w-[80%] mx-auto">
+        <div className="w-full w-[80%] mx-auto">
             <div><Link href="/admin" className="text-slate-100 hover:text-slate-300 mb-6 inline-block">&larr; Back to Main Menu</Link></div>
             <div className="flex justify-between items-center mb-6">
                 <h1 className="text-3xl font-bold">Manage Aliases</h1>
@@ -36,7 +36,7 @@ export default function AliasesPage({ aliases }) {
                     + New Alias
                 </Link>
             </div>
-            <div className="bg-cardDark shadow-md rounded-lg overflow-hidden">
+            <div className="overflow-x-auto">
                 <table className="min-w-full leading-normal">
                     <thead>
                         <tr>
@@ -48,7 +48,7 @@ export default function AliasesPage({ aliases }) {
                     </thead>
                     <tbody>
                         {aliases.map((alias) => (
-                            <tr key={alias.id} className="border border-gray-600 hover:bg-gray-800">
+                            <tr key={alias.id} className="bg-cardDark border border-gray-600 hover:bg-gray-800">
                                 <td className="px-5 py-4 text-sm text-slate-300">{alias.Name}</td>
                                 <td className="px-5 py-4 text-sm text-slate-300">{alias.Type}</td>            
                                 <td className="px-5 py-4 text-sm text-slate-300 truncate max-w-xs">{alias.Aliases}</td>

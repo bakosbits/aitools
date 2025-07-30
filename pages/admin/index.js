@@ -2,7 +2,7 @@ import Link from "next/link";
 import { useState, useEffect } from "react";
 import randomQuotes from "random-quotes";
 
-export default function AdminDashboard() {
+export default function Admin() {
     const resources = ["Tools", "Categories", "Aliases", "Articles"].sort();
     const [quote, setQuote] = useState({ text: "", author: "" });
 
@@ -13,9 +13,9 @@ export default function AdminDashboard() {
     }, []);
 
     return (
-        <div className="flex flex-col w-[80%] mx-auto items-center justify-center h-full py-12">
+        <div className="flex flex-col w-full items-center justify-center h-full py-12">
             <h1 className="text-3xl font-bold mb-8 text-center">Admin Dashboard</h1>
-            <div className="flex flex-col gap-4 w-full max-w-md mb-12 px-20">
+            <div className="flex flex-col gap-4 max-w-md mb-12">
                 {resources.map((resource) => (
                     <Link
                         key={resource}

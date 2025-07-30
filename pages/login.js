@@ -39,9 +39,7 @@ export default function LoginPage() {
   return (
       <div className="flex items-center justify-center py-12">
         <div className="w-full max-w-md p-8 space-y-6 bg-cardDark rounded-lg shadow-lg border border-gray-600">
-          <h1 className="text-2xl font-bold text-center">
-            Admin Login
-          </h1>
+          <h1 className="text-2xl font-bold text-center">Login</h1>
           <form className="space-y-6" onSubmit={handleSubmit}>
             <div>
               <label htmlFor="username" className="block text-sm font-medium text-slate-300">

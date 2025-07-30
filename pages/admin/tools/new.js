@@ -129,7 +129,7 @@ export default function NewToolPage({ categories, articles, pricingOptions, erro
     };
 
     return (
-        <div className="w-[80%] mx-auto">
+        <div className="w-full w-[80%] mx-auto">
             <Link href="/admin/tools"  className="text-slate-100 hover:text-slate-300 mb-6 inline-block">&larr; Back to Tools</Link>
             <h1 className="text-3xl font-bold mb-6">New Tool</h1>
             <div className="mb-8 p-8 bg-cardDark rounded-lg border border-gray-600">
