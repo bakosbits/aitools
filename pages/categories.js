@@ -1,6 +1,6 @@
 import Link from "next/link";
 import MetaProps from "@/components/MetaProps";
-import { getAllCategories } from "@/lib/shared/categories";
+import { getAllCategories } from "@/lib/airtable/categories";
 
 export async function getStaticProps() {
     try {

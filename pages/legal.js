@@ -16,7 +16,7 @@ export default function LegalPage() {
                 imageAlt="A pouch with AI-themed tools, representing legal disclosures"
             >
                 {/* Affiliate Disclosure */}
-                <h2 className="text-xl text-gray-100 font-semibold mb-1">
+                <h2 className="text-xl font-semibold mb-1">
                     Affiliate Disclosure
                 </h2>
                 <p className="mb-4 text-gray-400">
@@ -37,7 +37,7 @@ export default function LegalPage() {
                     audience.
                 </p>
                 {/* Expanded No Guarantees */}
-                <h2 className="text-xl text-gray-100 font-semibold mb-1">
+                <h2 className="text-xl font-semibold mb-1">
                     Disclaimer & No Guarantees
                 </h2>
                 <p className="mb-4 text-gray-400">
@@ -58,7 +58,7 @@ export default function LegalPage() {
                     commitments.
                 </p>
                 {/* Expanded Privacy Section */}
-                <h2 className="text-xl text-gray-100 font-semibold mb-1">
+                <h2 className="text-xl font-semibold mb-1">
                     Privacy & Data Use
                 </h2>
                 <p className="mb-4 text-gray-400">
@@ -76,7 +76,7 @@ export default function LegalPage() {
                     please refer to our full Privacy Policy.
                 </p>
                 {/* Expanded Copyright */}
-                <h2 className="text-xl text-gray-100 font-semibold mb-1">
+                <h2 className="text-xl font-semibold mb-1">
                     Copyright
                 </h2>
                 <p className="text-gray-400 mb-4">

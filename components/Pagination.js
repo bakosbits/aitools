@@ -64,7 +64,7 @@ const Pagination = ({ currentPage, totalPages, onPageChange }) => {
                             ? "bg-teal-600 text-slate-100 font-bold"
                             : page === "…"
                               ? "cursor-default bg-gray-800 text-slate-100"
-                              : "bg-gray-700 text-white hover:bg-gray-600"
+                              : "bg-gray-700 text-slate-100 hover:bg-gray-600"
                     }`}
                 >
                     {page}

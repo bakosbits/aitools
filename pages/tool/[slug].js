@@ -1,4 +1,4 @@
-import { getAllTools, getToolBySlug } from "@/lib/shared/tools";
+import { getAllTools, getToolBySlug } from "@/lib/airtable/tools";
 
 import React from "react";
 import Link from "next/link";

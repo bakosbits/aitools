@@ -1,7 +1,7 @@
 import { useState, useEffect, useCallback, useMemo } from "react";
 import { useRouter } from "next/router";
-import { getToolsByCategory } from "@/lib/shared/tools";
-import { getAllCategories } from "@/lib/shared/categories";
+import { getToolsByCategory } from "@/lib/airtable/tools";
+import { getAllCategories } from "@/lib/airtable/categories";
 
 import ToolCard from "@/components/ToolCard";
 import MetaProps from "@/components/MetaProps";

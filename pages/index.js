@@ -1,4 +1,4 @@
-import { getAllTools, getFeaturedTools } from "@/lib/shared/tools";
+import { getAllTools, getFeaturedTools } from "@/lib/airtable/tools";
 import { getLatestSortedTools } from "@/lib/indexUtils";
 import Link from "next/link";
 

@@ -10,7 +10,7 @@ export default function FoundationalModelsPage() {
                 url={`https://aitoolpouch.com/foundational-models/`}
             />
             <div className="max-w-5xl mx-auto w-full ">
-                <h1 className="text-2xl text-gray-100 font-bold mb-6">
+                <h1 className="text-2xl font-bold mb-6">
                     Foundational Models: Understanding the Core of Modern AI
                 </h1>
                 <p className="mb-6">
@@ -30,17 +30,22 @@ export default function FoundationalModelsPage() {
                             alt="GPT logo"
                             className="h-12 w-12 object-contain"
                         />
-                        <h1 className="text-xl text-gray-100 font-bold leading-none">
+                        <h1 className="text-xl font-bold leading-none">
                             1. GPT (OpenAI)
                         </h1>
                     </div>
                 </div>
-                <p className="text-gray-100">
-                    <strong>Created by:</strong>{" "}
-                    <a href="https://openai.com/">OpenAI</a>
+                <p>
+                    Created by:{" "}
+                    <a 
+                        href="https://openai.com/"
+                        className="text-slate-100 hover:text-slate-300"
+                    >
+                        OpenAI
+                    </a>
                 </p>
-                <p className="text-gray-100">
-                    <strong>Best Known For:</strong> ChatGPT, code generation,
+                <p>
+                    Best Known For: ChatGPT, code generation,
                     summarization
                 </p>
                 <p className="mt-4 mb-4">
@@ -60,17 +65,22 @@ export default function FoundationalModelsPage() {
                             alt="GPT logo"
                             className="h-12 w-12 object-contain"
                         />
-                        <h1 className="text-xl text-gray-100 font-bold leading-none">
+                        <h1 className="text-xl font-bold leading-none">
                             2. Claude
                         </h1>
                     </div>
                 </div>
-                <p className="text-gray-100">
-                    <strong>Created by:</strong>{" "}
-                    <a href="https://anthropic.com/">Anthropic</a>
+                <p>
+                    Created by:{" "}
+                    <a 
+                        href="https://anthropic.com/"
+                        className="text-slate-100 hover:text-slate-300"
+                    >
+                        Anthropic
+                    </a>
                 </p>
-                <p className="text-gray-100">
-                    <strong>Best Known For:</strong> Safer, more steerable
+                <p>
+                    Best Known For: Safer, more steerable
                     conversations
                 </p>
                 <p className="mt-4 mb-4">
@@ -89,17 +99,21 @@ export default function FoundationalModelsPage() {
                             alt="Gemini logo"
                             className="h-12 w-12 object-contain"
                         />
-                        <h1 className="text-xl text-gray-100 font-bold leading-none">
+                        <h1 className="text-xl font-bold leading-none">
                             3. Gemini (Formerly Bard)
                         </h1>
                     </div>
                 </div>
-                <p className="text-gray-100">
-                    <strong>Created by:</strong>{" "}
-                    <a href="https://deepmind.google/">Google Deep Mind</a>
+                <p>
+                    Created by:{" "}
+                    <a href="https://deepmind.google/"
+                        className="text-slate-100 hover:text-slate-300"
+                    >
+                        Google Deep Mind
+                    </a>
                 </p>
-                <p className="text-gray-100">
-                    <strong>Best Known For:</strong> Integration with Google
+                <p>
+                    Best Known For: Integration with Google
                     Workspace, web-aware search
                 </p>
                 <p className="mt-4 mb-4">
@@ -117,17 +131,21 @@ export default function FoundationalModelsPage() {
                             alt="Mistral logo"
                             className="h-12 w-12 object-contain"
                         />
-                        <h1 className="text-xl text-gray-100 font-bold leading-none">
+                        <h1 className="text-xl font-bold leading-none">
                             4. Mistral
                         </h1>
                     </div>
                 </div>
-                <p className="text-gray-100">
-                    <strong>Created by:</strong>{" "}
-                    <a href="https://Mistral.ai/">Mistral</a>
+                <p>
+                    Created by:{" "}
+                    <a href="https://Mistral.ai/"
+                        className="text-slate-100 hover:text-slate-300"
+                    >
+                        Mistral
+                    </a>
                 </p>
-                <p className="text-gray-100">
-                    <strong>Best Known For:</strong> Open-weight models,
+                <p>
+                    Best Known For: Open-weight models,
                     performance in multilingual tasks
                 </p>
                 <p className="mt-4 mb-4">
@@ -145,17 +163,21 @@ export default function FoundationalModelsPage() {
                             alt="LLaMA logo"
                             className="h-12 w-12 object-contain"
                         />
-                        <h1 className="text-xl text-gray-100 font-bold leading-none">
+                        <h1 className="text-xl font-bold leading-none">
                             5. LLaMA (Large Language Model Meta AI)
                         </h1>
                     </div>
                 </div>
-                <p className="text-gray-100">
-                    <strong>Created by:</strong>{" "}
-                    <a href="https://meta.com/">Meta (FaceBook)</a>
+                <p>
+                    Created by:{" "}
+                    <a href="https://meta.com/"
+                        className="text-slate-100 hover:text-slate-300"
+                    >
+                        Meta (FaceBook)
+                    </a>
                 </p>
-                <p className="text-gray-100">
-                    <strong>Best Known For:</strong> Research-driven open
+                <p>
+                    Best Known For: Research-driven open
                     access, strong performance at scale
                 </p>
                 <p className="mt-4 mb-4">
@@ -173,17 +195,21 @@ export default function FoundationalModelsPage() {
                             alt="DALL-E logo"
                             className="h-12 w-12 object-contain"
                         />
-                        <h1 className="text-xl text-gray-100 font-bold leading-none">
+                        <h1 className="text-xl font-bold leading-none">
                             6. DALL·E
                         </h1>
                     </div>
                 </div>
-                <p className="text-gray-100">
-                    <strong>Created by:</strong>{" "}
-                    <a href="https://openai.com/">OpenAI</a>
+                <p>
+                    Created by:{" "}
+                    <a href="https://openai.com/"
+                        className="text-slate-100 hover:text-slate-300"
+                    >
+                        OpenAI
+                    </a>
                 </p>
-                <p className="text-gray-100">
-                    <strong>Best Known For:</strong> Image generation from text
+                <p>
+                    Best Known For: Image generation from text
                     prompts
                 </p>
                 <p className="mt-4 mb-4">
@@ -194,7 +220,7 @@ export default function FoundationalModelsPage() {
                     multimodal, extending beyond just text to manipulate and
                     generate images, audio, and video.
                 </p>
-                <h1 className="text-xl mt-8 text-gray-100 font-bold leading-none">
+                <h1 className="text-xl mt-8 font-bold leading-none">
                     Why Foundational Models Matter
                 </h1>
                 <p className="mt-4 mb-4">

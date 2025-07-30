@@ -13,7 +13,7 @@ export default function MobileMenu() {
                 className="p-2 rounded-md focus:outline-none focus:ring-2 focus:ring-inset focus:ring-blue-600"
             >
                 <svg
-                    className="h-6 w-6 text-slate-300 hover:text-slate-400"
+                    className="h-6 w-6 text-slate-100 hover:text-slate-300"
                     xmlns="http://www.w3.org/2000/svg"
                     fill="none"
                     viewBox="0 0 24 24"
@@ -40,22 +40,22 @@ export default function MobileMenu() {
 
             {/* Full-screen menu panel */}
             {open && (
-                <nav className="fixed inset-0 z-50 bg-gray-800 text-slate-300 p-6">
+                <nav className="fixed inset-0 z-50 bg-gray-800 text-slate-100 p-6">
                     {/* Close button */}
                     <button
                         onClick={() => setOpen(false)}
                         aria-label="Close menu"
-                        className="absolute top-4 right-4 text-3xl text-slate-300"
+                        className="absolute top-4 right-4 text-3xl text-slate-100"
                     >
                         &times;
                     </button>
                     {/* Menu Links */}
-                    <ul className="flex flex-col gap-6 mt-16 text-xl text-slate-300">
+                    <ul className="flex flex-col gap-6 mt-16 text-xl text-slate-100">
                         <li>
                             <Link
                                 href="/"
                                 onClick={() => setOpen(false)}
-                                className="hover:text-slate-400"
+                                className="hover:text-slate-300"
                             >
                                 Home
                             </Link>
@@ -64,7 +64,7 @@ export default function MobileMenu() {
                             <Link
                                 href="/foundational-models"
                                 onClick={() => setOpen(false)}
-                                className="hover:text-slate-400"
+                                className="hover:text-slate-300"
                             >
                                 Foundational Models
                             </Link>
@@ -73,7 +73,7 @@ export default function MobileMenu() {
                             <Link
                                 href="/categories"
                                 onClick={() => setOpen(false)}
-                                className="hover:text-slate-400"
+                                className="hover:text-slate-300"
                             >
                                 Categories
                             </Link>
@@ -82,7 +82,7 @@ export default function MobileMenu() {
                             <Link
                                 href="/use-cases"
                                 onClick={() => setOpen(false)}
-                                className="hover:text-slate-400"
+                                className="hover:text-slate-300"
                             >
                                 Use Cases
                             </Link>
@@ -91,7 +91,7 @@ export default function MobileMenu() {
                             <Link
                                 href="/tools"
                                 onClick={() => setOpen(false)}
-                                className="hover:text-slate-400"
+                                className="hover:text-slate-300"
                             >
                                 All Tools
                             </Link>
@@ -100,7 +100,7 @@ export default function MobileMenu() {
                             <Link
                                 href="/blog"
                                 onClick={() => setOpen(false)}
-                                className="hover:text-slate-400"
+                                className="hover:text-slate-300"
                             >
                                 Blog
                             </Link>

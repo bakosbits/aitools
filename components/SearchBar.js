@@ -36,7 +36,7 @@ export default function SearchBar() {
                 </div>
                 <button
                     type="submit"
-                    className="flex items-center gap-1 px-3 py-1.5 rounded font-semibold bg-teal-600 text-gray-100 hover:bg-teal-700 transition"
+                    className="flex items-center gap-1 px-3 py-1.5 rounded font-semibold bg-teal-600 text-slate-100 hover:bg-teal-700 transition"
                     aria-label="Search"
                 >
                     <svg

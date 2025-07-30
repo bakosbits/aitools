@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { getAllArticles } from "@/lib/shared/articles";
+import { getAllArticles } from "@/lib/airtable/articles";
 import MetaProps from "@/components/MetaProps";
 
 export async function getStaticProps() {
@@ -44,7 +44,7 @@ export default function BlogIndex({ articles }) {
                                 <h1 className="text-xl font-semibold ">
                                     {article.Title}
                                 </h1>
-                                <p className="text-slate-100 text-xs mt-1">
+                                <p className="text-slate-300 text-xs mt-1">
                                     {article.Date}
                                 </p>
                                 {article.Summary && (

@@ -8,17 +8,22 @@
         "start": "next start",
         "lint": "next lint",
         "format": "prettier --write .",
-        "postbuild": "next-sitemap"
+        "postbuild": "next-sitemap",
+        "hash-password": "node hash-password.js"
     },
     "dependencies": {
         "@tailwindcss/typography": "^0.5.16",
         "airtable": "^0.12.2",
+        "bcrypt": "^5.1.1",
+        "cookie": "^1.0.2",
         "natural": "^8.1.0",
         "next": "^15.3.4",
         "next-sitemap": "^4.2.3",
         "nextjs": "^0.0.3",
         "nodemailer": "^7.0.5",
         "npx": "^3.0.0",
+        "openai": "^5.10.2",
+        "random-quotes": "^1.3.0",
         "react-dom": "18.2.0",
         "react-markdown": "^10.1.0",
         "v4": "^0.0.1"

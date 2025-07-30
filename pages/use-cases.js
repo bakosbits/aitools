@@ -1,6 +1,6 @@
 import React, { useReducer, useMemo, useState, useEffect } from "react";
-import { getAllTools } from "@/lib/shared/tools";
-import { getAllAliases } from "@/lib/shared/aliases";
+import { getAllTools } from "@/lib/airtable/tools";
+import { getAllAliases } from "@/lib/airtable/aliases";
 import { useCaseReducer, getInitialState, toggleSelection, getSortedFilterOptions } from "@/lib/useCaseUtils";
 import { matchTools } from "@/lib/matchTools";
 
@@ -98,7 +98,7 @@ export default function UseCasePage({ allTools, allAliases }) {
                             Alignment By Use Case | Task | Project
                         </h1>
                         <div>
-                            <h1 className="text-gray-400 mb-4">
+                            <h1 className="mb-4">
                                 Answer Questions To Quickly Match A Tool To Your
                                 Needs
                             </h1>
@@ -255,14 +255,14 @@ export default function UseCasePage({ allTools, allAliases }) {
                             {isAnyFilterActive ? (
                                 // Sub-case 2a: Filters are active, but no tools match
                                 <>
-                                    <h1 className="text-xl text-gray-100 font-bold mb-4">
+                                    <h1 className="text-xl font-bold mb-4">
                                         🧠 Your Results
                                     </h1>
                                     <div>
                                         <button
                                             supressHydrationWarning
                                             onClick={handleResetFilters}
-                                            className="bg-emerald-500 hover:bg-emraild-600 text-gray-100 font-semibold py-2 px-4 rounded-lg text-lg transition-colors mb-4"
+                                            className="bg-teal-600 hover:bg-teal-700 text-slate-100 font-semibold py-2 px-4 rounded-lg text-lg transition-colors mb-4"
                                         >
                                             Reset Filters
                                         </button>
@@ -277,12 +277,12 @@ export default function UseCasePage({ allTools, allAliases }) {
                             ) : (
                                 // Sub-case 2b: No filters are active, show original instructions
                                 <>
-                                    <h1 className="text-xl text-gray-100 font-bold mb-2">
+                                    <h1 className="text-xl font-bold mb-2">
                                         {" "}
                                         🌐 Instructions
                                     </h1>
                                     <div className="w-full border border-gray-600 p-6 rounded-lg bg-cardDark">
-                                        <p className="text-gray-400">
+                                        <p>
                                             Answer at least 1 of the questions
                                             to get started. You're not required
                                             to answer every question. Each

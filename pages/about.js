@@ -17,7 +17,7 @@ export default function AboutPage() {
                 imageSrc="/images/pouch01.jpg"
                 imageAlt="A collection of AI tools in a pouch"
             >
-                <h2 className="text-2xl text-gray-100 font-semibold mb-2">
+                <h2 className="text-2xl font-semibold mb-2">
                     Our Mission & Vision
                 </h2>
                 <p className="mb-4 text-gray-400">
@@ -31,7 +31,7 @@ export default function AboutPage() {
                     daily routine. We want to help you avoid the paradox of
                     choice.
                 </p>
-                <h2 className="text-2xl text-gray-100 font-semibold mb-2">
+                <h2 className="text-2xl font-semibold mb-2">
                     How We Curate
                 </h2>
                 <p className="mb-4 text-gray-400">
@@ -44,7 +44,7 @@ export default function AboutPage() {
                     problems, ensuring our directory remains a high-quality
                     resource.
                 </p>
-                <h2 className="text-2xl text-gray-100 font-semibold mb-2">
+                <h2 className="text-2xl font-semibold mb-2">
                     Why Trust Us?
                 </h2>
                 <p className="mb-4 text-gray-400">
@@ -62,7 +62,7 @@ export default function AboutPage() {
                     We’re building a smarter, more practical way to explore the
                     AI landscape.
                 </p>
-                <h2 className="text-2xl text-gray-100 font-semibold mb-2">
+                <h2 className="text-2xl font-semibold mb-2">
                     Our Future
                 </h2>
                 <p className="mb-4 text-gray-400">

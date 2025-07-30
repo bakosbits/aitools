@@ -1,4 +1,4 @@
-import { getToolBySlug } from "@/lib/shared/tools";
+import { getToolBySlug } from "@/lib/airtable/tools";
 
 import DetailToolCard from "@/components/DetailToolCard";
 import MetaProps from "@/components/MetaProps";
