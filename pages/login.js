@@ -37,7 +37,6 @@ export default function LoginPage() {
   };
 
   return (
-    <Layout>
       <div className="flex items-center justify-center py-12">
         <div className="w-full max-w-md p-8 space-y-6 bg-cardDark rounded-lg shadow-lg border border-gray-600">
           <h1 className="text-2xl font-bold text-center">
@@ -81,6 +80,5 @@ export default function LoginPage() {
           </form>
         </div>
       </div>
-    </Layout>
   );
 }

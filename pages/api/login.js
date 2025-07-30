@@ -16,15 +16,6 @@ export default async function handler(req, res) {
     return res.status(500).json({ message: 'Server configuration error.' });
   }
 
-
-  console.log('\n[Login API Debug] ---------');
-  console.log('[Login API Debug] Received username:', username);
-  // Avoid logging the raw password, even in dev
-  console.log('[Login API Debug] Received password:', "my password");
-  console.log('[Login API Debug] ADMIN_USERNAME hash from .env:', ADMIN_USERNAME);
-  console.log('[Login API Debug] ADMIN_PASSWORD hash from .env:', ADMIN_PASSWORD);
-
-
   const usernameMatches = await bcrypt.compare(username, ADMIN_USERNAME);
   const passwordMatches = await bcrypt.compare(password, ADMIN_PASSWORD);
 
