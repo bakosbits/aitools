@@ -327,7 +327,7 @@ export default function ToolForm({
 
       <div className="flex justify-end space-x-4 pt-4">
         <Link
-          href="/tools"
+          href="/admin/tools"
           className="bg-gray-600 text-gray-100 font-bold py-2 px-4 rounded hover:bg-gray-500 transition-colors"
         >
           Cancel
