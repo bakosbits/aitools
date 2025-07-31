@@ -110,8 +110,8 @@ export default function Home({ tools, latestTools, featuredTools }) {
             </div>
             <p className="text-gray-400 mb-4 md:mb-8">
               We'll tell you who, what and why so you can quickly nail down which
-              tools belong in your tool pouch. Be sure to leverage our side-by-side 
-              comparisons to help you narrow your search. To get started browse our
+              tools belong in your tool pouch. Leverage our side-by-side comparisons 
+              to help you narrow your search. To get started browse our
               <Link
                 href="/categories"
                 className="text-slate-100 hover:text-slate-300 transition"
