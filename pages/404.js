@@ -1,21 +1,36 @@
 import MetaProps from "@/components/MetaProps";
+import randomQuotes from "random-quotes";
+import { useState, useEffect } from "react";
+
 export default function Custom404() {
-    return (
-        <>
-            <MetaProps
-                title={`404 Not Found`}
-                description={`This page doesn’t exist or may have moved. Use the menu to explore the best AI tools by profession on AI Tool Pouch.`}
-                url={`https://aitoolpouch.com/404/`}
-            />
-            <div className="flex flex-col justify-center items-center bg-backgroundDark px-6 py-20 text-center">
-                <h1 className="text-2xl font-bold mb-4">
-                    Oops. Well, that doesn't seem to exist.
-                </h1>
-                <p className="mb-8 text-gray-400">
-                    We couldn’t locate what you were looking for. It must be a
-                    glitch.
-                </p>
-            </div>
-        </>
-    );
+  const [quote, setQuote] = useState({ text: "", author: "" });
+
+  useEffect(() => {
+    const randomQuote = randomQuotes();
+    // The library returns { body, author }, so we map it to our state shape.
+    setQuote({ text: randomQuote.body, author: randomQuote.author });
+  }, []);
+
+  return (
+    <>
+      <MetaProps
+        title={`404 Not Found`}
+        description={`This page doesn’t exist or may have moved.`}
+        url={`https://aitoolpouch.com/404/`}
+      />
+      <div className="flex flex-col items-center justify-center text-center py-12">
+        <h1 className="text-2xl">
+          Whoops, we couldn't find what you were looking for.
+        </h1>
+        <h2 className="text-xl mb-8">It's probably just a glitch.</h2>
+        <p className="text-lg mb-2">In the meantime, here's a random quote:</p>
+        {quote.text && (
+          <div className="items-center text-center">
+            <p className="text-lg italic ">"{quote.text}"</p>
+            <p className="text-md mt-2">- {quote.author}</p>
+          </div>
+        )}
+      </div>
+    </>
+  );
 }

@@ -15,33 +15,28 @@ import BlogLinkCard from "./BlogLinkCard";
  * @param {string} props.tool.articleSlug - The slug for a related blog article, passed to BlogLinkCard (optional).
  */
 export default function MiniToolCard({ tool }) {
-
-    return (
-        <Link
-            href={`/tool/${tool.Slug}`}
-            className="block h-full group"
+  return (
+    <Link
+      href={`/tool/${tool.Slug}`}
+      className="block h-full group"
+      title={tool.Name}
+      passHref
+    >
+      <div className="h-full bg-cardDark p-4 border border-gray-600 rounded-lg shadow-lg flex flex-col items-start group-hover:bg-gray-800 transition-colors">
+        <div className="w-full flex items-center space-x-4">
+          <img
+            src={tool.Logo}
+            alt={`${tool.Name} logo`}
             title={tool.Name}
-            passHref
-        >
-            <div className="h-full bg-cardDark p-4 border border-gray-600 rounded-lg shadow-lg flex flex-col items-start group-hover:bg-gray-800 transition-colors">
-                <div className="w-full flex items-center space-x-4">
-                    <img
-                        src={tool.Logo}
-                        alt={`${tool.Name} logo`}
-                        title={tool.Name}
-                        className="object-contain h-12 w-12"
-                    />
-                    <h1 className="text-lg font-bold">
-                        {tool.Name}
-                    </h1>
-                </div>
-                <p className="text-sm text-gray-400 mt-4">
-                    {tool.Why?.length > 100
-                        ? tool.Why.slice(0, 100) + "..."
-                        : tool.Why}
-                </p>
-            </div>
-            <BlogLinkCard articleSlug={tool.articleSlug} toolName={tool.Name} />
-        </Link>
-    );
+            className="object-contain h-12 w-12 border rounded-lg border-cardDark"
+          />
+          <h1 className="text-lg font-bold">{tool.Name}</h1>
+        </div>
+        <p className="text-sm text-gray-400 mt-4">
+          {tool.Why?.length > 100 ? tool.Why.slice(0, 100) + "..." : tool.Why}
+        </p>
+      </div>
+      <BlogLinkCard articleSlug={tool.articleSlug} toolName={tool.Name} />
+    </Link>
+  );
 }

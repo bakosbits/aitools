@@ -1,23 +1,23 @@
 import { getToolBySlug } from "@/lib/airtable/tools";
 
 export async function getServerSideProps(context) {
-    const { slug } = context.params;
-    const tool = await getToolBySlug(slug);
+  const { slug } = context.params;
+  const tool = await getToolBySlug(slug);
 
-    if (!tool || !tool.Website) {
-        return {
-            notFound: true,
-        };
-    }
-
+  if (!tool || !tool.Website) {
     return {
-        redirect: {
-            destination: tool.Website,
-            permanent: false,
-        },
+      notFound: true,
     };
+  }
+
+  return {
+    redirect: {
+      destination: tool.Website,
+      permanent: false,
+    },
+  };
 }
 
 export default function GoRedirect() {
-    return null; // page never renders
+  return null; // page never renders
 }

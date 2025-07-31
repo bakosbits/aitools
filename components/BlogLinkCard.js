@@ -9,22 +9,21 @@ import React from "react";
  * @param {string} props.toolName - The name of the tool, used in the link text.
  */
 export default function BlogLinkCard({ articleSlug, toolName }) {
-    if (!articleSlug) {
-        return null; // Don't render anything if no linked article
-    }
-    
+  if (!articleSlug) {
+    return null; // Don't render anything if no linked article
+  }
 
-    return (
-        <div className="mb-4 text-sm">
-            <a
-                href={`/blog/${articleSlug}`}
-                className="text-slate-100 hover:text-slate-300 transition"
-                onClick={(e) => {
-                    e.stopPropagation();
-                }}
-            >
-                For more detail read our blog post about {toolName}.
-            </a>    
-        </div>
-    );
+  return (
+    <div className="mb-4 text-sm">
+      <a
+        href={`/blog/${articleSlug}`}
+        className="text-slate-100 hover:text-slate-300 transition"
+        onClick={(e) => {
+          e.stopPropagation();
+        }}
+      >
+        For more detail read our blog post about {toolName}.
+      </a>
+    </div>
+  );
 }

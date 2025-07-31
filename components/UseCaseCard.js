@@ -15,49 +15,44 @@ import Link from "next/link";
  * @param {Array<object>} [props.compareList=[]] - An array of tool objects currently selected for comparison.
  * @param {function(object): void} props.toggleCompare - Function to add or remove a tool from the compare list.
  */
-export default function UseCaseCard({ tool, compareList = [], toggleCompare,}) {
+export default function UseCaseCard({ tool, compareList = [], toggleCompare }) {
+  const isChecked = compareList.some((t) => t.id === tool.id);
 
-    const isChecked = compareList.some((t) => t.id === tool.id);
-
-    return (
-        <Link
-            href={`/tool/${tool.Slug}`}
-            className="block h-full group"
+  return (
+    <Link
+      href={`/tool/${tool.Slug}`}
+      className="block h-full group"
+      title={tool.Name}
+      passHref
+    >
+      <div className="h-full bg-cardDark p-4 border border-gray-600 rounded-lg shadow-lg flex flex-col items-start group-hover:bg-gray-800 transition-colors">
+        <div className="w-full flex items-center space-x-4">
+          <img
+            src={tool.Logo}
+            alt={`${tool.Name} logo`}
             title={tool.Name}
-            passHref
+            className="object-contain h-12 w-12 border rounded-xl border-cardDark"
+          />
+          <h1 className="text-lg font-bold">{tool.Name}</h1>
+        </div>
+        <p className="text-sm mb-4 mt-4">
+          {tool.Why?.length > 100 ? tool.Why.slice(0, 100) + "..." : tool.Why}
+        </p>
+        <label
+          className="flex items-center gap-2 cursor-pointer mt-auto"
+          // Important: `e.stopPropagation()` prevents the click from bubbling up to the parent <Link>
+          onClick={(e) => e.stopPropagation()}
         >
-            <div className="h-full bg-cardDark p-4 border border-gray-600 rounded-lg shadow-lg flex flex-col items-start group-hover:bg-gray-800 transition-colors">
-                <div className="w-full flex items-center space-x-4">
-                    <img
-                        src={tool.Logo}
-                        alt={`${tool.Name} logo`}
-                        title={tool.Name}
-                        className="object-contain h-12 w-12"
-                    />
-                    <h1 className="text-lg font-bold">
-                        {tool.Name}
-                    </h1>
-                </div>
-                <p className="text-sm mb-4 mt-4">
-                    {tool.Why?.length > 100
-                        ? tool.Why.slice(0, 100) + "..."
-                        : tool.Why}
-                </p>
-                <label
-                    className="flex items-center gap-2 cursor-pointer mt-auto"
-                    // Important: `e.stopPropagation()` prevents the click from bubbling up to the parent <Link>
-                    onClick={(e) => e.stopPropagation()}
-                >
-                    <input
-                        type="checkbox"
-                        checked={isChecked} // Use the derived `isChecked` state
-                        onChange={() => toggleCompare(tool)} // `onChange` is for input elements
-                    />
-                    <span className="text-slate-300 hover:text-slate-400 transition font-medium">
-                        Compare
-                    </span>
-                </label>
-            </div>
-        </Link>
-    );
+          <input
+            type="checkbox"
+            checked={isChecked} // Use the derived `isChecked` state
+            onChange={() => toggleCompare(tool)} // `onChange` is for input elements
+          />
+          <span className="text-slate-300 hover:text-slate-400 transition font-medium">
+            Compare
+          </span>
+        </label>
+      </div>
+    </Link>
+  );
 }
