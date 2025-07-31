@@ -57,13 +57,7 @@ export default function Home({ tools, latestTools, featuredTools }) {
               format that enables you to make quick, well informed choices.
             </p>
             <div className="flex flex-col items-left sm:items-left justify-left">
-              <div className="flex justify-between items-center mb-4">
-                <h1 className="text-xl font-bold">
-                  Discover powerful AI tools tailored to your profession or use
-                  case.
-                </h1>
-              </div>
-              <div className="flex flex-col sm:flex-row justify-left w-full lg:space-x-4 space-x-0">
+              <div className="flex flex-col sm:flex-row justify-left w-full lg:space-x-4 space-x-0 mb-4">
                 <a
                   href="/categories"
                   title="Find Your Category"
@@ -107,12 +101,17 @@ export default function Home({ tools, latestTools, featuredTools }) {
                   </svg>
                 </a>
               </div>
+              <div className="flex justify-between items-center mb-2">
+                <h1 className="text-xl font-bold">
+                  Discover powerful AI tools tailored to your profession or use
+                  case.
+                </h1>
+              </div>              
             </div>
             <p className="text-gray-400 mb-4 md:mb-8">
-              Conduct side-by-side comparisons to help you narrow your search.
-              We tell you who, what and why so you can quickly determine which
-              tools belong in your tool pouch. To jumpstart your selection
-              process browse our
+              We'll tell you who, what and why so you can quickly nail down which
+              tools belong in your tool pouch. Be sure to leverage our side-by-side 
+              comparisons to help you narrow your search. To get started browse our
               <Link
                 href="/categories"
                 className="text-slate-100 hover:text-slate-300 transition"
@@ -126,9 +125,8 @@ export default function Home({ tools, latestTools, featuredTools }) {
                 className="text-slate-100 hover:text-slate-300 transition"
               >
                 {" "}
-                use case{" "}
+                use case{"."}
               </Link>
-              to get started.
             </p>
             <div className="hidden md:block">
               <h1 className="text-3xl font-bold mb-4">Hot Topics:</h1>

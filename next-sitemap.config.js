@@ -1,7 +1,7 @@
 module.exports = {
   siteUrl: "https://aitoolpouch.com",
   generateRobotsTxt: true,
-  exclude: ["/404"],
+  exclude: ["/403", "/404"],
   robotsTxtOptions: {
     policies: [
       {
