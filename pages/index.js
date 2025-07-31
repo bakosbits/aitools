@@ -53,8 +53,8 @@ export default function Home({ tools, latestTools, featuredTools }) {
             <p className="text-gray-400 mb-8">
               Here you'll find tools grouped by profession and/or use case. Why?
               So you don't have to fumble through feature lists to find a
-              solution. We've organized everything in a way that enables you 
-              to make quick, well informed choices.
+              solution. We've organized everything in a way that enables you to
+              make quick, well informed choices.
             </p>
             <div className="flex flex-col items-left sm:items-left justify-left">
               <div className="flex flex-col sm:flex-row justify-left w-full lg:space-x-4 space-x-0 mb-4">
@@ -106,11 +106,11 @@ export default function Home({ tools, latestTools, featuredTools }) {
                   Discover powerful AI tools tailored to your profession or use
                   case.
                 </h1>
-              </div>              
+              </div>
             </div>
             <p className="text-gray-400 mb-4 md:mb-8">
               We'll tell you who, what and why to help you determine which tools
-              belong in your tool pouch. Leverage our side-by-side comparisons 
+              belong in your tool pouch. Leverage our side-by-side comparisons
               to narrow your search. To get started browse our
               <Link
                 href="/categories"

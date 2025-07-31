@@ -1,5 +1,6 @@
 import Link from "next/link";
-import MobileMenu from "./MobileMenu"; // adjust path if needed
+import MobileMenu from "@/components/MobileMenu";
+import { Analytics } from "@vercel/analytics/next";
 
 /**
  * Provides the basic structure for all pages in the application.
@@ -121,6 +122,7 @@ export default function Layout({ children }) {
           </nav>
         </div>
       </footer>
+      <Analytics />
     </div>
   );
 }

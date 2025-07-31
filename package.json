@@ -12,6 +12,7 @@
   },
   "dependencies": {
     "@tailwindcss/typography": "^0.5.16",
+    "@vercel/analytics": "^1.5.0",
     "@vercel/blob": "^1.1.1",
     "airtable": "^0.12.2",
     "bcrypt": "^5.1.1",

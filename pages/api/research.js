@@ -21,21 +21,17 @@ export default async function handler(req, res) {
     categoryNames = categoryRecords.map((record) => record.get("Name"));
     if (!categoryNames || categoryNames.length === 0) {
       console.error("No categories found in Airtable.");
-      return res
-        .status(500)
-        .json({
-          message:
-            "Could not find any tool categories in the database. Please add categories before researching.",
-        });
+      return res.status(500).json({
+        message:
+          "Could not find any tool categories in the database. Please add categories before researching.",
+      });
     }
   } catch (error) {
     console.error("Error fetching categories from Airtable:", error);
-    return res
-      .status(500)
-      .json({
-        message:
-          "Failed to fetch tool categories from the database. Please check the Airtable connection.",
-      });
+    return res.status(500).json({
+      message:
+        "Failed to fetch tool categories from the database. Please check the Airtable connection.",
+    });
   }
 
   try {
@@ -52,17 +48,13 @@ export default async function handler(req, res) {
     );
     const errorMessage = error.message || "An unknown error occurred";
     if (errorMessage.includes("API key not valid")) {
-      return res
-        .status(401)
-        .json({
-          message:
-            "API key is not valid or missing. Please check your environment variables.",
-        });
-    }
-    return res
-      .status(500)
-      .json({
-        message: `Failed to get data from AI provider: ${errorMessage}`,
+      return res.status(401).json({
+        message:
+          "API key is not valid or missing. Please check your environment variables.",
       });
+    }
+    return res.status(500).json({
+      message: `Failed to get data from AI provider: ${errorMessage}`,
+    });
   }
 }

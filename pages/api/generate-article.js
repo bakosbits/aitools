@@ -29,17 +29,13 @@ export default async function handler(req, res) {
     const errorMessage = error.message || "An unknown error occurred";
 
     if (errorMessage.includes("API key not valid")) {
-      return res
-        .status(401)
-        .json({
-          message:
-            "API key is not valid or missing. Please check your environment variables.",
-        });
-    }
-    return res
-      .status(500)
-      .json({
-        message: `Failed to get data from AI provider: ${errorMessage}`,
+      return res.status(401).json({
+        message:
+          "API key is not valid or missing. Please check your environment variables.",
       });
+    }
+    return res.status(500).json({
+      message: `Failed to get data from AI provider: ${errorMessage}`,
+    });
   }
 }
