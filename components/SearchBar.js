@@ -1,14 +1,21 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useRouter } from "next/router";
 
 /**
  * Renders a search input field and a submit button.
  * When the form is submitted, it navigates the user to the `/tools` page,
  * appending the search query as a URL parameter (e.g., `/tools?q=search-term`).
+ * @param {object} props
+ * @param {string} [props.initialQuery=""] - The initial value for the search input.
  */
-export default function SearchBar() {
-  const [query, setQuery] = useState("");
+export default function SearchBar({ initialQuery = "" }) {
+  const [query, setQuery] = useState(initialQuery);
   const router = useRouter();
+
+  useEffect(() => {
+    // Sync the input field if the query in the URL changes (e.g., browser back/forward)
+    setQuery(initialQuery);
+  }, [initialQuery]);
 
   const handleSearch = (e) => {
     e.preventDefault(); // Prevent default form submission behavior
@@ -29,8 +36,9 @@ export default function SearchBar() {
             onChange={(e) => {
               setQuery(e.target.value);
             }}
+            aria-label="Search for tools"
             placeholder="Search tools..."
-            className="w-full px-4 py-2 rounded-lg shadow-lg bg-gray-800 placeholder-text-slate-400 border border-gray-600"
+            className="w-full px-4 py-2 rounded-lg shadow-lg bg-gray-800 placeholder- border border-gray-600"
           />
         </div>
         <button
@@ -46,7 +54,7 @@ export default function SearchBar() {
           >
             <path
               fillRule="evenodd"
-              d="M10.293 15.707a1 1 0 010-1.414L13.586 11H4a1 1 0 110-2h9.586l-3.293-3.293a1 1 0 011.414-1.414l5 5a1 1 0 010 1.414l-5 5a1 1 0 01-1.414 0z"
+              d="M8 4a4 4 0 100 8 4 4 0 000-8zM2 8a6 6 0 1110.89 3.476l4.817 4.817a1 1 0 01-1.414 1.414l-4.816-4.816A6 6 0 012 8z"
               clipRule="evenodd"
             />
           </svg>

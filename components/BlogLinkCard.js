@@ -15,15 +15,15 @@ export default function BlogLinkCard({ articleSlug, toolName }) {
 
   return (
     <div className="mb-4 text-sm">
-      <a
+      <Link
         href={`/blog/${articleSlug}`}
         className="text-slate-100 hover:text-slate-300 transition"
         onClick={(e) => {
           e.stopPropagation();
         }}
       >
-        For more detail read our blog post about {toolName}.
-      </a>
+        For more details, read our blog post about {toolName}.
+      </Link>
     </div>
   );
 }

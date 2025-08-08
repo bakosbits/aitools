@@ -26,7 +26,7 @@ export function middleware(request) {
       console.warn(
         `[Middleware] Denied access to ${pathname} for IP: ${requestIp}`,
       );
-      return NextResponse.rewrite(new URL("/403", request.url));
+      return NextResponse.rewrite(new URL("/404", request.url));
     }
 
     const authCookie = request.cookies.get(AUTH_COOKIE_NAME);

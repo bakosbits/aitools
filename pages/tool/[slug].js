@@ -1,13 +1,16 @@
-import { getAllTools, getToolBySlug } from "@/lib/airtable/tools";
+import { getAllToolSlugs, getToolBySlug } from "@/lib/airtable/tools";
 
 import React from "react";
 import Link from "next/link";
 import DetailToolCard from "@/components/DetailToolCard";
 import MetaProps from "@/components/MetaProps";
 
+
+
+
 export async function getStaticPaths() {
   try {
-    const tools = await getAllTools();
+    const tools = await getAllToolSlugs();
     const paths = tools.map((tool) => ({
       params: { slug: tool.Slug.toLowerCase() },
     }));
@@ -45,7 +48,9 @@ export default function ToolPage({ tool }) {
       <MetaProps
         title={`${tool.Name}`}
         description={`Detailed Information about ${tool.Name}`}
-        url={`https://aitoolpouch.com/tool/${tool.Slug}/`}
+        url={`${
+          process.env.NEXT_PUBLIC_BASE_URL || "https://aitoolpouch.com"
+        }/tool/${tool.Slug}/`}
       />
       <div className="min-h-screen flex flex-col items-center justify-center">
         <div className="w-full max-w-6xl">
@@ -64,13 +69,13 @@ export default function ToolPage({ tool }) {
                 src={tool.Logo}
                 alt={`${tool.Name} logo`}
                 title={tool.Name}
-                className="object-contain mb-6  border rounded-xl shadow-lg border-gray-800"
+                className="object-contain mb-6 border rounded-xl shadow-lg border-gray-800"
               />
               <h1 className="text-xl font-bold mb-2">Found in:</h1>
               <p className="text-left">
                 {tool.Categories?.length > 0
                   ? tool.Categories.map((cat, idx) => (
-                      <React.Fragment key={cat.Slug || cat.Name}>
+                      <React.Fragment key={cat.id || cat.Slug}>
                         {idx > 0 && ", "}
                         <Link
                           href={`/category/${cat.Slug || cat.Name.toLowerCase()}`}

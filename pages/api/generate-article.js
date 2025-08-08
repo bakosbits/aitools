@@ -1,4 +1,5 @@
-import { generateArticleContent } from "@/lib/providers";
+import { generateArticleContent } from "@lib/model/providers";
+import { ALLOWED_MODELS } from "@/lib/constants";
 
 export default async function handler(req, res) {
   if (req.method !== "POST") {
@@ -14,10 +15,22 @@ export default async function handler(req, res) {
       .json({ message: "A topic is required to generate content." });
   }
 
+  // Validate the requested model against the allowed list.
+  let model = requestedModel;
+  if (model) {
+    if (!ALLOWED_MODELS.includes(model)) {
+      return res.status(400).json({
+        message: `Invalid model specified. Allowed models are: ${ALLOWED_MODELS.join(
+          ", ",
+        )}`,
+      });
+    }
+  }
+
   try {
     const articleData = await generateArticleContent(
       topic,
-      requestedModel,
+      model,
       articleType,
     );
     res.status(200).json(articleData);

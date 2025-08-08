@@ -1,7 +1,7 @@
 import { useState, useEffect, useCallback, useMemo } from "react";
 import { useRouter } from "next/router";
+import { getAllCategories, getAllCategorySlugs } from "@/lib/airtable/categories";
 import { getToolsByCategory } from "@/lib/airtable/tools";
-import { getAllCategories } from "@/lib/airtable/categories";
 
 import ToolCard from "@/components/ToolCard";
 import MetaProps from "@/components/MetaProps";
@@ -10,7 +10,7 @@ import Pagination from "@/components/Pagination";
 
 export async function getStaticPaths() {
   try {
-    const categories = await getAllCategories();
+    const categories = await getAllCategorySlugs();
     const paths = categories.map((cat) => ({
       params: { slug: cat.Slug },
     }));
@@ -33,17 +33,38 @@ export async function getStaticProps({ params }) {
     const matchingCategory = categories.find((cat) => cat.Slug === slug);
 
     if (!matchingCategory) {
+      console.warn(`[getStaticProps] No category found with slug "${slug}"`);
       return {
         notFound: true,
       };
     }
-    const tools = await getToolsByCategory(slug);
+    
+    // Get tools directly from the Tool Lookup column
+    let tools = await getToolsByCategory(slug);
+    
+    // Ensure tools is always an array
+    if (!Array.isArray(tools)) {
+      console.warn(`[getStaticProps] Tools returned is not an array for category "${matchingCategory.Name}"`);
+      tools = [];
+    }
+    
+    if (tools.length === 0) {
+      console.warn(`[getStaticProps] No tools found for category "${matchingCategory.Name}"`);
+    }
+
+    // Sort tools by name at build time
+    const sortedTools = [...tools].sort((a, b) => a.Name.localeCompare(b.Name));
+
+    const props = {
+      tools: sortedTools,
+      category: matchingCategory.Name,
+      slug, // Pass slug for canonical URL
+    };
+
+    console.log(`[getStaticProps] Found ${sortedTools.length} tools for category "${matchingCategory.Name}"`);
+
     return {
-      props: {
-        tools,
-        category: matchingCategory.Name,
-        slug, // Pass slug for canonical URL
-      },
+      props,
       revalidate: 300,
     };
   } catch (error) {
@@ -54,27 +75,33 @@ export async function getStaticProps({ params }) {
   }
 }
 
+const ITEMS_PER_PAGE = 12;
+
 export default function CategoryPage({ tools, category, slug }) {
   const router = useRouter();
-
-  const validTools = Array.isArray(tools) ? tools : [];
+  const validTools = useMemo(() => (Array.isArray(tools) ? tools : []), [tools]);
   const validCategory = typeof category === "string" ? category : "Unknown";
   const [compareList, setCompareList] = useState([]);
 
   // The source of truth for the current page is now the URL query parameter.
   // Default to 1 if the parameter is not present or invalid.
-  const currentPage = parseInt(router.query.page, 10) || 1;
+  const pageParam = router.query.page ?? "1";
+  const parsedPage = parseInt(pageParam, 10);
+  const currentPage = !isNaN(parsedPage) && parsedPage > 0 ? parsedPage : 1;
 
-  const handlePageChange = (page) => {
-    router.push(
-      {
-        pathname: router.pathname,
-        query: { ...router.query, page },
-      },
-      undefined,
-      { shallow: true },
-    );
-  };
+  const handlePageChange = useCallback(
+    (page) => {
+      router.push(
+        {
+          pathname: router.pathname,
+          query: { ...router.query, page },
+        },
+        undefined,
+        { shallow: true },
+      );
+    },
+    [router],
+  );
 
   const toggleCompare = useCallback((tool) => {
     setCompareList((prev) => {
@@ -89,23 +116,24 @@ export default function CategoryPage({ tools, category, slug }) {
     });
   }, []);
 
-  const ITEMS_PER_PAGE = 12;
-  const sortedTools = useMemo(() => {
-    const sorted = [...validTools].sort((a, b) => a.Name.localeCompare(b.Name));
-    return sorted;
-  }, [validTools]);
-
-  const totalPages = Math.ceil(sortedTools.length / ITEMS_PER_PAGE);
+  const totalPages = Math.ceil(validTools.length / ITEMS_PER_PAGE);
   const paginatedTools = useMemo(() => {
     const startIndex = (currentPage - 1) * ITEMS_PER_PAGE;
     const endIndex = startIndex + ITEMS_PER_PAGE;
-    const currentBatch = sortedTools.slice(startIndex, endIndex);
+    const currentBatch = validTools.slice(startIndex, endIndex);
 
     return currentBatch;
-  }, [sortedTools, currentPage]);
+  }, [validTools, currentPage]);
 
   useEffect(() => {
-    window.scrollTo({ top: 0, behavior: "smooth" });
+    // Debounce scroll to top to avoid jank on rapid navigation
+    const timer = setTimeout(() => {
+      if (window.scrollY > 0) {
+        window.scrollTo({ top: 0, behavior: "smooth" });
+      }
+    }, 100);
+
+    return () => clearTimeout(timer);
   }, [currentPage]);
 
   return (
@@ -113,7 +141,7 @@ export default function CategoryPage({ tools, category, slug }) {
       <MetaProps
         title={`AI Tools in ${validCategory}`}
         description={`AI Tools in ${validCategory}. Research And Compare AI Tools Side By Side. Grouped By Profession.`}
-        url={`https://aitoolpouch.com/category/${slug}/`}
+        url={`${process.env.NEXT_PUBLIC_BASE_URL || "https://aitoolpouch.com"}/category/${slug}/`}
       />
       <div className="w-full mb-6">
         <CompareBar compareList={compareList} toggleCompare={toggleCompare} />
@@ -123,6 +151,9 @@ export default function CategoryPage({ tools, category, slug }) {
           <h1 className="text-2xl font-bold">
             Compare Tools for {validCategory}
           </h1>
+          {paginatedTools.length === 0 && (
+            <p className="text-gray-600 mt-4">No tools found in this category.</p>
+          )}
         </div>
         <div className="w-full">
           <ul className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 items-stretch">

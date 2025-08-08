@@ -16,6 +16,7 @@ import Link from "next/link";
  * @param {function(object): void} props.toggleCompare - Function to add or remove a tool from the compare list.
  */
 export default function UseCaseCard({ tool, compareList = [], toggleCompare }) {
+
   const isChecked = compareList.some((t) => t.id === tool.id);
 
   return (
@@ -33,7 +34,7 @@ export default function UseCaseCard({ tool, compareList = [], toggleCompare }) {
             title={tool.Name}
             className="object-contain h-12 w-12 border rounded-xl border-cardDark"
           />
-          <h1 className="text-lg font-bold">{tool.Name}</h1>
+          <h2 className="text-lg font-bold">{tool.Name}</h2>
         </div>
         <p className="text-sm mb-4 mt-4">
           {tool.Why?.length > 100 ? tool.Why.slice(0, 100) + "..." : tool.Why}

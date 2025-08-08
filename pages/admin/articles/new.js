@@ -1,76 +1,69 @@
 import { useState } from "react";
+import { useRouter } from "next/router";
 import Link from "next/link";
-import ArticleForm from "@/components/ArticleForm";
 import { createArticle } from "@/lib/airtable/articles";
-import { parseFormBody, prepareArticleData } from "@/lib/form-helpers";
+import { parseFormBody } from "@/lib/form-helpers";
+import { AI_MODELS } from "@/lib/constants";
 
 export async function getServerSideProps({ req, res }) {
   if (req.method === "POST") {
     try {
-      const formData = await parseFormBody(req);
-      const articleData = prepareArticleData(formData);
-
-      await createArticle(articleData);
-
+      const { Title, Summary, Content, Slug, Published } = await parseFormBody(req);
+      await createArticle({ Title, Summary, Content, Slug, Published: !!Published });
       res.writeHead(302, { Location: "/admin/articles" });
       res.end();
       return { props: {} };
     } catch (error) {
       console.error("Failed to create article:", error);
-      return {
-        props: {
-          error: error.message || "Failed to create article.",
-        },
-      };
+      return { props: { error: "Failed to create article." } };
     }
   }
-
-  return { props: { error: null } };
+  return { props: {} };
 }
 
-export default function NewArticlePage({ error: serverError }) {
+export default function NewArticlePage({ error }) {
+  const router = useRouter();
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [selectedArticleType, setSelectedArticleType] = useState("Blog Post");
+  const [selectedModel, setSelectedModel] = useState("google/gemini-2.5-flash");
   const [aiTopic, setAiTopic] = useState("");
   const [isGenerating, setIsGenerating] = useState(false);
-  const [articleData, setArticleData] = useState(null);
-  const [formKey, setFormKey] = useState(Date.now());
   const [clientError, setClientError] = useState(null);
-  const [selectedModel, setSelectedModel] = useState(
-    "anthropic/claude-3.5-haiku",
-  );
-  const [selectedArticleType, setSelectedArticleType] = useState("General");
-  const articleTypes = ["General", "How-To", "Affiliate"];
 
-  const generationModels = [
-    { id: "anthropic/claude-3.5-haiku", name: "Claude 3.5 Haiku" },
-    { id: "anthropic/claude-sonnet-4", name: "Claude 4 Sonnet" },
-    { id: "openai/gpt-4o", name: "OpenAI GPT-4o" },
-    { id: "google/gemini-2.5-pro", name: "Gemini 2.5 Pro" },
-    { id: "google/gemini-2.5-flash", name: "Gemini 2.5 Flash" },
-  ];
+  const articleTypes = ["Blog Post", "News Article", "Tutorial"]; // Example types
+  const generationModels = AI_MODELS; // Assuming AI_MODELS is an array of objects with id and name
 
   const generateContentWithAI = async () => {
-    if (!aiTopic) return;
+    if (!aiTopic) {
+      setClientError("Please enter a topic to generate content.");
+      return;
+    }
     setIsGenerating(true);
     setClientError(null);
+
     try {
       const response = await fetch("/api/generate-article", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
+          articleType: selectedArticleType,
           topic: aiTopic,
           model: selectedModel,
-          articleType: selectedArticleType,
         }),
       });
 
       if (!response.ok) {
         const err = await response.json();
-        throw new Error(err.message || "Content generation failed.");
+        throw new Error(err.message || "Failed to generate content.");
       }
 
       const data = await response.json();
-      setArticleData({ Title: aiTopic, ...data });
-      setFormKey(Date.now()); // Force re-render of the form
+      // Assuming the API returns Title, Summary, and Content
+      document.getElementById("Title").value = data.Title || "";
+      document.getElementById("Summary").value = data.Summary || "";
+      document.getElementById("Content").value = data.Content || "";
+      document.getElementById("Slug").value = data.Slug || "";
+
     } catch (err) {
       setClientError(err.message);
     } finally {
@@ -78,19 +71,29 @@ export default function NewArticlePage({ error: serverError }) {
     }
   };
 
-  return (
-    <div className="w-full w-[80%] mx-auto">
-      <Link
-        href="/admin/articles"
-        className="text-slate-100 hover:text-slate-300 mb-6 inline-block"
-      >
-        &larr; Back to Articles
-      </Link>
-      <h1 className="text-3xl font-bold mb-6">New Article</h1>
+  const handleSubmit = async (event) => {
+    event.preventDefault();
+    setIsSubmitting(true);
+    event.target.submit();
+  };
 
-      <div className="mb-8 p-8 bg-cardDark rounded-lg border border-gray-600">
-        <h2 className="text-xl font-semibold mb-4">AI Content Generator</h2>
-        <div className="flex flex-col gap-6 mb-4">
+  return (
+    <div className="w-full md:w-[75%] mx-auto">
+      <div>
+        <Link
+          href="/admin/articles"
+          className="text-slate-300 hover:text-slate-100 mb-6 inline-block"
+        >
+          &larr; Back to Manage Articles
+        </Link>
+      </div>
+      <h1 className="text-3xl font-bold text-slate-300 mb-6">Create New Article</h1>
+
+      {error && <p className="text-red-500 mb-4">{error}</p>}
+
+      <div className="bg-cardDark p-6 rounded-lg shadow-md mb-6">
+        <h2 className="text-xl font-semibold text-slate-300 mb-4">AI Content Generation</h2>
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-4">
           <div>
             <label
               htmlFor="article-type-select"
@@ -106,7 +109,7 @@ export default function NewArticlePage({ error: serverError }) {
             >
               {articleTypes.map((type) => (
                 <option key={type} value={type}>
-                  {type} Blog Post
+                  {type}
                 </option>
               ))}
             </select>
@@ -162,7 +165,69 @@ export default function NewArticlePage({ error: serverError }) {
         {clientError && <p className="text-red-500 mt-2">{clientError}</p>}
       </div>
 
-      <ArticleForm key={formKey} article={articleData} error={serverError} />
+      <form method="POST" onSubmit={handleSubmit} className="bg-cardDark p-6 rounded-lg shadow-md">
+        <div className="mb-4">
+          <label htmlFor="Title" className="block text-slate-300 text-sm font-bold mb-2">
+            Title:
+          </label>
+          <input
+            type="text"
+            id="Title"
+            name="Title"
+            required
+            className="shadow appearance-none border border-gray-600 rounded w-full py-2 px-3 bg-gray-800 text-slate-300 leading-tight focus:outline-none focus:shadow-outline"
+          />
+        </div>
+        <div className="mb-4">
+          <label htmlFor="Summary" className="block text-slate-300 text-sm font-bold mb-2">
+            Summary:
+          </label>
+          <textarea
+            id="Summary"
+            name="Summary"
+            rows="3"
+            className="shadow appearance-none border border-gray-600 rounded w-full py-2 px-3 bg-gray-800 text-slate-300 leading-tight focus:outline-none focus:shadow-outline"
+          ></textarea>
+        </div>
+        <div className="mb-4">
+          <label htmlFor="Content" className="block text-slate-300 text-sm font-bold mb-2">
+            Content:
+          </label>
+          <textarea
+            id="Content"
+            name="Content"
+            rows="10"
+            className="shadow appearance-none border border-gray-600 rounded w-full py-2 px-3 bg-gray-800 text-slate-300 leading-tight focus:outline-none focus:shadow-outline"
+          ></textarea>
+        </div>
+        
+        <div className="mb-6">
+          <label htmlFor="Published" className="block text-slate-300 text-sm font-bold mb-2">
+            Published:
+          </label>
+          <input
+            type="checkbox"
+            id="Published"
+            name="Published"
+            className="mr-2 leading-tight"
+          />
+        </div>
+        <div className="flex items-center justify-between">
+          <button
+            type="submit"
+            disabled={isSubmitting}
+            className="bg-teal-600 text-slate-100 font-bold py-2 px-4 rounded hover:bg-teal-700 transition-colors focus:outline-none focus:shadow-outline"
+          >
+            {isSubmitting ? "Creating..." : "Create Article"}
+          </button>
+          <Link
+            href="/admin/articles"
+            className="bg-gray-700 text-slate-100 font-bold py-2 px-4 rounded hover:bg-gray-500 transition-colors focus:outline-none focus:shadow-outline"
+          >
+            Cancel
+          </Link>
+        </div>
+      </form>
     </div>
   );
 }

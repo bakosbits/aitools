@@ -38,7 +38,7 @@ export default function ToolCard({ tool, compareList = [], toggleCompare }) {
             title={tool.Name}
             className="object-contain h-14 w-14 border rounded-lg border-cardDark"
           />
-          <h1 className="text-2xl font-bold">{tool.Name}</h1>
+        <h2 className="text-2xl font-bold">{tool.Name}</h2>
         </div>
         {tool["Base_Model"] && (
           <p className="text-slate-300 mb-2 mt-6">
@@ -50,7 +50,7 @@ export default function ToolCard({ tool, compareList = [], toggleCompare }) {
             ? tool.Description.slice(0, 100) + "..."
             : tool.Description}
         </p>
-        <h1 className="text-xl font-bold">Why it matters:</h1>
+        <h3 className="text-xl font-bold">Why it matters:</h3>
         <p className="mb-4">
           {tool.Why?.length > 100 ? tool.Why.slice(0, 100) + "..." : tool.Why}
         </p>

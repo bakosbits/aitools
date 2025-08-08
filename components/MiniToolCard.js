@@ -1,6 +1,7 @@
 import Link from "next/link";
 import BlogLinkCard from "./BlogLinkCard";
 
+
 /**
  * Renders a compact, clickable card for an AI tool.
  * The entire card acts as a link to the tool's detailed page.
@@ -15,6 +16,8 @@ import BlogLinkCard from "./BlogLinkCard";
  * @param {string} props.tool.articleSlug - The slug for a related blog article, passed to BlogLinkCard (optional).
  */
 export default function MiniToolCard({ tool }) {
+
+
   return (
     <Link
       href={`/tool/${tool.Slug}`}
@@ -30,13 +33,15 @@ export default function MiniToolCard({ tool }) {
             title={tool.Name}
             className="object-contain h-12 w-12 border rounded-lg border-cardDark"
           />
-          <h1 className="text-lg font-bold">{tool.Name}</h1>
+          <h2 className="text-lg font-bold">{tool.Name}</h2>
         </div>
-        <p className="text-sm text-gray-400 mt-4">
+        <p className="text-sm text-gray-400 mt-4 mb-auto">
           {tool.Why?.length > 100 ? tool.Why.slice(0, 100) + "..." : tool.Why}
         </p>
+        <div className="w-full">
+          <BlogLinkCard articleSlug={tool.articleSlug} toolName={tool.Name} />
+        </div>
       </div>
-      <BlogLinkCard articleSlug={tool.articleSlug} toolName={tool.Name} />
     </Link>
   );
 }

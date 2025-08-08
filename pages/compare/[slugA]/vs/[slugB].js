@@ -64,7 +64,9 @@ export default function ComparePage({ toolA, toolB }) {
       <MetaProps
         title={`Compare ${toolA.Name} Against ${toolB.Name}`}
         description={`Compare ${toolA.Name} and ${toolB.Name} across features, pricing, and ideal use cases.`}
-        url={`https://aitoolpouch.com/compare/${toolA.Slug}/vs/${toolB.Slug}`}
+        url={`${
+          process.env.NEXT_PUBLIC_BASE_URL || "https://aitoolpouch.com"
+        }/compare/${toolA.Slug}/vs/${toolB.Slug}`}
       />
       <div className="max-w-7xl mx-auto">
         <div className="h-full flex items-center justify-between mb-6">
@@ -74,7 +76,7 @@ export default function ComparePage({ toolA, toolB }) {
         </div>
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
           {[toolA, toolB].map((tool) => (
-            <DetailToolCard key={tool.Slug} tool={tool} />
+            <DetailToolCard key={tool.id} tool={tool} />
           ))}
         </div>
       </div>

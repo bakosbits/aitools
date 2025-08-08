@@ -1,4 +1,5 @@
 import BlogLinkCard from "./BlogLinkCard";
+import Image from "next/image";
 
 /**
  * Renders a detailed card for a single AI tool.
@@ -33,12 +34,11 @@ export default function DetailToolCard({ tool }) {
     : [];
 
   const pricingList = Array.isArray(tool.Pricing) ? tool.Pricing : [];
-  const formattedPricing =
-    pricingList.length > 1
-      ? pricingList.slice(0, -1).join(", ") +
-        " and " +
-        pricingList[pricingList.length - 1]
-      : pricingList[0];
+  // Use the modern Intl.ListFormat for cleaner, internationally-friendly list formatting.
+  const formattedPricing = new Intl.ListFormat("en", {
+    style: "long",
+    type: "conjunction",
+  }).format(pricingList);
 
   return (
     <div className="h-full flex flex-col border border-gray-600 p-6 rounded-lg shadow-lg bg-cardDark">
@@ -49,7 +49,7 @@ export default function DetailToolCard({ tool }) {
           title={tool.Name}
           className="object-contain h-16 w-16 border rounded-lg border-cardDark"
         />
-        <h1 className="text-2xl font-bold">{tool.Name}</h1>
+        <h2 className="text-2xl font-bold">{tool.Name}</h2>
       </div>
       {tool["Base_Model"] && (
         <p className="text-slate-300 mt-2 mb-4">
@@ -57,27 +57,27 @@ export default function DetailToolCard({ tool }) {
         </p>
       )}
       <p className="mb-4">{tool.Description}</p>
-      <h1 className="text-xl font-bold mb-1">Why it matters:</h1>
+      <h2 className="text-xl font-bold mb-1">Why it matters:</h2>
       <p className="mb-4">{tool.Why}</p>
-      <h1 className="text-xl font-bold mb-1">Details:</h1>
+      <h2 className="text-xl font-bold mb-1">Details:</h2>
       <p className="mb-4">{tool.Details}</p>
-      <h1 className="text-xl font-bold mb-1">Top Features:</h1>
+      <h2 className="text-xl font-bold mb-1">Top Features:</h2>
       <ul className="list-disc ml-6 space-y-2 mb-4">
         {featuresList.map((item, index) => (
           <li key={index}>{item}</li>
         ))}
       </ul>
-      <h1 className="text-xl font-bold mb-1">Top Cautions:</h1>
+      <h2 className="text-xl font-bold mb-1">Top Cautions:</h2>
       <ul className="list-disc ml-6 space-y-2 mb-4">
         {cautionsList.map((item, index) => (
           <li key={index}>{item}</li>
         ))}
       </ul>
-      <h1 className="text-xl font-bold mb-1">Who's It For?</h1>
+      <h2 className="text-xl font-bold mb-1">Who's It For?</h2>
       <p className="mb-4">{tool.Buyer}</p>
       {pricingList.length > 0 && (
         <div>
-          <h1 className="text-xl font-bold mb-1">Pricing Options:</h1>
+          <h2 className="text-xl font-bold mb-1">Pricing Options:</h2>
           <p className="mb-4">{formattedPricing}</p>
         </div>
       )}

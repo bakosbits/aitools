@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { getAllArticlesForAdmin, deleteArticle } from "@/lib/airtable/articles";
+import { getAllArticles, deleteArticle } from "@/lib/airtable/articles";
 import { parseFormBody } from "@/lib/form-helpers";
 
 export async function getServerSideProps({ req, res }) {
@@ -22,7 +22,7 @@ export async function getServerSideProps({ req, res }) {
   }
 
   // For GET requests, fetch and display the articles
-  const articles = await getAllArticlesForAdmin();
+  const articles = await getAllArticles();
   return {
     props: {
       articles,
@@ -32,17 +32,17 @@ export async function getServerSideProps({ req, res }) {
 
 export default function ArticlesPage({ articles }) {
   return (
-    <div className="w-full w-[80%] mx-auto">
+    <div className="w-full md:w-[75%] mx-auto">
       <div>
         <Link
           href="/admin"
-          className="text-slate-100 hover:text-slate-300 mb-6 inline-block"
+          className="text-slate-300 hover:text-slate-100 mb-6 inline-block"
         >
           &larr; Back to Main Menu
         </Link>
       </div>
       <div className="flex justify-between items-center mb-6">
-        <h1 className="text-3xl font-bold">Manage Articles</h1>
+        <h1 className="text-3xl font-bold text-slate-300">Manage Articles</h1>
         <Link
           href="/admin/articles/new"
           className="bg-teal-600 text-slate-100 font-bold py-2 px-4 rounded hover:bg-teal-700 transition-colors"
@@ -54,13 +54,16 @@ export default function ArticlesPage({ articles }) {
         <table className="min-w-full leading-normal">
           <thead>
             <tr>
-              <th className="px-5 text-left text-xs font-semibold text-slate-300 uppercase tracking-wider">
+              <th className="px-5 text-left font-semibold text-slate-300 uppercase tracking-wider">
                 Title
               </th>
-              <th className="px-5 text-left text-xs font-semibold text-slate-300 uppercase tracking-wider">
+              <th className="px-5 text-left font-semibold text-slate-300 uppercase tracking-wider">
+                Summary
+              </th>
+              <th className="px-5 text-left font-semibold text-slate-300 uppercase tracking-wider">
                 Status
               </th>
-              <th className="px-5 text-right text-xs font-semibold text-slate-300 uppercase tracking-wider">
+              <th className="px-5 text-right font-semibold text-slate-300 uppercase tracking-wider">
                 Actions
               </th>
             </tr>
@@ -89,7 +92,7 @@ export default function ArticlesPage({ articles }) {
                 <td className="px-5 py-4 text-sm text-right">
                   <Link
                     href={`/admin/articles/edit/${article.id}`}
-                    className="text-slate-100 hover:text-slate-300 mr-4"
+                    className="text-slate-300 hover:text-slate-100 mr-4"
                   >
                     Edit
                   </Link>

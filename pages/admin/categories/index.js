@@ -1,8 +1,5 @@
 import Link from "next/link";
-import {
-  getAllCategoriesForAdmin,
-  deleteCategory,
-} from "@/lib/airtable/categories";
+import { getAllCategories, deleteCategory } from "@/lib/airtable/categories";
 import { parseFormBody } from "@/lib/form-helpers";
 
 export async function getServerSideProps({ req, res }) {
@@ -21,7 +18,7 @@ export async function getServerSideProps({ req, res }) {
     }
   }
 
-  const categories = await getAllCategoriesForAdmin();
+  const categories = await getAllCategories();
   return {
     props: {
       categories,
@@ -31,17 +28,17 @@ export async function getServerSideProps({ req, res }) {
 
 export default function CategoriesPage({ categories }) {
   return (
-    <div className="w-full w-[80%] mx-auto">
+    <div className="w-full md:w-[75%] mx-auto">
       <div>
         <Link
           href="/admin"
-          className="text-slate-100 hover:text-slate-300 mb-6 inline-block"
+          className="text-slate-300 hover:text-slate-100 mb-6 inline-block"
         >
           &larr; Back to Main Menu
         </Link>
       </div>
       <div className="flex justify-between items-center mb-6">
-        <h1 className="text-3xl font-bold">Manage Categories</h1>
+        <h1 className="text-3xl font-bold text-slate-300">Manage Categories</h1>
         <Link
           href="/admin/categories/new"
           className="bg-teal-600 text-slate-100 font-bold py-2 px-4 rounded hover:bg-teal-700 transition-colors"
@@ -53,13 +50,13 @@ export default function CategoriesPage({ categories }) {
         <table className="min-w-full leading-normal">
           <thead>
             <tr>
-              <th className="px-5 py-3 text-left text-xs font-semibold text-slate-300 uppercase tracking-wider">
+              <th className="px-5 text-left  font-semibold text-slate-300 uppercase tracking-wider">
                 Name
               </th>
-              <th className="px-5 py-3 text-left text-xs font-semibold text-slate-300 uppercase tracking-wider">
-                Description
+              <th className="px-5 text-left  font-semibold text-slate-300 uppercase tracking-wider">
+                Tags
               </th>
-              <th className="px-5 py-3 text-right text-xs font-semibold text-slate-300 uppercase tracking-wider">
+              <th className="px-5 text-right  font-semibold text-slate-300 uppercase tracking-wider">
                 Actions
               </th>
             </tr>
@@ -74,12 +71,12 @@ export default function CategoriesPage({ categories }) {
                   {category.Name}
                 </td>
                 <td className="px-5 py-4 text-sm text-slate-300">
-                  {category.Description}
+                  {category.TagNames ? category.TagNames.join(', ') : 'N/A'}
                 </td>
                 <td className="px-5 py-4 text-sm text-right">
                   <Link
                     href={`/admin/categories/edit/${category.id}`}
-                    className="text-slate-100 hover:text-slate-300 mr-4"
+                    className="text-slate-300 hover:text-slate-100 mr-4"
                   >
                     Edit
                   </Link>

@@ -29,4 +29,6 @@ db.json
 # Others
 .env
 .env.test 
-.notes
+.notes*
+.design
+.eslintrc*

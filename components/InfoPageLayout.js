@@ -38,6 +38,7 @@ export default function InfoPageLayout({
             height={600}
             style={{ filter: "saturate(110%) brightness(0.95) contrast(0.98)" }}
             className="w-full h-auto object-cover rounded-lg shadow-3xl"
+            priority
           />
         </div>
       </div>

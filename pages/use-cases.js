@@ -92,7 +92,7 @@ export default function UseCasePage({ allTools, allAliases }) {
       <div className="w-full mb-6">
         <CompareBar compareList={compareList} toggleCompare={toggleCompare} />
       </div>
-      <div className="w-full lg:w-[80%] mx-auto grid grid-cols-1 md:grid-cols-[40%_60%] gap-6">
+      <div className="w-full lg:w-[90%] mx-auto grid grid-cols-1 md:grid-cols-[30%_70%] gap-6">
         {/* Top row: spans both columns */}
         <div className="md:col-span-2">
           <div>
@@ -110,7 +110,7 @@ export default function UseCasePage({ allTools, allAliases }) {
         {/* Left column */}
         <div className="flex flex-col">
           {/* Use Case */}
-          <h1 className="text-xl font-bold mb-2">
+          <h1 className="text-lg font-bold mb-2">
             💡 What's your use case? What do you want to do?
           </h1>
           <div className="w-full text-gray-400 border border-gray-600 p-4 rounded-lg bg-cardDark mb-6">
@@ -134,7 +134,7 @@ export default function UseCasePage({ allTools, allAliases }) {
             ))}
           </div>
           {/* Modality Selection */}
-          <h1 className="text-xl font-bold mb-2">
+          <h1 className="text-lg font-bold mb-2">
             🧩 Are you working with data? What format is it in?
           </h1>
           <div className="w-full text-gray-400 border border-gray-600 p-4 rounded-lg bg-cardDark mb-6">
@@ -158,7 +158,7 @@ export default function UseCasePage({ allTools, allAliases }) {
             ))}
           </div>
           {/* Preferences */}
-          <h1 className="text-xl font-bold mb-2">
+          <h1 className="text-lg font-bold mb-2">
             ⚙️ Do you have preferences or constraints you'd like to add?
           </h1>
           <div className="w-full text-gray-400 border border-gray-600 p-4 rounded-lg bg-cardDark mb-6">
@@ -182,7 +182,7 @@ export default function UseCasePage({ allTools, allAliases }) {
             ))}
           </div>
           {/* Professional Context */}
-          <h1 className="text-xl font-bold mb-2">
+          <h1 className="text-lg font-bold mb-2">
             ✨ Would you like results that are aligned to a profession?
           </h1>
           <div className="w-full text-gray-400 border border-gray-600 p-4 rounded-lg bg-cardDark mb-6">
@@ -212,19 +212,19 @@ export default function UseCasePage({ allTools, allAliases }) {
           {matchedTools.length > 0 ? (
             // Case 1: Tools are found
             <>
-              <h1 className="text-xl text-slate-300 font-bold mb-4">
+              <h1 className="text-lg text-slate-300 font-bold mb-4">
                 🧠 Your Results
               </h1>
               <div>
                 <button
-                  supressHydrationWarning
+                  suppressHydrationWarning
                   onClick={handleResetFilters}
                   className="bg-teal-600 text-slate-100 hover:bg-teal-700 font-semibold py-2 px-4 rounded-lg text-lg transition-colors mb-4"
                 >
                   Reset Filters
                 </button>
               </div>
-              <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-4">
+              <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-4">
                 {matchedTools.map((tool) => (
                   <UseCasesToolCard
                     key={tool.id}
@@ -241,10 +241,10 @@ export default function UseCasePage({ allTools, allAliases }) {
               {isAnyFilterActive ? (
                 // Sub-case 2a: Filters are active, but no tools match
                 <>
-                  <h1 className="text-xl font-bold mb-4">🧠 Your Results</h1>
+                  <h1 className="text-lg font-bold mb-4">🧠 Your Results</h1>
                   <div>
                     <button
-                      supressHydrationWarning
+                      suppressHydrationWarning
                       onClick={handleResetFilters}
                       className="bg-teal-600 hover:bg-teal-700 text-slate-100 font-semibold py-2 px-4 rounded-lg text-lg transition-colors mb-4"
                     >
@@ -258,7 +258,7 @@ export default function UseCasePage({ allTools, allAliases }) {
               ) : (
                 // Sub-case 2b: No filters are active, show original instructions
                 <>
-                  <h1 className="text-xl font-bold mb-2"> 🌐 Instructions</h1>
+                  <h1 className="text-lg font-bold mb-2"> 🌐 Instructions</h1>
                   <div className="w-full border border-gray-600 p-6 rounded-lg bg-cardDark">
                     <p>
                       Answer at least 1 of the questions to get started. You're
