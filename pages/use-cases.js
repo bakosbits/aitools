@@ -298,28 +298,6 @@ export default function UseCasePage({ allTools, allAliases }) {
                     )}
                 </div>
             </div>
-            <button
-                className="fixed top-2 right-2 z-50 bg-slate-800 text-slate-100 px-3 py-1 rounded shadow border border-slate-600 text-xs"
-                onClick={() => setShowDebug((v) => !v)}
-            >
-                {showDebug ? 'Hide Debug' : 'Show Debug'}
-            </button>
-            {showDebug && (
-                <div className="fixed top-10 right-2 z-50 bg-slate-900 text-slate-100 p-4 rounded shadow max-h-[80vh] overflow-y-auto w-[400px] border border-slate-700 text-xs">
-                    <strong>allTools:</strong>
-                    <pre>{JSON.stringify(allTools, null, 2)}</pre>
-                    <strong>allAliases:</strong>
-                    <pre>{JSON.stringify(allAliases, null, 2)}</pre>
-                    <strong>useCases:</strong>
-                    <pre>{JSON.stringify(useCases, null, 2)}</pre>
-                    <strong>modalities:</strong>
-                    <pre>{JSON.stringify(modalities, null, 2)}</pre>
-                    <strong>preferences:</strong>
-                    <pre>{JSON.stringify(preferences, null, 2)}</pre>
-                    <strong>contexts:</strong>
-                    <pre>{JSON.stringify(contexts, null, 2)}</pre>
-                </div>
-            )}
         </>
     );
 }
