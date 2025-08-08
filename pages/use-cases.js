@@ -78,18 +78,6 @@ export default function UseCasePage({ allTools, allAliases }) {
         setCompareList([]);
     };
 
-    // DEBUG PANEL: Remove after troubleshooting
-    useEffect(() => {
-        console.log('allTools:', allTools);
-        console.log('allAliases:', allAliases);
-        console.log('useCases:', useCases);
-        console.log('modalities:', modalities);
-        console.log('preferences:', preferences);
-        console.log('contexts:', contexts);
-    }, [allTools, allAliases, useCases, modalities, preferences, contexts]);
-
-    const [showDebug, setShowDebug] = useState(false);
-
     return (
         <>
             <MetaProps
