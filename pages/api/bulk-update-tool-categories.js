@@ -1,6 +1,6 @@
 import { getAllTools, updateToolCategories } from "@/lib/airtable/tools";
 import { getAllCategories } from "@/lib/airtable/categories";
-import { generateToolCategories } from "@lib/model/providers";
+import { generateToolCategories } from "@/lib/model/providers";
 
 async function handler(req, res) {
     // Set the headers for Server-Sent Events (SSE) immediately

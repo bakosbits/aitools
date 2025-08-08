@@ -1,4 +1,4 @@
-import { generateArticleContent } from "@lib/model/providers";
+import { generateArticleContent } from "@/lib/model/providers";
 import { ALLOWED_MODELS } from "@/lib/constants";
 
 export default async function handler(req, res) {

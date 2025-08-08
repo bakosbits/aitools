@@ -1,6 +1,6 @@
 import { useState } from "react";
 import Link from "next/link";
-import { getTool, updateTool } from "@/lib/airtable/tools";
+import { getToolById, updateTool } from "@/lib/airtable/tools";
 import { parseFormBody } from "@/lib/form-helpers";
 import ToolForm from "@/components/ToolForm";
 import AiResearchAssistant from "@/components/AiResearchAssistant";
@@ -21,7 +21,7 @@ export async function getServerSideProps({ req, res, params }) {
     }
   }
 
-  const tool = await getTool(id);
+  const tool = await getToolById(id);
   return {
     props: {
       tool,

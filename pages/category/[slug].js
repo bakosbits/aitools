@@ -9,77 +9,47 @@ import CompareBar from "@/components/CompareBar";
 import Pagination from "@/components/Pagination";
 
 export async function getStaticPaths() {
-  try {
-    const categories = await getAllCategorySlugs();
-    const paths = categories.map((cat) => ({
-      params: { slug: cat.Slug },
-    }));
 
-    return { paths, fallback: false };
-  } catch (error) {
-    console.error(
-      "[getStaticPaths - Category] Error fetching categories for paths:",
-      error,
-    );
-    return { paths: [], fallback: false };
-  }
+  return {
+    paths: [],
+    fallback: "blocking", // or true, depending on your needs
+  };
 }
 
 export async function getStaticProps({ params }) {
-  const slug = params.slug;
-
-  try {
+    const slug = params.slug;
     const categories = await getAllCategories();
     const matchingCategory = categories.find((cat) => cat.Slug === slug);
-
-    if (!matchingCategory) {
-      console.warn(`[getStaticProps] No category found with slug "${slug}"`);
-      return {
-        notFound: true,
-      };
-    }
-    
-    // Get tools directly from the Tool Lookup column
     let tools = await getToolsByCategory(slug);
     
     // Ensure tools is always an array
     if (!Array.isArray(tools)) {
-      console.warn(`[getStaticProps] Tools returned is not an array for category "${matchingCategory.Name}"`);
       tools = [];
     }
-    
-    if (tools.length === 0) {
-      console.warn(`[getStaticProps] No tools found for category "${matchingCategory.Name}"`);
-    }
 
-    // Sort tools by name at build time
-    const sortedTools = [...tools].sort((a, b) => a.Name.localeCompare(b.Name));
-
+    // Sort tools by name at build time.
+    const sortedTools = [...tools]; // This sort is fine for initial load
+  
     const props = {
       tools: sortedTools,
       category: matchingCategory.Name,
       slug, // Pass slug for canonical URL
     };
 
-    console.log(`[getStaticProps] Found ${sortedTools.length} tools for category "${matchingCategory.Name}"`);
-
     return {
       props,
       revalidate: 300,
     };
-  } catch (error) {
-    console.error(`[getStaticProps - Category: ${slug}] Error:`, error);
-    return {
-      notFound: true,
-    };
-  }
 }
 
 const ITEMS_PER_PAGE = 12;
 
 export default function CategoryPage({ tools, category, slug }) {
   const router = useRouter();
-  const validTools = useMemo(() => (Array.isArray(tools) ? tools : []), [tools]);
+  const validTools = useMemo(() => {
+    const sorted = Array.isArray(tools) ? [...tools].sort((a, b) => a.Name.localeCompare(b.Name)) : [];
+    return sorted;
+  }, [tools]);
   const validCategory = typeof category === "string" ? category : "Unknown";
   const [compareList, setCompareList] = useState([]);
 
