@@ -1,5 +1,4 @@
 import { useState } from "react";
-import { useRouter } from "next/router";
 import Link from "next/link";
 import { createArticle } from "@/lib/airtable/articles";
 import { parseFormBody } from "@/lib/form-helpers";
@@ -22,7 +21,6 @@ export async function getServerSideProps({ req, res }) {
 }
 
 export default function NewArticlePage({ error }) {
-  const router = useRouter();
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [selectedArticleType, setSelectedArticleType] = useState("Blog Post");
   const [selectedModel, setSelectedModel] = useState("google/gemini-2.5-flash");
@@ -62,7 +60,6 @@ export default function NewArticlePage({ error }) {
       document.getElementById("Title").value = data.Title || "";
       document.getElementById("Summary").value = data.Summary || "";
       document.getElementById("Content").value = data.Content || "";
-      document.getElementById("Slug").value = data.Slug || "";
 
     } catch (err) {
       setClientError(err.message);

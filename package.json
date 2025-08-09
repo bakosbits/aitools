@@ -17,6 +17,8 @@
     "airtable": "^0.12.2",
     "bcrypt": "^5.1.1",
     "cookie": "^1.0.2",
+    "eslint": "^9.33.0",
+    "lint": "^0.8.19",
     "natural": "^8.1.0",
     "next": "^15.3.4",
     "next-sitemap": "^4.2.3",

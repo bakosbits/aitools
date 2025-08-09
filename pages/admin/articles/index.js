@@ -84,7 +84,7 @@ export default function ArticlesPage({ articles }) {
                 </td>
                 <td className="px-5 py-4 text-sm">
                   <span
-                    className={`px-2 py-1 rounded-full text-xs font-semibold ${article.Published ? "bg-teal-600 text-slate-100" : "bg-yellow-200 text-yellow-800"}`}
+                    className={`px-2 py-1 rounded-full text-xs font-semibold ${article.Published ? "bg-green-500 text-slate-100" : "bg-yellow-200 text-yellow-800"}`}
                   >
                     {article.Published ? "Published" : "Draft"}
                   </span>

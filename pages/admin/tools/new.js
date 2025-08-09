@@ -1,35 +1,89 @@
 import { useState } from "react";
 import Link from "next/link";
 import { createTool } from "@/lib/airtable/tools";
-import { parseFormBody } from "@/lib/form-helpers";
+import { getAllCategories } from "@/lib/airtable/categories";
+import { getAllArticles } from "@/lib/airtable/articles";
+import { PRICING_OPTIONS } from "@/lib/constants";
+import { parseToolForm } from "@/lib/form-helpers";
 import ToolForm from "@/components/ToolForm";
 import AiResearchAssistant from "@/components/AiResearchAssistant";
 
 export async function getServerSideProps({ req, res }) {
+  const pricingOptions = PRICING_OPTIONS;
+
   if (req.method === "POST") {
     try {
-      const data = await parseFormBody(req);
+      const data = await parseToolForm(req);
       await createTool(data);
       res.writeHead(302, { Location: "/admin/tools" });
       res.end();
       return { props: {} };
     } catch (error) {
       console.error("Failed to create tool:", error);
-      return { props: { error: "Failed to create tool." } };
+      const categories = await getAllCategories();
+      const articles = await getAllArticles();
+      return {
+        props: {
+          categories,
+          articles,
+          pricingOptions,
+          error: "Failed to create tool.",
+        },
+      };
     }
   }
-  return { props: {} };
+
+  const categories = await getAllCategories();
+  const articles = await getAllArticles();
+
+  return {
+    props: {
+      categories,
+      articles,
+      pricingOptions,
+    },
+  };
 }
 
-export default function NewToolPage({ error }) {
+export default function NewToolPage({
+  categories,
+  articles,
+  pricingOptions,
+  error,
+}) {
   const [formData, setFormData] = useState({});
 
+  const handleChange = (e) => {
+    const { name, value, type, checked } = e.target;
+    if (type === "checkbox") {
+      if (name === "Categories" || name === "Articles" || name === "Pricing") {
+        const currentValues = formData[name] || [];
+        if (checked) {
+          setFormData((prev) => ({ ...prev, [name]: [...currentValues, value] }));
+        } else {
+          setFormData((prev) => ({
+            ...prev,
+            [name]: currentValues.filter((item) => item !== value),
+          }));
+        }
+      } else {
+        setFormData((prev) => ({ ...prev, [name]: checked }));
+      }
+    } else {
+      setFormData((prev) => ({ ...prev, [name]: value }));
+    }
+  };
+
   const handleResearchComplete = (researchedData) => {
-    setFormData((prevData) => ({
+    const categoryIds = researchedData.Categories?.map(name => {
+      const category = categories.find(cat => cat.Name === name);
+      return category ? category.id : null;
+    }).filter(id => id !== null);
+
+    setFormData(prevData => ({
       ...prevData,
-      Name: researchedData.name || prevData.Name || "",
-      Description: researchedData.description || prevData.Description || "",
-      // Map other fields as necessary
+      ...researchedData,
+      Categories: categoryIds,
     }));
   };
 
@@ -45,8 +99,14 @@ export default function NewToolPage({ error }) {
       </div>
       <h1 className="text-3xl font-bold text-slate-300 mb-6">Add New Tool</h1>
       <AiResearchAssistant onResearchComplete={handleResearchComplete} />
-      {error && <p className="text-red-500 mb-4">{error}</p>}
-      <ToolForm initialData={formData} />
+      <ToolForm
+        tool={formData}
+        categories={categories}
+        articles={articles}
+        pricingOptions={pricingOptions}
+        handleChange={handleChange}
+        error={error}
+      />
     </div>
   );
 }

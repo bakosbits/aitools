@@ -32,3 +32,8 @@ db.json
 .notes*
 .design
 .eslintrc*
+.cspell
+
+next.config.json
+jsconfig.json
+vercel.json

@@ -11,8 +11,7 @@ import MetaProps from "@/components/MetaProps";
 export async function getStaticProps() {
     const allTools = await getAllTools();
     const allAliases = await getAllAliases();
-    // Log the fetched data to ensure it's not empty
-    console.log(`[getStaticProps] Fetched ${allTools.length} tools and ${Object.keys(allAliases).length} alias types.`);
+
     return {
         props: {
             allTools, // Keep allTools
@@ -259,9 +258,9 @@ export default function UseCasePage({ allTools, allAliases }) {
                                     </h1>
                                     <div>
                                         <button
-                                            supressHydrationWarning
+                                            suppressHydrationWarning
                                             onClick={handleResetFilters}
-                                            className="bg-emerald-500 hover:bg-emraild-600 text-gray-100 font-semibold py-2 px-4 rounded-lg text-lg transition-colors mb-4"
+                                            className="bg-emerald-500 hover:bg-emerald-600 text-gray-100 font-semibold py-2 px-4 rounded-lg text-lg transition-colors mb-4"
                                         >
                                             Reset Filters
                                         </button>
