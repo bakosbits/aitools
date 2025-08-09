@@ -1,19 +1,18 @@
 import { useRouter } from "next/router";
 import { useEffect, useState, useMemo } from "react";
-import { getAllTools } from "@/lib/airtable/tools";
+import { GetAllTools } from "@/lib/airtable/tools";
 import ToolCard from "@/components/ToolCard";
 import CompareBar from "@/components/CompareBar";
 import SearchBar from "@/components/SearchBar";
 import MetaProps from "@/components/MetaProps";
 import Pagination from "@/components/Pagination";
-import { Chat } from "openai/resources/index";
 
 const ITEMS_PER_PAGE = 12;
 
 
 export async function getStaticProps() {
     try {
-        const tools = await getAllTools();
+        const tools = await GetAllTools();
         return {
             props: {
                 tools,
@@ -86,7 +85,7 @@ export default function ToolsPage({ tools }) {
                 tool.Name,
                 tool.Why,
                 tool.Description,
-                tool.Detail,
+                tool.Details,
                 Array.isArray(tool.Features) ? tool.Features.join(" ") : (tool.Features ?? ""),
             ];
             return searchableFields.some((field) => typeof field === "string" && field.match(searchRegex));

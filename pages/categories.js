@@ -5,7 +5,6 @@ import { getAllCategories } from "@/lib/airtable/categories";
 export async function getStaticProps() {
   try {
     const categories = await getAllCategories();
-    // Sort categories by name at build time to avoid client-side computation.
     const sortedCategories = [...categories].sort((a, b) =>
       a.Name.localeCompare(b.Name),
     );

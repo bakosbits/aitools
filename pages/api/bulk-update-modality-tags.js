@@ -36,6 +36,7 @@ async function handler(req, res) {
         const [modalities, tags, tagTools] = await Promise.all([
             getAllModalities(),
             getAllTags(),
+            getTagTools()
         ]);
 
         const tagMap = new Map(tags.map(tag => [tag.Name, tag.id]));
@@ -43,7 +44,7 @@ async function handler(req, res) {
 
         for (const modality of modalities) {
             try {
-                const generatedTags = await  generateModalityTags(modality, availableTags, tagTools, model);
+                const generatedTags = await  generateModalityTags(modality, availableTags, model, tagTools);
                 if (generatedTags && generatedTags.Tags && generatedTags.Tags.length > 0) {
                     const tagIdsToUpdate = generatedTags.Tags
                         .map(tagName => {

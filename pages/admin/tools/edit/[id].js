@@ -40,15 +40,15 @@ export async function getServerSideProps({ req, res, params }) {
   const categories = await getAllCategories();
   const articles = await getAllArticles();
 
-  const categoryIds = tool.Categories?.map(name => {
-    const category = categories.find(cat => cat.Name === name);
-    return category ? category.id : null;
-  }).filter(id => id !== null);
-
   const toolWithCategoryIds = {
     ...tool,
-    Categories: categoryIds,
+    Categories: tool.Categories,
   };
+
+  const tags = tool.TagNames.map((name, index) => ({
+    id: tool.Tags[index],
+    Name: name,
+  }));
 
   return {
     props: {
@@ -56,6 +56,7 @@ export async function getServerSideProps({ req, res, params }) {
       categories,
       articles,
       pricingOptions,
+      tags,
     },
   };
 }
@@ -65,14 +66,21 @@ export default function EditToolPage({
   categories,
   articles,
   pricingOptions,
+  tags,
   error,
 }) {
   const [formData, setFormData] = useState(tool);
 
+  // Expose formData and categories globally for debugging
+  if (typeof window !== 'undefined') {
+    window.formData = formData;
+    window.categories = categories;
+  }
+
   const handleChange = (e) => {
     const { name, value, type, checked } = e.target;
     if (type === "checkbox") {
-      if (name === "Categories" || name === "Articles" || name === "Pricing") {
+      if (name === "Categories" || name === "Articles" || name === "Pricing" || name === "Tags") {
         const currentValues = formData[name] || [];
         if (checked) {
           setFormData((prev) => ({ ...prev, [name]: [...currentValues, value] }));
@@ -104,7 +112,16 @@ export default function EditToolPage({
         Edit: {tool.Name}
       </h1>
       <AiResearchAssistant
-        onResearchComplete={setFormData}
+        onResearchComplete={(researchedData) => {
+          const categoryIds = researchedData.Categories?.map(cat => cat.id) || [];
+          const tagIds = researchedData.Tags?.map(tag => tag.id) || [];
+          setFormData(prevData => ({
+            ...prevData,
+            ...researchedData,
+            Categories: categoryIds,
+            Tags: tagIds,
+          }));
+        }}
         initialResearchTerm={tool.Name}
       />
       <ToolForm
@@ -112,6 +129,7 @@ export default function EditToolPage({
         categories={categories}
         articles={articles}
         pricingOptions={pricingOptions}
+        tags={tags}
         handleChange={handleChange}
         error={error}
       />

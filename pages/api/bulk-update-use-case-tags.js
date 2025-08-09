@@ -49,7 +49,7 @@ async function handler(req, res) {
         // This loop will now send updates as each use case is processed
         for (const useCase of useCases) {
             try {
-                const generatedTags = await  generateUseCaseTags(useCase, availableTags, tagTools, model);
+                const generatedTags = await  generateUseCaseTags(useCase, availableTags, model, tagTools);
                 if (generatedTags && generatedTags.Tags && generatedTags.Tags.length > 0) {
                     const tagIdsToUpdate = generatedTags.Tags
                         .map(tagName => {

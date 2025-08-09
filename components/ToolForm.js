@@ -5,7 +5,7 @@ export default function ToolForm({
   categories = [],
   articles = [],
   pricingOptions = [],
-  tags = [],
+  tags = [], // Add tags to props
   handleChange,
   error,
 }) {
@@ -286,14 +286,17 @@ export default function ToolForm({
         </div>
       </div>
 
+      {/* Tags Section */}
       <div>
         <label className="block text-sm font-medium text-gray-300 mb-2">
           Tags
         </label>
         <div className="mt-2 flex flex-wrap gap-2 bg-gray-800 border border-gray-600 p-4 rounded-md">
-          {tool.Tags?.map((tag) => (
-            <div key={tag} className="bg-gray-700 text-gray-200 text-sm font-medium px-3 py-1 rounded-full">
-              {tag}
+          {tags.map((tag) => (
+            <div
+              key={tag.id}
+              className="px-3 py-1 rounded-full text-sm font-semibold bg-gray-600 text-gray-300">
+              {tag.Name}
             </div>
           ))}
         </div>

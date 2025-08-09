@@ -5,9 +5,6 @@ import Link from "next/link";
 import DetailToolCard from "@/components/DetailToolCard";
 import MetaProps from "@/components/MetaProps";
 
-
-
-
 export async function getStaticPaths() {
   try {
     const tools = await getAllToolSlugs();

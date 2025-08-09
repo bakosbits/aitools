@@ -13,7 +13,6 @@ import BlogLinkCard from "./BlogLinkCard";
  * @param {string} props.tool.Name - The name of the tool.
  * @param {string} props.tool.Logo - The URL for the tool's logo.
  * @param {string} props.tool.Why - A brief explanation of the tool's importance.
- * @param {string} props.tool.articleSlug - The slug for a related blog article, passed to BlogLinkCard (optional).
  */
 export default function MiniToolCard({ tool }) {
 
@@ -31,16 +30,13 @@ export default function MiniToolCard({ tool }) {
             src={tool.Logo}
             alt={`${tool.Name} logo`}
             title={tool.Name}
-            className="object-contain h-12 w-12 border rounded-lg border-cardDark"
+            className="object-contain h-12 w-12 border rounded-md border-cardDark"
           />
           <h2 className="text-lg font-bold">{tool.Name}</h2>
         </div>
         <p className="text-sm text-gray-400 mt-4 mb-auto">
           {tool.Why?.length > 100 ? tool.Why.slice(0, 100) + "..." : tool.Why}
         </p>
-        <div className="w-full">
-          <BlogLinkCard articleSlug={tool.articleSlug} toolName={tool.Name} />
-        </div>
       </div>
     </Link>
   );

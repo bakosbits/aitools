@@ -1,6 +1,6 @@
 import { useState, useEffect, useCallback, useMemo } from "react";
 import { useRouter } from "next/router";
-import { getAllCategories, getAllCategorySlugs } from "@/lib/airtable/categories";
+import { getAllCategorySlugs } from "@/lib/airtable/categories";
 import { getToolsByCategory } from "@/lib/airtable/tools";
 
 import ToolCard from "@/components/ToolCard";
@@ -18,7 +18,7 @@ export async function getStaticPaths() {
 
 export async function getStaticProps({ params }) {
     const slug = params.slug;
-    const categories = await getAllCategories();
+    const categories = await getAllCategorySlugs();
     const matchingCategory = categories.find((cat) => cat.Slug === slug);
     let tools = await getToolsByCategory(slug);
     

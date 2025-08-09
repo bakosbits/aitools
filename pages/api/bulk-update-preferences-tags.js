@@ -50,7 +50,7 @@ async function handler(req, res) {
         // This loop will now send updates as each preference is processed
         for (const preference of preferences) {
             try {
-                const generatedTags = await generatePreferenceTags(preference, availableTags, tagTools, model);
+                const generatedTags = await generatePreferenceTags(preference, availableTags, model, tagTools);
 
                 if (generatedTags && generatedTags.Tags && generatedTags.Tags.length > 0) {
                     const tagIdsToUpdate = generatedTags.Tags

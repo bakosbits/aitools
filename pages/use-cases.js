@@ -1,5 +1,4 @@
 import React, { useReducer, useMemo, useState, useEffect } from "react";
-
 import { getAllTools } from "@/lib/airtable/tools";
 import { getAllAliases } from "@/lib/airtable/aliases";
 import { groupAliasesByType, useCaseReducer, getInitialState, toggleSelection, getSortedFilterOptions } from "@/lib/useCaseUtils";
@@ -23,7 +22,6 @@ export async function getStaticProps() {
 }
 
 export default function UseCasePage({ allTools, allAliases }) {
-    console.log("1. allAliases:", allAliases);
     const [state, dispatch] = useReducer(
         useCaseReducer,
         undefined,
@@ -32,15 +30,10 @@ export default function UseCasePage({ allTools, allAliases }) {
     const [compareList, setCompareList] = useState([]);
     // After fetching allAliases (array):
     const groupedAliases = useMemo(() => groupAliasesByType(allAliases), [allAliases]);
-    console.log("2. groupedAliases:", groupedAliases);
     const { useCases, modalities, preferences, contexts } = useMemo(
         () => getSortedFilterOptions(groupedAliases),
         [groupedAliases]
     );
-    console.log("3. useCases:", useCases);
-    console.log("4. modalities:", modalities);
-    console.log("5. preferences:", preferences);
-    console.log("6. contexts:", contexts);
 
 
     useEffect(() => {
@@ -171,7 +164,7 @@ export default function UseCasePage({ allTools, allAliases }) {
                     </div>
                     {/* Preferences */}
                     <h1 className="text-xl font-bold mb-2">
-                        ⚙️ Do you have preferences or constraints you\'d like to
+                        ⚙️ Do you have preferences or constraints you'd like to
                         add?
                     </h1>
                     <div className="w-full text-gray-400 border border-gray-600 p-4 rounded-lg bg-cardDark mb-6">

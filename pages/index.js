@@ -1,4 +1,5 @@
 import { getFeaturedTools, getNewestTools } from "@/lib/airtable/tools";
+import { shuffleArray } from "@/lib/indexUtils";
 import Link from "next/link";
 import SearchBar from "@/components/SearchBar";
 import MiniToolCard from "@/components/MiniToolCard";
@@ -8,7 +9,8 @@ const ERROR_REVALIDATE_SECONDS = 60; // Shorter revalidate on error to retry qui
 
 export async function getStaticProps() {
     try {
-        const featuredTools = await getFeaturedTools();
+        const allFeaturedTools = await getFeaturedTools();
+        const featuredTools = shuffleArray(allFeaturedTools).slice(0, 4);
         const latestTools = (await getNewestTools(8)).sort((a, b) =>
             a.Name.localeCompare(b.Name)
         );
@@ -131,7 +133,7 @@ export default function Home({ latestTools, featuredTools }) {
                         </p>
                         <div className="mt-8 mb-2">
                             <h1 className="text-3xl font-bold mb-4">Hot Topics:</h1>
-                            <div className="grid grid-cols-2 lg:grid-cols-4 gap-4 lg:gap-8">
+                            <div className="grid grid-cols-2 lg:grid-cols-4 gap-4 ">
                                 {featuredTools.map((tool) => (
                                     <Link
                                         key={tool.Slug}
@@ -144,7 +146,7 @@ export default function Home({ latestTools, featuredTools }) {
                                             src={tool.Logo}
                                             alt={`${tool.Name} logo`}
                                             title={tool.Name}
-                                            className="w-[180px] h-auto object-contain border rounded-3xl border-gray-800"
+                                            className="w-[200px] h-auto object-contain border rounded-3xl border-gray-800"
                                         />
                                     </Link>
                                 ))}

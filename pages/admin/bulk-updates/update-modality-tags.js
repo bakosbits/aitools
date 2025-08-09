@@ -14,7 +14,7 @@ export default function UpdateModalityTagsPage() {
         setError(null);
         setIsLoading(true);
 
-        const eventSource = new EventSource(`/api/bulk-update-preferences-tags?model=${model}`);
+        const eventSource = new EventSource(`/api/bulk-update-modality-tags?model=${model}`);
 
         eventSource.addEventListener('status', (event) => {
             const data = JSON.parse(event.data);
@@ -59,7 +59,7 @@ export default function UpdateModalityTagsPage() {
                         &larr; Back to Bulk Updates
                     </Link>
                 </div>
-                <h1 className="text-2xl font-bold mb-2">Bulk Update Preference Tags</h1>
+                <h1 className="text-2xl font-bold mb-2">Bulk Update Modality Tags</h1>
                 <p className="mb-4">
                     This process uses AI to analyze preferences.
                     It will iterate over every preference, analyze its purpose, and select 2-10

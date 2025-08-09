@@ -1,4 +1,4 @@
-import { getAllCategoriesAdmin, updateCategoryTags } from '@/lib/airtable/categories';
+import { getAllCategories, updateCategoryTags } from '@/lib/airtable/categories';
 import { getAllTags } from '@/lib/airtable/tags';
 import { generateCategoryTags } from '@/lib/model/providers';
 import { getTagTools } from '@/lib/airtable/tools';
@@ -37,9 +37,8 @@ async function handler(req, res) {
             return;
         }
 
-        sendEvent('status', { message: 'Fetching categories and tags...' });
         const [categories, tags, tagTools] = await Promise.all([
-            getAllCategoriesAdmin(),
+            getAllCategories(),
             getAllTags(),
             getTagTools()
         ]);
@@ -47,13 +46,10 @@ async function handler(req, res) {
         const tagMap = new Map(tags.map(tag => [tag.Name.toLowerCase().trim(), tag.id]));
         const availableTags = tags.map(tag => tag.Name);
 
-        sendEvent('status', { message: `Processing ${categories.length} categories...` });
-
         // This loop will now send updates as each category is processed
         for (const category of categories) {
             try {
-                sendEvent('status', { message: `Generating tags for category: ${category.Name}` });
-                const generatedTags = await generateCategoryTags(category, availableTags, tagTools, model);
+                const generatedTags = await generateCategoryTags(category, availableTags, model, tagTools);
 
                 if (generatedTags && generatedTags.Tags && generatedTags.Tags.length > 0) {
                     const tagIdsToUpdate = generatedTags.Tags
@@ -69,15 +65,12 @@ async function handler(req, res) {
                 }
             } catch (error) {
                 console.error(`Error processing category ${category.Name}:`, error);
-                sendEvent('error', { message: `Error processing category ${category.Name}: ${error.message}` });
             }
         }
         sendEvent('status', { message: 'Bulk update for category tags completed.' });
         res.end();
     } catch (error) {
         console.error('Error during bulk update for category tags:', error);
-        sendEvent('fatal_error', { message: `An unexpected error occurred: ${error.message}` });
-        res.end();
     }
 }
 

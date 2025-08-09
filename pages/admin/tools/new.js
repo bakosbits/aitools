@@ -75,10 +75,7 @@ export default function NewToolPage({
   };
 
   const handleResearchComplete = (researchedData) => {
-    const categoryIds = researchedData.Categories?.map(name => {
-      const category = categories.find(cat => cat.Name === name);
-      return category ? category.id : null;
-    }).filter(id => id !== null);
+    const categoryIds = researchedData.Categories?.map(cat => cat.id) || [];
 
     setFormData(prevData => ({
       ...prevData,
@@ -103,6 +100,7 @@ export default function NewToolPage({
         tool={formData}
         categories={categories}
         articles={articles}
+        tags={formData.Tags || []}
         pricingOptions={pricingOptions}
         handleChange={handleChange}
         error={error}
