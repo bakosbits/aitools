@@ -8,6 +8,7 @@ import { matchTools } from "@/lib/matchTools";
 import CompareBar from "@/components/CompareBar";
 import UseCasesToolCard from "@/components/UseCaseCard";
 import MetaProps from "@/components/MetaProps";
+
 export async function getStaticProps() {
     const allTools = await getAllTools();
     const allAliases = await getAllAliases();
@@ -22,6 +23,7 @@ export async function getStaticProps() {
 }
 
 export default function UseCasePage({ allTools, allAliases }) {
+    console.log("1. allAliases:", allAliases);
     const [state, dispatch] = useReducer(
         useCaseReducer,
         undefined,
@@ -30,10 +32,15 @@ export default function UseCasePage({ allTools, allAliases }) {
     const [compareList, setCompareList] = useState([]);
     // After fetching allAliases (array):
     const groupedAliases = useMemo(() => groupAliasesByType(allAliases), [allAliases]);
+    console.log("2. groupedAliases:", groupedAliases);
     const { useCases, modalities, preferences, contexts } = useMemo(
         () => getSortedFilterOptions(groupedAliases),
         [groupedAliases]
     );
+    console.log("3. useCases:", useCases);
+    console.log("4. modalities:", modalities);
+    console.log("5. preferences:", preferences);
+    console.log("6. contexts:", contexts);
 
 
     useEffect(() => {
@@ -43,7 +50,7 @@ export default function UseCasePage({ allTools, allAliases }) {
     }, [state]);
 
     const matchedTools = useMemo(() => {
-        const matches = matchTools(allTools, state, allAliases);
+        const matches = matchTools(allTools, state, groupedAliases);
         const sortedMatches = [...matches].sort((a, b) =>
             a.Name.localeCompare(b.Name),
         );
@@ -111,7 +118,7 @@ export default function UseCasePage({ allTools, allAliases }) {
                 <div className="flex flex-col">
                     {/* Use Case */}
                     <h1 className="text-xl font-bold mb-2">
-                        💡 What's your use case? What do you want to do?
+                        💡 What\'s your use case? What do you want to do?
                     </h1>
                     <div className="w-full text-gray-400 border border-gray-600 p-4 rounded-lg bg-cardDark mb-6">
                         {useCases.map((useCase) => (
@@ -164,7 +171,7 @@ export default function UseCasePage({ allTools, allAliases }) {
                     </div>
                     {/* Preferences */}
                     <h1 className="text-xl font-bold mb-2">
-                        ⚙️ Do you have preferences or constraints you'd like to
+                        ⚙️ Do you have preferences or constraints you\'d like to
                         add?
                     </h1>
                     <div className="w-full text-gray-400 border border-gray-600 p-4 rounded-lg bg-cardDark mb-6">
@@ -282,7 +289,7 @@ export default function UseCasePage({ allTools, allAliases }) {
                                     <div className="w-full border border-gray-600 p-6 rounded-lg bg-cardDark">
                                         <p className="text-gray-400">
                                             Answer at least 1 of the questions
-                                            to get started. You're not required
+                                            to get started. You\'re not required
                                             to answer every question. Each
                                             question can have multiple answers.
                                             Apply as many filters in any

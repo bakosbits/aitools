@@ -7,8 +7,8 @@ import { AI_MODELS } from "@/lib/constants";
 export async function getServerSideProps({ req, res }) {
   if (req.method === "POST") {
     try {
-      const { Title, Summary, Content, Slug, Published } = await parseFormBody(req);
-      await createArticle({ Title, Summary, Content, Slug, Published: !!Published });
+      const { Title, Summary, Content, Published } = await parseFormBody(req);
+      await createArticle({ Title, Summary, Content, Published: !!Published });
       res.writeHead(302, { Location: "/admin/articles" });
       res.end();
       return { props: {} };

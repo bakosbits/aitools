@@ -51,14 +51,14 @@ export default function Home({ latestTools, featuredTools }) {
                     {/* INNER WRAPPER: 60% of left column, padded on mobile */}
                     <div className="w-full md:w-[80%] justify-start text-left flex flex-col">
                         <h1 className="text-3xl font-bold mb-2 ">Welcome!</h1>
-                        <p className="text-gray-400 mb-8">
+                        <p className="text-gray-400 mb-10">
                             Here you'll find tools grouped by profession and/or use case. Why?
                             So you don't have to fumble through feature lists to find a
                             solution. We've organized everything in a way that enables you to
                             make quick, well informed choices.
                         </p>
                         <div className="flex flex-col items-left sm:items-left justify-left">
-                            <div className="flex flex-col lg:flex-row justify-left w-full lg:space-x-4 space-x-0 mb-4">
+                            <div className="flex flex-col lg:flex-row justify-left w-full lg:space-x-4 space-x-0 mb-6">
                                 <a
                                     href="/categories"
                                     title="Find Your Category"
@@ -109,7 +109,7 @@ export default function Home({ latestTools, featuredTools }) {
                                 </h1>
                             </div>
                         </div>
-                        <p className="text-gray-400 mb-4 lg:mb-8">
+                        <p className="text-gray-400 md:mb-2 lg:mb-8">
                             We'll tell you who, what and why to help you determine which tools
                             belong in your tool pouch. Leverage our side-by-side comparisons
                             to narrow your search. To get started browse our
@@ -129,9 +129,9 @@ export default function Home({ latestTools, featuredTools }) {
                                 use case{"."}
                             </Link>
                         </p>
-                        <div className="hidden md:block">
+                        <div className="mt-8 mb-2">
                             <h1 className="text-3xl font-bold mb-4">Hot Topics:</h1>
-                            <div className="grid grid-cols-2 lg:grid-cols-4 gap-8">
+                            <div className="grid grid-cols-2 lg:grid-cols-4 gap-4 lg:gap-8">
                                 {featuredTools.map((tool) => (
                                     <Link
                                         key={tool.Slug}
@@ -154,8 +154,8 @@ export default function Home({ latestTools, featuredTools }) {
                 </div>
                 {/* Right column: Search + Newest */}
                 <div className="w-full md:w-[40%]">
-                    <div className="w-full md:w-[80%]">
-                        <div className="mb-6">
+                    <div className="w-full mt-0 md:w-[80%]">
+                        <div className=" hidden md:block mb-8">
                             <SearchBar />
                         </div>
                         <h1 className="text-xl font-bold mb-4">Latest Additions:</h1>

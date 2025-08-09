@@ -1,4 +1,5 @@
 import { generateArticleContent } from "@/lib/model/providers";
+import { getToolBySlug } from "@/lib/airtable/tools"; 
 import { ALLOWED_MODELS } from "@/lib/constants";
 
 export default async function handler(req, res) {
