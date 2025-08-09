@@ -71,6 +71,15 @@ export default function MobileMenu() {
             </li>
             <li>
               <Link
+                href="/quick-tools"
+                onClick={() => setOpen(false)}
+                className="hover:text-slate-300"
+              >
+                Quick Tools
+              </Link>
+            </li>            
+            <li>
+              <Link
                 href="/categories"
                 onClick={() => setOpen(false)}
                 className="hover:text-slate-300"

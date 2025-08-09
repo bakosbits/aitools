@@ -52,6 +52,12 @@ export default function Layout({ children }) {
                             Foundational Models
                         </Link>
                         <Link
+                            href="/quick-tools"
+                            className="text-slate-300 hover:text-slate-400 transition-colors duration-150"
+                        >
+                            Quick Tools
+                        </Link>                        
+                        <Link
                             href="/categories"
                             className="text-slate-300 hover:text-slate-400 transition-colors duration-150"
                         >
