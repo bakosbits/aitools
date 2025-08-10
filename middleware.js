@@ -37,9 +37,9 @@ export function middleware(request) {
     }
   }
 
+  const response = NextResponse.next();
   const authCookie = request.cookies.get(AUTH_COOKIE_NAME);
   if (authCookie) {
-    const response = NextResponse.next();
     response.cookies.set(AUTH_COOKIE_NAME, "true", {
       httpOnly: true,
       secure: process.env.NODE_ENV !== "development",
@@ -47,10 +47,8 @@ export function middleware(request) {
       maxAge: SESSION_DURATION_SECONDS,
       path: "/",
     });
-    return response;
   }
-
-  return NextResponse.next();
+  return response;
 }
 
 export const config = {
