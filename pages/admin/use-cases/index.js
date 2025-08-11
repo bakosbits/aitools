@@ -71,7 +71,7 @@ export default function UseCasesPage({ useCases }) {
                   {useCase.Name}
                 </td>
                 <td className="px-5 py-4 text-sm text-slate-300">
-                  {useCase.TagNames ? useCase.TagNames.join(', ') : 'N/A'}
+                  {useCase.TagNames ? useCase.TagNames.join(", ") : "N/A"}
                 </td>
                 <td className="px-5 py-4 text-sm text-right">
                   <Link

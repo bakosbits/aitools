@@ -1,5 +1,5 @@
 import { generateArticleContent } from "@/lib/model/providers";
-import { getToolBySlug } from "@/lib/airtable/tools"; 
+import { getToolBySlug } from "@/lib/airtable/tools";
 import { ALLOWED_MODELS } from "@/lib/constants";
 
 export default async function handler(req, res) {
@@ -29,11 +29,7 @@ export default async function handler(req, res) {
   }
 
   try {
-    const articleData = await generateArticleContent(
-      topic,
-      model,
-      articleType,
-    );
+    const articleData = await generateArticleContent(topic, model, articleType);
     res.status(200).json(articleData);
   } catch (error) {
     console.error(

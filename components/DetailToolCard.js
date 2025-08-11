@@ -52,40 +52,40 @@ export default function DetailToolCard({ tool }) {
         <h2 className="text-2xl font-bold">{tool.Name}</h2>
       </div>
       {tool["Base_Model"] && (
-        <p className="text-slate-300 mt-2 mb-4">
+        <p className="text-gray-300 mt-2 mb-4">
           Powered by {tool["Base_Model"]}
         </p>
       )}
-      <p className="mb-4">{tool.Description}</p>
-      <h2 className="text-xl font-bold mb-1">Why it matters:</h2>
-      <p className="mb-4">{tool.Why}</p>
-      <h2 className="text-xl font-bold mb-1">Details:</h2>
-      <p className="mb-4">{tool.Details}</p>
-      <h2 className="text-xl font-bold mb-1">Top Features:</h2>
+      <p className="mx-2 mb-4">{tool.Description}</p>
+      <h2 className="text-xl font-bold mb-2">Why it matters:</h2>
+      <p className="mx-2 mb-4">{tool.Why}</p>
+      <h2 className="text-xl font-bold mb-2">Details:</h2>
+      <p className="mx-2 mb-4">{tool.Details}</p>
+      <h2 className="text-xl font-bold mb-2">Top Features:</h2>
       <ul className="list-disc ml-6 space-y-2 mb-4">
         {featuresList.map((item, index) => (
           <li key={index}>{item}</li>
         ))}
       </ul>
-      <h2 className="text-xl font-bold mb-1">Top Cautions:</h2>
+      <h2 className="text-xl font-bold mb-2">Top Cautions:</h2>
       <ul className="list-disc ml-6 space-y-2 mb-4">
         {cautionsList.map((item, index) => (
           <li key={index}>{item}</li>
         ))}
       </ul>
-      <h2 className="text-xl font-bold mb-1">Who's It For?</h2>
-      <p className="mb-4">{tool.Buyer}</p>
+      <h2 className="text-xl font-bold mb-2">Who&apos;s It For?</h2>
+      <p className="mx-2 mb-4">{tool.Buyer}</p>
       {pricingList.length > 0 && (
         <div>
-          <h2 className="text-xl font-bold mb-1">Pricing Options:</h2>
-          <p className="mb-4">{formattedPricing}</p>
+          <h2 className="text-xl font-bold mb-2">Pricing Options:</h2>
+          <p className="mx-2 mb-4">{formattedPricing}</p>
         </div>
       )}
       <BlogLinkCard articleSlug={tool.articleSlug} toolName={tool.Name} />
       <div className="mt-auto text-sm ">
         <a
           href={`/go/${tool.Slug}`}
-          className="flex items-center text-sm text-slate-100 hover:text-slate-300 transition mt-6 mb-2"
+          className="flex items-center text-sm text-gray-100 hover:text-gray-300 transition mt-6 mb-2"
           target="_blank"
           rel="noopener noreferrer"
         >

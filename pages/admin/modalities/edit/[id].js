@@ -16,7 +16,9 @@ export async function getServerSideProps({ req, res, params }) {
       return { props: {} };
     } catch (error) {
       console.error(`Failed to update modality ${id}:`, error);
-      return { props: { error: `Failed to update modality: ${error.message}` } };
+      return {
+        props: { error: `Failed to update modality: ${error.message}` },
+      };
     }
   }
 
@@ -52,7 +54,10 @@ export default function EditModalityPage({ modality, error }) {
     return (
       <div className="w-full md:w-[75%] mx-auto text-slate-300">
         <p>Error: {error}</p>
-        <Link href="/admin/modalities" className="text-slate-300 hover:text-slate-100">
+        <Link
+          href="/admin/modalities"
+          className="text-slate-300 hover:text-slate-100"
+        >
           &larr; Back to Manage Modalities
         </Link>
       </div>
@@ -63,7 +68,10 @@ export default function EditModalityPage({ modality, error }) {
     return (
       <div className="w-full md:w-[75%] mx-auto text-slate-300">
         <p>Modality not found.</p>
-        <Link href="/admin/modalities" className="text-slate-300 hover:text-slate-100">
+        <Link
+          href="/admin/modalities"
+          className="text-slate-300 hover:text-slate-100"
+        >
           &larr; Back to Manage Modalities
         </Link>
       </div>
@@ -84,9 +92,16 @@ export default function EditModalityPage({ modality, error }) {
 
       {error && <p className="text-red-500 mb-4">{error}</p>}
 
-      <form method="POST" onSubmit={handleSubmit} className="bg-cardDark p-6 rounded-lg shadow-md">
+      <form
+        method="POST"
+        onSubmit={handleSubmit}
+        className="bg-cardDark p-6 rounded-lg shadow-md"
+      >
         <div className="mb-4">
-          <label htmlFor="Name" className="block text-slate-300 text-sm font-bold mb-2">
+          <label
+            htmlFor="Name"
+            className="block text-slate-300 text-sm font-bold mb-2"
+          >
             Name:
           </label>
           <input
@@ -99,7 +114,10 @@ export default function EditModalityPage({ modality, error }) {
           />
         </div>
         <div className="mb-6">
-          <label htmlFor="Slug" className="block text-slate-300 text-sm font-bold mb-2">
+          <label
+            htmlFor="Slug"
+            className="block text-slate-300 text-sm font-bold mb-2"
+          >
             Slug:
           </label>
           <input

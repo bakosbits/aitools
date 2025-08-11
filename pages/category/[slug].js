@@ -9,7 +9,6 @@ import CompareBar from "@/components/CompareBar";
 import Pagination from "@/components/Pagination";
 
 export async function getStaticPaths() {
-
   return {
     paths: [],
     fallback: "blocking", // or true, depending on your needs
@@ -17,29 +16,29 @@ export async function getStaticPaths() {
 }
 
 export async function getStaticProps({ params }) {
-    const slug = params.slug;
-    const categories = await getAllCategorySlugs();
-    const matchingCategory = categories.find((cat) => cat.Slug === slug);
-    let tools = await getToolsByCategory(slug);
-    
-    // Ensure tools is always an array
-    if (!Array.isArray(tools)) {
-      tools = [];
-    }
+  const slug = params.slug;
+  const categories = await getAllCategorySlugs();
+  const matchingCategory = categories.find((cat) => cat.Slug === slug);
+  let tools = await getToolsByCategory(slug);
 
-    // Sort tools by name at build time.
-    const sortedTools = [...tools]; // This sort is fine for initial load
-  
-    const props = {
-      tools: sortedTools,
-      category: matchingCategory.Name,
-      slug, // Pass slug for canonical URL
-    };
+  // Ensure tools is always an array
+  if (!Array.isArray(tools)) {
+    tools = [];
+  }
 
-    return {
-      props,
-      revalidate: 300,
-    };
+  // Sort tools by name at build time.
+  const sortedTools = [...tools]; // This sort is fine for initial load
+
+  const props = {
+    tools: sortedTools,
+    category: matchingCategory.Name,
+    slug, // Pass slug for canonical URL
+  };
+
+  return {
+    props,
+    revalidate: 300,
+  };
 }
 
 const ITEMS_PER_PAGE = 12;
@@ -47,7 +46,9 @@ const ITEMS_PER_PAGE = 12;
 export default function CategoryPage({ tools, category, slug }) {
   const router = useRouter();
   const validTools = useMemo(() => {
-    const sorted = Array.isArray(tools) ? [...tools].sort((a, b) => a.Name.localeCompare(b.Name)) : [];
+    const sorted = Array.isArray(tools)
+      ? [...tools].sort((a, b) => a.Name.localeCompare(b.Name))
+      : [];
     return sorted;
   }, [tools]);
   const validCategory = typeof category === "string" ? category : "Unknown";
@@ -122,7 +123,9 @@ export default function CategoryPage({ tools, category, slug }) {
             Compare Tools for {validCategory}
           </h1>
           {paginatedTools.length === 0 && (
-            <p className="text-gray-600 mt-4">No tools found in this category.</p>
+            <p className="text-gray-600 mt-4">
+              No tools found in this category.
+            </p>
           )}
         </div>
         <div className="w-full">

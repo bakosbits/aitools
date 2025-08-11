@@ -71,7 +71,7 @@ export default function CategoriesPage({ categories }) {
                   {category.Name}
                 </td>
                 <td className="px-5 py-4 text-sm text-slate-300">
-                  {category.TagNames ? category.TagNames.join(', ') : 'N/A'}
+                  {category.TagNames ? category.TagNames.join(", ") : "N/A"}
                 </td>
                 <td className="px-5 py-4 text-sm text-right">
                   <Link

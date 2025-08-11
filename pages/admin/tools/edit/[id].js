@@ -72,7 +72,7 @@ export default function EditToolPage({
   const [formData, setFormData] = useState(tool);
 
   // Expose formData and categories globally for debugging
-  if (typeof window !== 'undefined') {
+  if (typeof window !== "undefined") {
     window.formData = formData;
     window.categories = categories;
   }
@@ -80,10 +80,18 @@ export default function EditToolPage({
   const handleChange = (e) => {
     const { name, value, type, checked } = e.target;
     if (type === "checkbox") {
-      if (name === "Categories" || name === "Articles" || name === "Pricing" || name === "Tags") {
+      if (
+        name === "Categories" ||
+        name === "Articles" ||
+        name === "Pricing" ||
+        name === "Tags"
+      ) {
         const currentValues = formData[name] || [];
         if (checked) {
-          setFormData((prev) => ({ ...prev, [name]: [...currentValues, value] }));
+          setFormData((prev) => ({
+            ...prev,
+            [name]: [...currentValues, value],
+          }));
         } else {
           setFormData((prev) => ({
             ...prev,
@@ -113,9 +121,10 @@ export default function EditToolPage({
       </h1>
       <AiResearchAssistant
         onResearchComplete={(researchedData) => {
-          const categoryIds = researchedData.Categories?.map(cat => cat.id) || [];
-          const tagIds = researchedData.Tags?.map(tag => tag.id) || [];
-          setFormData(prevData => ({
+          const categoryIds =
+            researchedData.Categories?.map((cat) => cat.id) || [];
+          const tagIds = researchedData.Tags?.map((tag) => tag.id) || [];
+          setFormData((prevData) => ({
             ...prevData,
             ...researchedData,
             Categories: categoryIds,

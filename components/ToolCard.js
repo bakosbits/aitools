@@ -38,27 +38,27 @@ export default function ToolCard({ tool, compareList = [], toggleCompare }) {
             title={tool.Name}
             className="object-contain h-14 w-14 border rounded-lg border-cardDark"
           />
-        <h2 className="text-2xl font-bold">{tool.Name}</h2>
+          <h2 className="text-2xl font-bold">{tool.Name}</h2>
         </div>
         {tool["Base_Model"] && (
-          <p className="text-slate-300 mb-2 mt-6">
+          <p className="text-gray-300 mb-2 mt-6">
             Powered by {tool["Base_Model"]}
           </p>
         )}
-        <p className="mb-4">
+        <p className="mx-2 mb-4">
           {tool.Description?.length > 100
             ? tool.Description.slice(0, 100) + "..."
             : tool.Description}
         </p>
-        <h3 className="text-xl font-bold">Why it matters:</h3>
-        <p className="mb-4">
+        <h2 className="text-xl font-bold mb-1">Why it matters:</h2>
+        <p className="mx-2 mb-4">
           {tool.Why?.length > 100 ? tool.Why.slice(0, 100) + "..." : tool.Why}
         </p>
         <BlogLinkCard articleSlug={tool.articleSlug} toolName={tool.Name} />
         <div className="mt-auto text-sm">
           <a
             href={`/go/${tool.Slug}`}
-            className="flex items-center text-slate-100 hover:text-slate-300 transition font-medium mb-2"
+            className="flex items-center text-gray-100 hover:text-gray-300 transition font-medium mb-2"
             target="_blank"
             rel="noopener noreferrer"
             onClick={(e) => e.stopPropagation()}
@@ -77,7 +77,7 @@ export default function ToolCard({ tool, compareList = [], toggleCompare }) {
               checked={isChecked} // Use the derived `isChecked` state
               onChange={() => toggleCompare(tool)} // `onChange` is for input elements
             />
-            <span className="text-slate-100 hover:text-slate-300 transition font-medium">
+            <span className="text-gray-100 hover:text-gray-300 transition font-medium">
               Compare
             </span>
           </label>

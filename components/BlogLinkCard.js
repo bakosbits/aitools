@@ -17,7 +17,7 @@ export default function BlogLinkCard({ articleSlug, toolName }) {
     <div className="mb-4 text-sm">
       <Link
         href={`/blog/${articleSlug}`}
-        className="text-slate-100 hover:text-slate-300 transition"
+        className="text-gray-100 hover:text-slate-300 transition"
         onClick={(e) => {
           e.stopPropagation();
         }}

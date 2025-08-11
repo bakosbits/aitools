@@ -47,14 +47,14 @@ export default function CategoriesPage({ categories }) {
           <h1 className="text-2xl font-bold mb-4">
             Alignment By Profession | Skill | Trade | Craft
           </h1>
-          <p className="text-gray-400 mb-4">
+          <p className="ml-2 mb-4">
             Each category below contains a listing of top AI tools best suited
             for the category. This enables you to quickly sharpen your focus by
             aligning with tools that map well into your profession and/or use
             cases. Many AI tools have similar features but implementation can
             help or hinder your productivity. Some are better suited for your
-            use cases than others. We've done the heavy lifting for you. Once
-            you've selected a category you can explore individual tools in
+            use cases than others. We&apos;ve done the heavy lifting for you. Once
+            you&apos;ve selected a category you can explore individual tools in
             detail and/or compare two side-by-side to compare and contrast.
           </p>
         </div>
@@ -66,12 +66,12 @@ export default function CategoriesPage({ categories }) {
               href={`/category/${cat.Slug}`}
               className="block border border-gray-600 p-4 rounded-lg bg-cardDark hover:bg-gray-800 transition-colors flex flex-col"
             >
-              <h2 className="text-slate-300 text-xl font-bold mb-2">
+              <h2 className="text-gray-300 text-xl font-bold mb-2">
                 {cat.Name}
               </h2>
-              <p className=" text-gray-400 mb-2">{cat.Description}</p>
+              <p className="ml-2 mb-2">{cat.Description}</p>
               <div className="mt-auto">
-                <p className="text-xs text-slate-100">{cat.Count} tools</p>
+                <p className="text-xs text-gray-100">{cat.Count} tools</p>
               </div>
             </Link>
           ))}

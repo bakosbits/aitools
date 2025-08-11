@@ -69,21 +69,18 @@ export default function ToolPage({ tool }) {
                 className="object-contain mb-6 border rounded-xl shadow-lg border-gray-800"
               />
               <h1 className="text-xl font-bold mb-2">Found in:</h1>
-              <p className="text-left">
-                {tool.Categories?.length > 0
-                  ? tool.Categories.map((cat, idx) => (
-                      <React.Fragment key={cat.id || cat.Slug}>
-                        {idx > 0 && ", "}
-                        <Link
-                          href={`/category/${cat.Slug || cat.Name.toLowerCase()}`}
-                          className="text-slate-100 hover:text-slate-300 transition"
-                        >
-                          {cat.Name}
-                        </Link>
-                      </React.Fragment>
-                    ))
-                  : "Uncategorized"}
-              </p>
+              <ul className="flex flex-col list-disc ml-6">
+                {tool.Categories.map((cat, idx) => (
+                  <li key={cat.id || cat.Slug}>
+                    <Link
+                      href={`/category/${cat.Slug}`}
+                      className="text-slate-100 hover:text-slate-300 transition"
+                    >
+                      {cat.Name}
+                    </Link>
+                  </li>
+                ))}
+              </ul>
             </div>
           </div>
         </div>

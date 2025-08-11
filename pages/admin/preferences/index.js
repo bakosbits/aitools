@@ -1,5 +1,8 @@
 import Link from "next/link";
-import { getAllPreferences, deletePreference } from "@/lib/airtable/preferences";
+import {
+  getAllPreferences,
+  deletePreference,
+} from "@/lib/airtable/preferences";
 import { parseFormBody } from "@/lib/form-helpers";
 
 export async function getServerSideProps({ req, res }) {
@@ -38,7 +41,9 @@ export default function PreferencesPage({ preferences }) {
         </Link>
       </div>
       <div className="flex justify-between items-center mb-6">
-        <h1 className="text-3xl font-bold text-slate-300">Manage Preferences</h1>
+        <h1 className="text-3xl font-bold text-slate-300">
+          Manage Preferences
+        </h1>
         <Link
           href="/admin/preferences/new"
           className="bg-teal-600 text-slate-100 font-bold py-2 px-4 rounded hover:bg-teal-700 transition-colors"
@@ -71,9 +76,9 @@ export default function PreferencesPage({ preferences }) {
                   {preference.Name}
                 </td>
                 <td className="px-5 py-4 text-sm text-slate-300">
-                  {preference.TagNames ? preference.TagNames.join(', ') : 'N/A'}
+                  {preference.TagNames ? preference.TagNames.join(", ") : "N/A"}
                 </td>
-                
+
                 <td className="px-5 py-4 text-sm text-right">
                   <Link
                     href={`/admin/preferences/edit/${preference.id}`}

@@ -40,13 +40,22 @@ export default function NewUseCasePage({ error }) {
           &larr; Back to Manage Use Cases
         </Link>
       </div>
-      <h1 className="text-3xl font-bold text-slate-300 mb-6">Create New Use Case</h1>
+      <h1 className="text-3xl font-bold text-slate-300 mb-6">
+        Create New Use Case
+      </h1>
 
       {error && <p className="text-red-500 mb-4">{error}</p>}
 
-      <form method="POST" onSubmit={handleSubmit} className="bg-cardDark p-6 rounded-lg shadow-md">
+      <form
+        method="POST"
+        onSubmit={handleSubmit}
+        className="bg-cardDark p-6 rounded-lg shadow-md"
+      >
         <div className="mb-4">
-          <label htmlFor="Name" className="block text-slate-300 text-sm font-bold mb-2">
+          <label
+            htmlFor="Name"
+            className="block text-slate-300 text-sm font-bold mb-2"
+          >
             Name:
           </label>
           <input
@@ -58,7 +67,10 @@ export default function NewUseCasePage({ error }) {
           />
         </div>
         <div className="mb-6">
-          <label htmlFor="Slug" className="block text-slate-300 text-sm font-bold mb-2">
+          <label
+            htmlFor="Slug"
+            className="block text-slate-300 text-sm font-bold mb-2"
+          >
             Slug:
           </label>
           <input

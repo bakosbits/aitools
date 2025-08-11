@@ -60,7 +60,6 @@ export default function NewArticlePage({ error }) {
       document.getElementById("Title").value = data.Title || "";
       document.getElementById("Summary").value = data.Summary || "";
       document.getElementById("Content").value = data.Content || "";
-
     } catch (err) {
       setClientError(err.message);
     } finally {
@@ -84,12 +83,16 @@ export default function NewArticlePage({ error }) {
           &larr; Back to Manage Articles
         </Link>
       </div>
-      <h1 className="text-3xl font-bold text-slate-300 mb-6">Create New Article</h1>
+      <h1 className="text-3xl font-bold text-slate-300 mb-6">
+        Create New Article
+      </h1>
 
       {error && <p className="text-red-500 mb-4">{error}</p>}
 
       <div className="bg-cardDark p-6 rounded-lg shadow-md mb-6">
-        <h2 className="text-xl font-semibold text-slate-300 mb-4">AI Content Generation</h2>
+        <h2 className="text-xl font-semibold text-slate-300 mb-4">
+          AI Content Generation
+        </h2>
         <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-4">
           <div>
             <label
@@ -162,9 +165,16 @@ export default function NewArticlePage({ error }) {
         {clientError && <p className="text-red-500 mt-2">{clientError}</p>}
       </div>
 
-      <form method="POST" onSubmit={handleSubmit} className="bg-cardDark p-6 rounded-lg shadow-md">
+      <form
+        method="POST"
+        onSubmit={handleSubmit}
+        className="bg-cardDark p-6 rounded-lg shadow-md"
+      >
         <div className="mb-4">
-          <label htmlFor="Title" className="block text-slate-300 text-sm font-bold mb-2">
+          <label
+            htmlFor="Title"
+            className="block text-slate-300 text-sm font-bold mb-2"
+          >
             Title:
           </label>
           <input
@@ -176,7 +186,10 @@ export default function NewArticlePage({ error }) {
           />
         </div>
         <div className="mb-4">
-          <label htmlFor="Summary" className="block text-slate-300 text-sm font-bold mb-2">
+          <label
+            htmlFor="Summary"
+            className="block text-slate-300 text-sm font-bold mb-2"
+          >
             Summary:
           </label>
           <textarea
@@ -187,7 +200,10 @@ export default function NewArticlePage({ error }) {
           ></textarea>
         </div>
         <div className="mb-4">
-          <label htmlFor="Content" className="block text-slate-300 text-sm font-bold mb-2">
+          <label
+            htmlFor="Content"
+            className="block text-slate-300 text-sm font-bold mb-2"
+          >
             Content:
           </label>
           <textarea
@@ -197,9 +213,12 @@ export default function NewArticlePage({ error }) {
             className="shadow appearance-none border border-gray-600 rounded w-full py-2 px-3 bg-gray-800 text-slate-300 leading-tight focus:outline-none focus:shadow-outline"
           ></textarea>
         </div>
-        
+
         <div className="mb-6">
-          <label htmlFor="Published" className="block text-slate-300 text-sm font-bold mb-2">
+          <label
+            htmlFor="Published"
+            className="block text-slate-300 text-sm font-bold mb-2"
+          >
             Published:
           </label>
           <input

@@ -40,13 +40,22 @@ export default function NewCategoryPage({ error }) {
           &larr; Back to Manage Categories
         </Link>
       </div>
-      <h1 className="text-3xl font-bold text-slate-300 mb-6">Create New Category</h1>
+      <h1 className="text-3xl font-bold text-slate-300 mb-6">
+        Create New Category
+      </h1>
 
       {error && <p className="text-red-500 mb-4">{error}</p>}
 
-      <form method="POST" onSubmit={handleSubmit} className="bg-cardDark p-6 rounded-lg shadow-md">
+      <form
+        method="POST"
+        onSubmit={handleSubmit}
+        className="bg-cardDark p-6 rounded-lg shadow-md"
+      >
         <div className="mb-4">
-          <label htmlFor="Name" className="block text-slate-300 text-sm font-bold mb-2">
+          <label
+            htmlFor="Name"
+            className="block text-slate-300 text-sm font-bold mb-2"
+          >
             Name:
           </label>
           <input
@@ -57,7 +66,7 @@ export default function NewCategoryPage({ error }) {
             className="shadow appearance-none border border-gray-600 rounded w-full py-2 px-3 bg-gray-800 text-slate-300 leading-tight focus:outline-none focus:shadow-outline"
           />
         </div>
-        
+
         <div className="flex items-center justify-between">
           <button
             type="submit"

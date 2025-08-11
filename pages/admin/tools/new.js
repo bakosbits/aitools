@@ -59,7 +59,10 @@ export default function NewToolPage({
       if (name === "Categories" || name === "Articles" || name === "Pricing") {
         const currentValues = formData[name] || [];
         if (checked) {
-          setFormData((prev) => ({ ...prev, [name]: [...currentValues, value] }));
+          setFormData((prev) => ({
+            ...prev,
+            [name]: [...currentValues, value],
+          }));
         } else {
           setFormData((prev) => ({
             ...prev,
@@ -75,9 +78,9 @@ export default function NewToolPage({
   };
 
   const handleResearchComplete = (researchedData) => {
-    const categoryIds = researchedData.Categories?.map(cat => cat.id) || [];
+    const categoryIds = researchedData.Categories?.map((cat) => cat.id) || [];
 
-    setFormData(prevData => ({
+    setFormData((prevData) => ({
       ...prevData,
       ...researchedData,
       Categories: categoryIds,
@@ -89,12 +92,12 @@ export default function NewToolPage({
       <div>
         <Link
           href="/admin/tools"
-          className="text-slate-300 hover:text-slate-100 mb-6 inline-block"
+          className="text-gray-300 hover:text-gray-100 mb-6 inline-block"
         >
           &larr; Back to Tools
         </Link>
       </div>
-      <h1 className="text-3xl font-bold text-slate-300 mb-6">Add New Tool</h1>
+      <h1 className="text-3xl font-bold text-gray-300 mb-6">Add New Tool</h1>
       <AiResearchAssistant onResearchComplete={handleResearchComplete} />
       <ToolForm
         tool={formData}

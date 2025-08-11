@@ -64,9 +64,7 @@ export default function TagsPage({ tags }) {
                 key={tag.id}
                 className="bg-cardDark border border-gray-600 hover:bg-gray-800"
               >
-                <td className="px-5 py-4 text-sm text-slate-300">
-                  {tag.Name}
-                </td>
+                <td className="px-5 py-4 text-sm text-slate-300">{tag.Name}</td>
                 <td className="px-5 py-4 text-sm text-right">
                   <Link
                     href={`/admin/tags/edit/${tag.id}`}

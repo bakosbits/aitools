@@ -56,7 +56,7 @@ const Pagination = ({ currentPage, totalPages, onPageChange }) => {
       <button
         onClick={() => onPageChange(currentPage - 1)}
         disabled={currentPage === 1}
-        className="py-2 px-4 rounded-lg text-sm text-center bg-gray-700 text-slate-100 hover:bg-gray-600 disabled:bg-gray-800 disabled:cursor-not-allowed"
+        className="py-2 px-4 rounded-lg text-sm text-center bg-gray-700 text-gray-100 hover:bg-gray-600 disabled:bg-gray-800 disabled:cursor-not-allowed"
         aria-label="Go to previous page"
       >
         Prev
@@ -69,10 +69,10 @@ const Pagination = ({ currentPage, totalPages, onPageChange }) => {
           aria-current={page === currentPage ? "page" : undefined}
           className={`py-2 rounded-lg text-sm min-w-[40px] text-center ${
             page === currentPage
-              ? "bg-teal-600 text-slate-100 font-bold"
+              ? "bg-teal-600 text-gray-100 font-bold"
               : page === "…"
-                ? "cursor-default bg-gray-800 text-slate-100"
-                : "bg-gray-700 text-slate-100 hover:bg-gray-600"
+                ? "cursor-default bg-gray-800 text-gray-100"
+                : "bg-gray-700 text-gray-100 hover:bg-gray-600"
           }`}
         >
           {page}
@@ -81,7 +81,7 @@ const Pagination = ({ currentPage, totalPages, onPageChange }) => {
       <button
         onClick={() => onPageChange(currentPage + 1)}
         disabled={currentPage === totalPages}
-        className="py-2 px-4 rounded-lg text-sm text-center bg-gray-700 text-slate-100 hover:bg-gray-600 disabled:bg-gray-800 disabled:cursor-not-allowed"
+        className="py-2 px-4 rounded-lg text-sm text-center bg-gray-700 text-gray-100 hover:bg-teal-700 disabled:bg-gray-800 disabled:cursor-not-allowed"
         aria-label="Go to next page"
       >
         Next

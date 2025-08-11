@@ -43,9 +43,7 @@ export default function BlogPost({ title, summary, content, author, date }) {
       <div className="max-w-4xl mx-auto">
         <article>
           <h1 className="text-4xl font-bold mb-3">{title}</h1>
-          <div className="text-gray-400 text-sm mb-6">
-            {new Date(date).toLocaleDateString()}
-          </div>
+          <div className="text-gray-400 text-sm mb-6">{date}</div>
           <hr className="border-gray-600 mb-8" />
           <div className="text-gray-400 prose prose-invert max-w-none">
             <ReactMarkdown
@@ -56,7 +54,7 @@ export default function BlogPost({ title, summary, content, author, date }) {
             >
               {content}
             </ReactMarkdown>
-            <p>That's all for now.</p>
+            <p>That&apos;s all for now.</p>
             <p>
               Cheers!
               <br />

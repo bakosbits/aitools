@@ -33,11 +33,17 @@ export default async function handler(req, res) {
     // Fetch both categories and tags in parallel
     const [categoryRecords, tagRecords] = await Promise.all([
       categoriesTable.select({ fields: ["Name"] }).all(),
-      tagsTable.select({ fields: ["Name"] }).all()
+      tagsTable.select({ fields: ["Name"] }).all(),
     ]);
 
-    categories = categoryRecords.map((record) => ({ id: record.id, Name: record.get("Name") }));
-    tags = tagRecords.map((record) => ({ id: record.id, Name: record.get("Name") }));
+    categories = categoryRecords.map((record) => ({
+      id: record.id,
+      Name: record.get("Name"),
+    }));
+    tags = tagRecords.map((record) => ({
+      id: record.id,
+      Name: record.get("Name"),
+    }));
 
     if (!categories || categories.length === 0) {
       console.error("No categories found in Airtable.");
@@ -67,7 +73,7 @@ export default async function handler(req, res) {
       toolName,
       model,
       categories, // Pass full category objects
-      tags        // Pass full tag objects
+      tags, // Pass full tag objects
     );
     res.status(200).json(toolData);
   } catch (error) {

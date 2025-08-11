@@ -40,7 +40,7 @@ export default function Admin() {
       </div>
       {quote.text && (
         <div className="items-center text-center max-w-2xl">
-          <p className="text-lg italic ">"{quote.text}"</p>
+          <p className="text-lg italic">{quote.text}</p>
           <p className="text-md mt-2">- {quote.author}</p>
         </div>
       )}

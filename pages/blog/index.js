@@ -42,9 +42,9 @@ export default function BlogIndex({ articles }) {
                 className="block bg-cardDark border border-gray-600 p-6 rounded-lg shadow-3xl hover:bg-gray-800 transition-colors"
               >
                 <h1 className="text-xl font-semibold ">{article.Title}</h1>
-                <p className="text-slate-300 text-xs mt-1">{article.Date}</p>
+                <p className="text-gray-300 text-xs mt-1">{article.Date}</p>
                 {article.Summary && (
-                  <p className="text-gray-400 mt-2">{article.Summary}</p>
+                  <p className="ml-2 mt-2">{article.Summary}</p>
                 )}
               </Link>
             </li>

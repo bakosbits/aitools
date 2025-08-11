@@ -52,7 +52,10 @@ export default function EditAliasPage({ alias, error }) {
     return (
       <div className="w-full md:w-[75%] mx-auto text-slate-300">
         <p>Error: {error}</p>
-        <Link href="/admin/aliases" className="text-slate-300 hover:text-slate-100">
+        <Link
+          href="/admin/aliases"
+          className="text-slate-300 hover:text-slate-100"
+        >
           &larr; Back to Manage Aliases
         </Link>
       </div>
@@ -63,7 +66,10 @@ export default function EditAliasPage({ alias, error }) {
     return (
       <div className="w-full md:w-[75%] mx-auto text-slate-300">
         <p>Alias not found.</p>
-        <Link href="/admin/aliases" className="text-slate-300 hover:text-slate-100">
+        <Link
+          href="/admin/aliases"
+          className="text-slate-300 hover:text-slate-100"
+        >
           &larr; Back to Manage Aliases
         </Link>
       </div>
@@ -84,9 +90,16 @@ export default function EditAliasPage({ alias, error }) {
 
       {error && <p className="text-red-500 mb-4">{error}</p>}
 
-      <form method="POST" onSubmit={handleSubmit} className="bg-cardDark p-6 rounded-lg shadow-md">
+      <form
+        method="POST"
+        onSubmit={handleSubmit}
+        className="bg-cardDark p-6 rounded-lg shadow-md"
+      >
         <div className="mb-4">
-          <label htmlFor="Name" className="block text-slate-300 text-sm font-bold mb-2">
+          <label
+            htmlFor="Name"
+            className="block text-slate-300 text-sm font-bold mb-2"
+          >
             Name:
           </label>
           <input
@@ -99,7 +112,10 @@ export default function EditAliasPage({ alias, error }) {
           />
         </div>
         <div className="mb-6">
-          <label htmlFor="Aliases" className="block text-slate-300 text-sm font-bold mb-2">
+          <label
+            htmlFor="Aliases"
+            className="block text-slate-300 text-sm font-bold mb-2"
+          >
             Aliases:
           </label>
           <input

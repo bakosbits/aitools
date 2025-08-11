@@ -8,7 +8,7 @@ import { useRouter } from "next/router";
  * @param {object} props
  * @param {string} [props.initialQuery=""] - The initial value for the search input.
  */
-export default function SearchBar({ initialQuery = "" }) {
+export default function SearchBar({ initialQuery = "", path = "/tools" }) {
   const [query, setQuery] = useState(initialQuery);
   const router = useRouter();
 
@@ -22,7 +22,7 @@ export default function SearchBar({ initialQuery = "" }) {
 
     if (query.trim()) {
       const encodedQuery = encodeURIComponent(query.trim());
-      router.push(`/tools?q=${encodedQuery}`);
+      router.push(`${path}?q=${encodedQuery}`);
     }
   };
 
@@ -43,7 +43,7 @@ export default function SearchBar({ initialQuery = "" }) {
         </div>
         <button
           type="submit"
-          className="flex items-center gap-1 px-3 py-1.5 rounded font-semibold bg-teal-600 text-slate-100 hover:bg-teal-700 transition"
+          className="flex items-center gap-2 px-4 py-2 rounded font-semibold bg-teal-600 text-gray-100 hover:bg-teal-700 transition"
           aria-label="Search"
         >
           <svg

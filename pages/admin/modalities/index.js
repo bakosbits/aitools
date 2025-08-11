@@ -71,7 +71,7 @@ export default function AdminModalities({ modalities }) {
                   {modality.Name}
                 </td>
                 <td className="px-5 py-4 text-sm text-slate-300">
-                  {modality.TagNames ? modality.TagNames.join(', ') : 'N/A'}
+                  {modality.TagNames ? modality.TagNames.join(", ") : "N/A"}
                 </td>
                 <td className="px-5 py-4 text-sm text-right">
                   <Link

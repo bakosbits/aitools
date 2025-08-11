@@ -16,7 +16,9 @@ export async function getServerSideProps({ req, res, params }) {
       return { props: {} };
     } catch (error) {
       console.error(`Failed to update category ${id}:`, error);
-      return { props: { error: `Failed to update category: ${error.message}` } };
+      return {
+        props: { error: `Failed to update category: ${error.message}` },
+      };
     }
   }
 
@@ -52,7 +54,10 @@ export default function EditCategoryPage({ category, error }) {
     return (
       <div className="w-full md:w-[75%] mx-auto text-slate-300">
         <p>Error: {error}</p>
-        <Link href="/admin/categories" className="text-slate-300 hover:text-slate-100">
+        <Link
+          href="/admin/categories"
+          className="text-slate-300 hover:text-slate-100"
+        >
           &larr; Back to Manage Categories
         </Link>
       </div>
@@ -63,7 +68,10 @@ export default function EditCategoryPage({ category, error }) {
     return (
       <div className="w-full md:w-[75%] mx-auto text-slate-300">
         <p>Category not found.</p>
-        <Link href="/admin/categories" className="text-slate-300 hover:text-slate-100">
+        <Link
+          href="/admin/categories"
+          className="text-slate-300 hover:text-slate-100"
+        >
           &larr; Back to Manage Categories
         </Link>
       </div>
@@ -84,9 +92,16 @@ export default function EditCategoryPage({ category, error }) {
 
       {error && <p className="text-red-500 mb-4">{error}</p>}
 
-      <form method="POST" onSubmit={handleSubmit} className="bg-cardDark p-6 rounded-lg shadow-md">
+      <form
+        method="POST"
+        onSubmit={handleSubmit}
+        className="bg-cardDark p-6 rounded-lg shadow-md"
+      >
         <div className="mb-4">
-          <label htmlFor="Name" className="block text-slate-300 text-sm font-bold mb-2">
+          <label
+            htmlFor="Name"
+            className="block text-slate-300 text-sm font-bold mb-2"
+          >
             Name:
           </label>
           <input
@@ -98,7 +113,7 @@ export default function EditCategoryPage({ category, error }) {
             className="shadow appearance-none border border-gray-600 rounded w-full py-2 px-3 bg-gray-800 text-slate-300 leading-tight focus:outline-none focus:shadow-outline"
           />
         </div>
-        
+
         <div className="flex items-center justify-between">
           <button
             type="submit"

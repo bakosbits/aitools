@@ -13,7 +13,10 @@ export default function ToolForm({
 
   const handleArrayChange = (e) => {
     const { name, value } = e.target;
-    const newArray = value.split("\n").map(item => item.trim()).filter(item => item !== "");
+    const newArray = value
+      .split("\n")
+      .map((item) => item.trim())
+      .filter((item) => item !== "");
     handleChange({ target: { name, value: newArray } });
   };
 
@@ -23,7 +26,7 @@ export default function ToolForm({
       className="space-y-6 bg-cardDark p-8 rounded-lg shadow-lg border border-gray-600"
     >
       {error && (
-        <div className="bg-red-800 text-slate-100 p-3 rounded mb-4">
+        <div className="bg-red-800 text-gray-100 p-3 rounded mb-4">
           Error: {error}
         </div>
       )}
@@ -32,7 +35,7 @@ export default function ToolForm({
         <div>
           <label
             htmlFor="Name"
-            className="block text-sm font-medium text-slate-100"
+            className="block text-sm font-medium text-gray-300"
           >
             Name
           </label>
@@ -41,7 +44,7 @@ export default function ToolForm({
             name="Name"
             id="Name"
             required
-            className="w-full mt-1 px-4 py-2 rounded-md bg-gray-800 text-slate-300 placeholder-text-slate-100 border border-gray-600"
+            className="w-full mt-1 px-4 py-2 rounded-md bg-gray-800 text-gray-400 placeholder-text-gray-400 border border-gray-600"
             value={tool.Name || ""}
             onChange={handleChange}
             autoFocus={isNew}
@@ -50,7 +53,7 @@ export default function ToolForm({
         <div>
           <label
             htmlFor="Domain"
-            className="block text-sm font-medium text-slate-100"
+            className="block text-sm font-medium text-gray-300"
           >
             Domain
           </label>
@@ -59,7 +62,7 @@ export default function ToolForm({
             name="Domain"
             id="Domain"
             required
-            className="w-full mt-1 px-4 py-2 rounded-md bg-gray-800 text-slate-300 placeholder-text-slate-100 border border-gray-600"
+            className="w-full mt-1 px-4 py-2 rounded-md bg-gray-800 text-gray-400 placeholder-text-gray-400 border border-gray-600"
             value={tool.Domain || ""}
             onChange={handleChange}
           />
@@ -69,7 +72,7 @@ export default function ToolForm({
       <div>
         <label
           htmlFor="Website"
-          className="block text-sm font-medium text-slate-100"
+          className="block text-sm font-medium text-gray-300"
         >
           Website
         </label>
@@ -78,7 +81,7 @@ export default function ToolForm({
           name="Website"
           id="Website"
           required
-          className="w-full mt-1 px-4 py-2 rounded-md bg-gray-800 text-slate-300 placeholder-text-slate-100 border border-gray-600"
+          className="w-full mt-1 px-4 py-2 rounded-md bg-gray-800 text-gray-400 placeholder-text-gray-400 border border-gray-600"
           value={tool.Website || ""}
           onChange={handleChange}
         />
@@ -87,7 +90,7 @@ export default function ToolForm({
       <div>
         <label
           htmlFor="Why"
-          className="block text-sm font-medium text-slate-100"
+          className="block text-sm font-medium text-gray-300"
         >
           Why
         </label>
@@ -95,7 +98,7 @@ export default function ToolForm({
           name="Why"
           id="Why"
           rows="3"
-          className="w-full mt-1 px-4 py-2 rounded-md bg-gray-800 text-slate-300 placeholder-text-slate-100 border border-gray-600"
+          className="w-full mt-1 px-4 py-2 rounded-md bg-gray-800 text-gray-400 placeholder-text-gray-400 border border-gray-600"
           value={tool.Why || ""}
           onChange={handleChange}
         ></textarea>
@@ -104,7 +107,7 @@ export default function ToolForm({
       <div>
         <label
           htmlFor="Description"
-          className="block text-sm font-medium text-slate-100"
+          className="block text-sm font-medium text-gray-300"
         >
           Description
         </label>
@@ -112,7 +115,7 @@ export default function ToolForm({
           name="Description"
           id="Description"
           rows="3"
-          className="w-full mt-1 px-4 py-2 rounded-md bg-gray-800 text-slate-300 placeholder-text-slate-100 border border-gray-600"
+          className="w-full mt-1 px-4 py-2 rounded-md bg-gray-800 text-gray-400 placeholder-text-gray-400 border border-gray-600"
           value={tool.Description || ""}
           onChange={handleChange}
         ></textarea>
@@ -120,7 +123,7 @@ export default function ToolForm({
       <div>
         <label
           htmlFor="Details"
-          className="block text-sm font-medium text-slate-100"
+          className="block text-sm font-medium text-gray-300"
         >
           Details
         </label>
@@ -128,7 +131,7 @@ export default function ToolForm({
           name="Details"
           id="Details"
           rows="5"
-          className="w-full mt-1 px-4 py-2 rounded-md bg-gray-800 text-slate-300 placeholder-text-slate-100 border border-gray-600"
+          className="w-full mt-1 px-4 py-2 rounded-md bg-gray-800 text-gray-400 placeholder-text-gray-400 border border-gray-600"
           value={tool.Details || ""}
           onChange={handleChange}
         ></textarea>
@@ -137,7 +140,7 @@ export default function ToolForm({
       <div>
         <label
           htmlFor="Features"
-          className="block text-sm font-medium text-slate-100"
+          className="block text-sm font-medium text-gray-300"
         >
           Features (one per line)
         </label>
@@ -145,7 +148,7 @@ export default function ToolForm({
           name="Features"
           id="Features"
           rows="5"
-          className="w-full mt-1 px-4 py-2 rounded-md bg-gray-800 text-slate-300 placeholder-text-slate-100 border border-gray-600"
+          className="w-full mt-1 px-4 py-2 rounded-md bg-gray-800 text-gray-400 placeholder-text-gray-400 border border-gray-600"
           value={Array.isArray(tool.Features) ? tool.Features.join("\n") : ""}
           onChange={handleArrayChange}
         ></textarea>
@@ -154,7 +157,7 @@ export default function ToolForm({
       <div>
         <label
           htmlFor="Cautions"
-          className="block text-sm font-medium text-slate-100"
+          className="block text-sm font-medium text-gray-300"
         >
           Cautions (one per line)
         </label>
@@ -162,7 +165,7 @@ export default function ToolForm({
           name="Cautions"
           id="Cautions"
           rows="3"
-          className="w-full mt-1 px-4 py-2 rounded-md bg-gray-800 text-slate-300 placeholder-text-slate-100 border border-gray-600"
+          className="w-full mt-1 px-4 py-2 rounded-md bg-gray-800 text-gray-400 placeholder-text-gray-400 border border-gray-600"
           value={Array.isArray(tool.Cautions) ? tool.Cautions.join("\n") : ""}
           onChange={handleArrayChange}
         ></textarea>
@@ -180,7 +183,7 @@ export default function ToolForm({
             type="text"
             name="Buyer"
             id="Buyer"
-            className="w-full mt-1 px-4 py-2 rounded-md bg-gray-800 text-slate-300 placeholder-text-slate-100 border border-gray-600"
+            className="w-full mt-1 px-4 py-2 rounded-md bg-gray-800 text-gray-400 placeholder-text-gray-400 border border-gray-600"
             value={tool.Buyer || ""}
             onChange={handleChange}
           />
@@ -203,7 +206,7 @@ export default function ToolForm({
                 />
                 <label
                   htmlFor={`pricing-${option}`}
-                  className="ml-2 text-sm text-gray-200"
+                  className="ml-2 text-sm text-gray-300"
                 >
                   {option}
                 </label>
@@ -222,7 +225,7 @@ export default function ToolForm({
             type="text"
             name="Base_Model"
             id="Base_Model"
-            className="w-full mt-1 px-4 py-2 rounded-md bg-gray-800 text-slate-300 placeholder-text-slate-100 border border-gray-600"
+            className="w-full mt-1 px-4 py-2 rounded-md bg-gray-800 text-gray-400 placeholder-text-gray-400 border border-gray-600"
             value={tool.Base_Model || ""}
             onChange={handleChange}
           />
@@ -247,7 +250,7 @@ export default function ToolForm({
               />
               <label
                 htmlFor={`category-${cat.id}`}
-                className="ml-2 text-sm text-gray-200"
+                className="ml-2 text-sm text-gray-300"
               >
                 {cat.Name}
               </label>
@@ -274,7 +277,7 @@ export default function ToolForm({
               />
               <label
                 htmlFor={`article-${article.id}`}
-                className="ml-2 text-sm text-gray-200"
+                className="ml-2 text-sm text-gray-300"
                 title={article.Title}
               >
                 {article.Title.length > 25
@@ -295,7 +298,8 @@ export default function ToolForm({
           {tags.map((tag) => (
             <div
               key={tag.id}
-              className="px-3 py-1 rounded-full text-sm font-semibold bg-gray-600 text-gray-300">
+              className="px-3 py-1 rounded-full text-sm font-semibold bg-gray-600 text-gray-300"
+            >
               {tag.Name}
             </div>
           ))}
@@ -321,7 +325,7 @@ export default function ToolForm({
             type="checkbox"
             name="Featured"
             id="Featured"
-            className="h-4 w-4 text-green-300 bg-gray-700 border-gray-600 rounded focus:ring-green-300"
+            className="h-4 w-4 text-gray-300 border-gray-600 rounded focus:ring-green-300"
             checked={tool.Featured || false}
             onChange={handleChange}
           />
@@ -337,13 +341,13 @@ export default function ToolForm({
       <div className="flex justify-end space-x-4 pt-4">
         <Link
           href="/admin/tools"
-          className="bg-gray-600 text-slate-100 font-bold py-2 px-4 rounded hover:bg-gray-500 transition-colors"
+          className="bg-gray-600 text-gray-100 font-bold py-2 px-4 rounded hover:bg-gray-500 transition-colors"
         >
           Cancel
         </Link>
         <button
           type="submit"
-          className="bg-teal-600 text-slate-100 font-bold py-2 px-4 rounded hover:bg-emerald-600 transition-colors"
+          className="bg-teal-600 text-gray-100 font-bold py-2 px-4 rounded hover:bg-emerald-600 transition-colors"
         >
           {isNew ? "Create Tool" : "Update Tool"}
         </button>

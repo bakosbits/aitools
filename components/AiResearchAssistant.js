@@ -1,13 +1,14 @@
 import { useState } from "react";
 import { AI_MODELS } from "@/lib/constants";
 
-export default function AiResearchAssistant({ onResearchComplete, initialResearchTerm = "" }) {
+export default function AiResearchAssistant({
+  onResearchComplete,
+  initialResearchTerm = "",
+}) {
   const [researchTerm, setResearchTerm] = useState(initialResearchTerm);
   const [isResearching, setIsResearching] = useState(false);
   const [clientError, setClientError] = useState(null);
-  const [selectedModel, setSelectedModel] = useState(
-    "google/gemini-2.5-flash",
-  );
+  const [selectedModel, setSelectedModel] = useState("google/gemini-2.5-flash");
 
   const handleResearch = async () => {
     if (!researchTerm) return;
@@ -40,7 +41,7 @@ export default function AiResearchAssistant({ onResearchComplete, initialResearc
   return (
     <div className="mb-8 p-8 bg-cardDark rounded-lg border border-gray-600">
       <h2 className="text-xl font-semibold mb-4">AI Research Assistant</h2>
-      <p className="text-sm mb-1">Enter A Tool Name</p>
+      <p className="text-sm mb-2">Enter A Tool Name</p>
       <div className="flex flex-col gap-4 mb-4">
         <div className="flex gap-4">
           <input
@@ -48,12 +49,12 @@ export default function AiResearchAssistant({ onResearchComplete, initialResearc
             value={researchTerm}
             onChange={(e) => setResearchTerm(e.target.value)}
             placeholder="e.g., Figma"
-            className="w-full mt-1 px-4 py-2 rounded-md bg-gray-800 text-slate-100 placeholder-text-slate-100 border border-gray-600"
+            className="w-full mt-1 px-4 py-2 rounded-md bg-gray-800 text-gray-300 placeholder-text-gray-300 border border-gray-600"
           />
           <button
             onClick={handleResearch}
             disabled={isResearching}
-            className="bg-teal-600 text-slate-100 font-bold mt-1 px-4 rounded hover:bg-teal-700 transition-colors disabled:bg-gray-500 disabled:cursor-not-allowed"
+            className="bg-teal-600 text-gray-100 font-bold mt-1 px-4 rounded hover:bg-teal-700 transition-colors disabled:bg-gray-500 disabled:cursor-not-allowed"
           >
             {isResearching ? "Researching..." : "Research"}
           </button>
@@ -61,7 +62,7 @@ export default function AiResearchAssistant({ onResearchComplete, initialResearc
         <div>
           <label
             htmlFor="model-select"
-            className="block text-sm font-medium text-slate-300 mb-1"
+            className="block text-sm font-medium text-gray-300 mb-2"
           >
             Select Research Model
           </label>
@@ -69,7 +70,7 @@ export default function AiResearchAssistant({ onResearchComplete, initialResearc
             id="model-select"
             value={selectedModel}
             onChange={(e) => setSelectedModel(e.target.value)}
-            className="w-full mt-1 px-4 py-2 rounded-md bg-gray-800 text-slate-100 placeholder-text-slate-100 border border-gray-600"
+            className="w-full mt-1 px-4 py-2 rounded-md bg-gray-800 text-gray-300 placeholder-text-gray-300 border border-gray-600"
           >
             {[...AI_MODELS]
               .sort((a, b) => a.name.localeCompare(b.name))

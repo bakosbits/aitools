@@ -3,7 +3,14 @@ import { useState, useEffect } from "react";
 import randomQuotes from "random-quotes";
 
 export default function Admin() {
-    const resources = ["Update Tool Categories","Update Tool Tags","Update Use Case Tags", "Update Modality Tags", "Update Preference Tags", "Update Category Tags"].sort();
+  const resources = [
+    "Update Tool Categories",
+    "Update Tool Tags",
+    "Update Use Case Tags",
+    "Update Modality Tags",
+    "Update Preference Tags",
+    "Update Category Tags",
+  ].sort();
   const [quote, setQuote] = useState({ text: "", author: "" });
 
   useEffect(() => {
@@ -14,21 +21,24 @@ export default function Admin() {
 
   return (
     <div className="flex flex-col w-full items-center justify-center h-full py-12">
-        <Link
+      <Link
         href="/admin"
-        className="text-slate-100 hover:text-slate-300 mb-6 inline-block"
+        className="text-gray-100 hover:text-gray-300 mb-6 inline-block"
       >
         &larr; Back to Tools
       </Link>
       <h1 className="text-3xl font-bold mb-8 text-center">Bulk Updates</h1>
-      <div className="flex flex-col gap-4 max-w-md mb-12">
+      <div className="flex flex-col gap-4 max-w-md mb-22">
         {resources.map((resource) => {
-          const slug = resource === "Update Tags" ? "update-tags" : resource.toLowerCase().replace(/\s+/g, "-");
+          const slug =
+            resource === "Update Tags"
+              ? "update-tags"
+              : resource.toLowerCase().replace(/\s+/g, "-");
           return (
             <Link
               key={resource}
               href={`/admin/bulk-updates/${slug}`}
-              className="bg-teal-600 text-slate-100 font-bold p-6 hover:bg-teal-700 rounded-lg border border-gray-600 transition-colors text-center"
+              className="bg-teal-600 text-gray-100 font-bold p-6 hover:bg-teal-700 rounded-lg border border-gray-600 transition-colors text-center"
             >
               <h2 className="text-xl">{resource}</h2>
             </Link>
@@ -37,7 +47,7 @@ export default function Admin() {
       </div>
       {quote.text && (
         <div className="items-center text-center max-w-2xl">
-          <p className="text-lg italic ">"{quote.text}"</p>
+          <p className="text-lg italic">{quote.text}</p>
           <p className="text-md mt-2">- {quote.author}</p>
         </div>
       )}

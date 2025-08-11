@@ -1,7 +1,10 @@
 import { useState } from "react";
 import { useRouter } from "next/router";
 import Link from "next/link";
-import { getPreferenceById, updatePreference } from "@/lib/airtable/preferences";
+import {
+  getPreferenceById,
+  updatePreference,
+} from "@/lib/airtable/preferences";
 import { parseFormBody } from "@/lib/form-helpers";
 
 export async function getServerSideProps({ req, res, params }) {
@@ -16,7 +19,9 @@ export async function getServerSideProps({ req, res, params }) {
       return { props: {} };
     } catch (error) {
       console.error(`Failed to update preference ${id}:`, error);
-      return { props: { error: `Failed to update preference: ${error.message}` } };
+      return {
+        props: { error: `Failed to update preference: ${error.message}` },
+      };
     }
   }
 
@@ -52,7 +57,10 @@ export default function EditPreferencePage({ preference, error }) {
     return (
       <div className="w-full md:w-[75%] mx-auto text-slate-300">
         <p>Error: {error}</p>
-        <Link href="/admin/preferences" className="text-slate-300 hover:text-slate-100">
+        <Link
+          href="/admin/preferences"
+          className="text-slate-300 hover:text-slate-100"
+        >
           &larr; Back to Manage Preferences
         </Link>
       </div>
@@ -63,7 +71,10 @@ export default function EditPreferencePage({ preference, error }) {
     return (
       <div className="w-full md:w-[75%] mx-auto text-slate-300">
         <p>Preference not found.</p>
-        <Link href="/admin/preferences" className="text-slate-300 hover:text-slate-100">
+        <Link
+          href="/admin/preferences"
+          className="text-slate-300 hover:text-slate-100"
+        >
           &larr; Back to Manage Preferences
         </Link>
       </div>
@@ -80,13 +91,22 @@ export default function EditPreferencePage({ preference, error }) {
           &larr; Back to Manage Preferences
         </Link>
       </div>
-      <h1 className="text-3xl font-bold text-slate-300 mb-6">Edit Preference</h1>
+      <h1 className="text-3xl font-bold text-slate-300 mb-6">
+        Edit Preference
+      </h1>
 
       {error && <p className="text-red-500 mb-4">{error}</p>}
 
-      <form method="POST" onSubmit={handleSubmit} className="bg-cardDark p-6 rounded-lg shadow-md">
+      <form
+        method="POST"
+        onSubmit={handleSubmit}
+        className="bg-cardDark p-6 rounded-lg shadow-md"
+      >
         <div className="mb-4">
-          <label htmlFor="Name" className="block text-slate-300 text-sm font-bold mb-2">
+          <label
+            htmlFor="Name"
+            className="block text-slate-300 text-sm font-bold mb-2"
+          >
             Name:
           </label>
           <input
@@ -99,7 +119,10 @@ export default function EditPreferencePage({ preference, error }) {
           />
         </div>
         <div className="mb-6">
-          <label htmlFor="Slug" className="block text-slate-300 text-sm font-bold mb-2">
+          <label
+            htmlFor="Slug"
+            className="block text-slate-300 text-sm font-bold mb-2"
+          >
             Slug:
           </label>
           <input

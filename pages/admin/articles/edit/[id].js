@@ -10,8 +10,15 @@ export async function getServerSideProps({ req, res, params }) {
 
   if (req.method === "POST") {
     try {
-      const { Title, Summary, Content, Slug, Published } = await parseFormBody(req);
-      await updateArticle(id, { Title, Summary, Content, Slug, Published: !!Published });
+      const { Title, Summary, Content, Slug, Published } =
+        await parseFormBody(req);
+      await updateArticle(id, {
+        Title,
+        Summary,
+        Content,
+        Slug,
+        Published: !!Published,
+      });
       res.writeHead(302, { Location: "/admin/articles" });
       res.end();
       return { props: {} };
@@ -88,7 +95,6 @@ export default function EditArticlePage({ article, error }) {
       document.getElementById("Summary").value = data.Summary || "";
       document.getElementById("Content").value = data.Content || "";
       document.getElementById("Slug").value = data.Slug || "";
-
     } catch (err) {
       setClientError(err.message);
     } finally {
@@ -106,7 +112,10 @@ export default function EditArticlePage({ article, error }) {
     return (
       <div className="w-full md:w-[75%] mx-auto text-slate-300">
         <p>Error: {error}</p>
-        <Link href="/admin/articles" className="text-slate-300 hover:text-slate-100">
+        <Link
+          href="/admin/articles"
+          className="text-slate-300 hover:text-slate-100"
+        >
           &larr; Back to Manage Articles
         </Link>
       </div>
@@ -117,7 +126,10 @@ export default function EditArticlePage({ article, error }) {
     return (
       <div className="w-full md:w-[75%] mx-auto text-slate-300">
         <p>Article not found.</p>
-        <Link href="/admin/articles" className="text-slate-300 hover:text-slate-100">
+        <Link
+          href="/admin/articles"
+          className="text-slate-300 hover:text-slate-100"
+        >
           &larr; Back to Manage Articles
         </Link>
       </div>
@@ -139,7 +151,9 @@ export default function EditArticlePage({ article, error }) {
       {error && <p className="text-red-500 mb-4">{error}</p>}
 
       <div className="bg-cardDark p-6 rounded-lg shadow-md mb-6">
-        <h2 className="text-xl font-semibold text-slate-300 mb-4">AI Content Generation</h2>
+        <h2 className="text-xl font-semibold text-slate-300 mb-4">
+          AI Content Generation
+        </h2>
         <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-4">
           <div>
             <label
@@ -212,9 +226,16 @@ export default function EditArticlePage({ article, error }) {
         {clientError && <p className="text-red-500 mt-2">{clientError}</p>}
       </div>
 
-      <form method="POST" onSubmit={handleSubmit} className="bg-cardDark p-6 rounded-lg shadow-md">
+      <form
+        method="POST"
+        onSubmit={handleSubmit}
+        className="bg-cardDark p-6 rounded-lg shadow-md"
+      >
         <div className="mb-4">
-          <label htmlFor="Title" className="block text-slate-300 text-sm font-bold mb-2">
+          <label
+            htmlFor="Title"
+            className="block text-slate-300 text-sm font-bold mb-2"
+          >
             Title:
           </label>
           <input
@@ -227,7 +248,10 @@ export default function EditArticlePage({ article, error }) {
           />
         </div>
         <div className="mb-4">
-          <label htmlFor="Summary" className="block text-slate-300 text-sm font-bold mb-2">
+          <label
+            htmlFor="Summary"
+            className="block text-slate-300 text-sm font-bold mb-2"
+          >
             Summary:
           </label>
           <textarea
@@ -239,7 +263,10 @@ export default function EditArticlePage({ article, error }) {
           ></textarea>
         </div>
         <div className="mb-4">
-          <label htmlFor="Content" className="block text-slate-300 text-sm font-bold mb-2">
+          <label
+            htmlFor="Content"
+            className="block text-slate-300 text-sm font-bold mb-2"
+          >
             Content:
           </label>
           <textarea
@@ -250,9 +277,12 @@ export default function EditArticlePage({ article, error }) {
             className="shadow appearance-none border border-gray-600 rounded w-full py-2 px-3 bg-gray-800 text-slate-300 leading-tight focus:outline-none focus:shadow-outline"
           ></textarea>
         </div>
-        
+
         <div className="mb-6">
-          <label htmlFor="Published" className="block text-slate-300 text-sm font-bold mb-2">
+          <label
+            htmlFor="Published"
+            className="block text-slate-300 text-sm font-bold mb-2"
+          >
             Published:
           </label>
           <input

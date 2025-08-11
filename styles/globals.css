@@ -42,7 +42,7 @@ heading {
   h6,
   input,
   textarea {
-    @apply text-slate-300;
+    @apply text-gray-300;
   }
 
   /* Apply gray-400 to common body text elements */

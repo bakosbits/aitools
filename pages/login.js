@@ -43,7 +43,7 @@ export default function LoginPage() {
           <div>
             <label
               htmlFor="username"
-              className="block text-sm font-medium text-slate-300"
+              className="block text-sm font-medium text-gray-300"
             >
               Username
             </label>
@@ -53,13 +53,13 @@ export default function LoginPage() {
               value={username}
               onChange={(e) => setUsername(e.target.value)}
               required
-              className="w-full px-3 py-2 mt-1 bg-gray-800 border border-gray-600 rounded-md shadow-sm text-slate-300"
+              className="w-full px-3 py-2 mt-1 bg-gray-800 border border-gray-600 rounded-md shadow-sm text-gray-400"
             />
           </div>
           <div>
             <label
               htmlFor="password"
-              className="block text-sm font-medium text-slate-300"
+              className="block text-sm font-medium text-gray-300"
             >
               Password
             </label>
@@ -69,7 +69,7 @@ export default function LoginPage() {
               value={password}
               onChange={(e) => setPassword(e.target.value)}
               required
-              className="w-full px-3 py-2 mt-1 bg-gray-800 border border-gray-600 rounded-md shadow-sm text-slate-300"
+              className="w-full px-3 py-2 mt-1 bg-gray-800 border border-gray-600 rounded-md shadow-sm text-gray-300"
             />
           </div>
           {error && <p className="text-sm text-red-500">{error}</p>}
@@ -77,7 +77,7 @@ export default function LoginPage() {
             <button
               type="submit"
               disabled={isLoading}
-              className="w-full px-4 py-2 font-medium text-slate-100 bg-teal-600 rounded-md hover:bg-teal-700 disabled:bg-gray-500 disabled:cursor-not-allowed"
+              className="w-full px-4 py-2 font-medium text-gray-100 bg-teal-600 rounded-md hover:bg-teal-700 disabled:bg-gray-500 disabled:cursor-not-allowed"
             >
               {isLoading ? "Logging in..." : "Login"}
             </button>

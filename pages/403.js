@@ -24,7 +24,7 @@ export default function Custom403() {
         <p className="text-lg mb-2">Enjoy this random quote instead:</p>
         {quote.text && (
           <div className="items-center text-center">
-            <p className="text-lg italic ">"{quote.text}"</p>
+            <p className="text-lg italic">{quote.text}</p>
             <p className="text-md mt-2">- {quote.author}</p>
           </div>
         )}
