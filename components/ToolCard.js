@@ -63,12 +63,7 @@ export default function ToolCard({ tool, compareList = [], toggleCompare }) {
                             </button>
                         </div>
 
-                    {tool["Base_Model"] && (
-                        <p className="text-gray-300 mb-2 mt-6">
-                            Powered by {tool["Base_Model"]}
-                        </p>
-                    )}
-                    <p className="mx-2 mb-4">
+                    <p className="mx-2 mb-4 mt-4">
                         {tool.Description?.length > 100
                             ? tool.Description.slice(0, 100) + "..."
                             : tool.Description}
