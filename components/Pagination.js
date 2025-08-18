@@ -8,35 +8,35 @@
  * @returns {Array<number|string>} An array of page numbers and/or '…' strings.
  */
 const getVisiblePages = (current, total) => {
-  const range = [];
-  const delta = 2;
+    const range = [];
+    const delta = 2;
 
-  // Always show first page
-  range.push(1);
+    // Always show first page
+    range.push(1);
 
-  // Add left ellipsis if current - delta > 2
-  if (current - delta > 2) {
-    range.push("…");
-  }
+    // Add left ellipsis if current - delta > 2
+    if (current - delta > 2) {
+        range.push("…");
+    }
 
-  // Add middle pages
-  for (
-    let i = Math.max(2, current - delta);
-    i <= Math.min(total - 1, current + delta);
-    i++
-  ) {
-    range.push(i);
-  }
+    // Add middle pages
+    for (
+        let i = Math.max(2, current - delta);
+        i <= Math.min(total - 1, current + delta);
+        i++
+    ) {
+        range.push(i);
+    }
 
-  // Add right ellipsis if current + delta < total - 1
-  if (current + delta < total - 1) {
-    range.push("…");
-  }
+    // Add right ellipsis if current + delta < total - 1
+    if (current + delta < total - 1) {
+        range.push("…");
+    }
 
-  // Always show last page
-  if (total > 1) range.push(total);
+    // Always show last page
+    if (total > 1) range.push(total);
 
-  return range;
+    return range;
 };
 
 /**
@@ -49,45 +49,47 @@ const getVisiblePages = (current, total) => {
  * @param {function(number): void} props.onPageChange - Callback function that is invoked when a page button is clicked. It receives the new page number as an argument.
  */
 const Pagination = ({ currentPage, totalPages, onPageChange }) => {
-  const visiblePages = getVisiblePages(currentPage, totalPages);
+    const visiblePages = getVisiblePages(currentPage, totalPages);
 
-  return (
-    <div className="flex overflow-x-auto space-x-2 sm:flex-wrap justify-center w-full mt-10">
-      <button
-        onClick={() => onPageChange(currentPage - 1)}
-        disabled={currentPage === 1}
-        className="py-2 px-4 rounded-lg text-sm text-center bg-gray-700 text-gray-100 hover:bg-gray-600 disabled:bg-gray-800 disabled:cursor-not-allowed"
-        aria-label="Go to previous page"
-      >
-        Prev
-      </button>
-      {visiblePages.map((page, idx) => (
-        <button
-          key={page === "…" ? `ellipsis-${idx}` : page}
-          disabled={page === "…"}
-          onClick={() => typeof page === "number" && onPageChange(page)}
-          aria-current={page === currentPage ? "page" : undefined}
-          className={`py-2 rounded-lg text-sm min-w-[40px] text-center ${
-            page === currentPage
-              ? "bg-teal-600 text-gray-100 font-bold"
-              : page === "…"
-                ? "cursor-default bg-gray-800 text-gray-100"
-                : "bg-gray-700 text-gray-100 hover:bg-gray-600"
-          }`}
-        >
-          {page}
-        </button>
-      ))}
-      <button
-        onClick={() => onPageChange(currentPage + 1)}
-        disabled={currentPage === totalPages}
-        className="py-2 px-4 rounded-lg text-sm text-center bg-gray-700 text-gray-100 hover:bg-teal-700 disabled:bg-gray-800 disabled:cursor-not-allowed"
-        aria-label="Go to next page"
-      >
-        Next
-      </button>
-    </div>
-  );
+    return (
+        <div className="flex overflow-x-auto space-x-2 sm:flex-wrap justify-center w-full mt-10">
+            <button
+                onClick={() => onPageChange(currentPage - 1)}
+                disabled={currentPage === 1}
+                className="py-2 px-4 rounded-lg text-sm text-center bg-gray-700 text-gray-100 hover:bg-gray-600 disabled:bg-gray-800 disabled:cursor-not-allowed"
+                aria-label="Go to previous page"
+            >
+                Prev
+            </button>
+            {visiblePages.map((page, idx) => (
+                <button
+                    key={page === "…" ? `ellipsis-${idx}` : page}
+                    disabled={page === "…"}
+                    onClick={() =>
+                        typeof page === "number" && onPageChange(page)
+                    }
+                    aria-current={page === currentPage ? "page" : undefined}
+                    className={`py-2 rounded-lg text-sm min-w-[40px] text-center ${
+                        page === currentPage
+                            ? "bg-teal-600 text-gray-100 font-bold"
+                            : page === "…"
+                              ? "cursor-default bg-gray-800 text-gray-100"
+                              : "bg-gray-700 text-gray-100 hover:bg-gray-600"
+                    }`}
+                >
+                    {page}
+                </button>
+            ))}
+            <button
+                onClick={() => onPageChange(currentPage + 1)}
+                disabled={currentPage === totalPages}
+                className="py-2 px-4 rounded-lg text-sm text-center bg-gray-700 text-gray-100 hover:bg-teal-700 disabled:bg-gray-800 disabled:cursor-not-allowed"
+                aria-label="Go to next page"
+            >
+                Next
+            </button>
+        </div>
+    );
 };
 
 export default Pagination;

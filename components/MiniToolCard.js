@@ -1,5 +1,4 @@
 import Link from "next/link";
-import BlogLinkCard from "./BlogLinkCard";
 
 /**
  * Renders a compact, clickable card for an AI tool.
@@ -14,27 +13,29 @@ import BlogLinkCard from "./BlogLinkCard";
  * @param {string} props.tool.Why - A brief explanation of the tool's importance.
  */
 export default function MiniToolCard({ tool }) {
-  return (
-    <Link
-      href={`/tool/${tool.Slug}`}
-      className="block h-full group"
-      title={tool.Name}
-      passHref
-    >
-      <div className="h-full bg-cardDark p-4 border border-gray-600 rounded-lg shadow-lg flex flex-col items-start group-hover:bg-gray-800 transition-colors">
-        <div className="w-full flex items-center space-x-4">
-          <img
-            src={tool.Logo}
-            alt={`${tool.Name} logo`}
+    return (
+        <Link
+            href={`/tool/${tool.Slug}`}
+            className="block h-full group"
             title={tool.Name}
-            className="object-contain h-12 w-12 border rounded-md border-cardDark"
-          />
-          <h2 className="text-lg font-bold">{tool.Name}</h2>
-        </div>
-        <p className="text-sm mx-2 mt-4 mb-auto">
-          {tool.Why?.length > 100 ? tool.Why.slice(0, 100) + "..." : tool.Why}
-        </p>
-      </div>
-    </Link>
-  );
+            passHref
+        >
+            <div className="h-full bg-cardDark p-4 border border-gray-600 rounded-lg shadow-lg flex flex-col items-start group-hover:bg-gray-800 transition-colors">
+                <div className="w-full flex items-center space-x-4">
+                    <img
+                        src={tool.Logo}
+                        alt={`${tool.Name} logo`}
+                        title={tool.Name}
+                        className="object-contain h-12 w-12 border rounded-md border-cardDark"
+                    />
+                    <h2 className="text-lg font-bold">{tool.Name}</h2>
+                </div>
+                <p className="text-sm mx-2 mt-4 mb-auto">
+                    {tool.Why?.length > 100
+                        ? tool.Why.slice(0, 100) + "..."
+                        : tool.Why}
+                </p>
+            </div>
+        </Link>
+    );
 }

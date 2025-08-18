@@ -3,15 +3,15 @@ import Layout from "@/components/Layout";
 import { useRouter } from "next/router";
 
 function AIToolPouch({ Component, pageProps }) {
-  const router = useRouter();
+    const router = useRouter();
 
-  return (
-    <>
-      <Layout>
-        <Component {...pageProps} />
-      </Layout>
-    </>
-  );
+    return (
+        <>
+            <Layout>
+                <Component {...pageProps} />
+            </Layout>
+        </>
+    );
 }
 
 export default AIToolPouch;
