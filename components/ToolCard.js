@@ -20,7 +20,7 @@ export default function ToolCard({ tool, compareList = [], toggleCompare }) {
                 passHref
             >
                 <div className="h-full bg-cardDark p-6 border border-gray-600 rounded-lg shadow-lg flex flex-col items-start group-hover:bg-gray-800 transition-colors">
-                    <div className="w-full flex items-center space-x-4">
+                    <div className="w-full flex items-center space-x-4 mb-8">
                         <img
                             src={tool.Logo}
                             alt={`${tool.Name} logo`}
@@ -29,23 +29,8 @@ export default function ToolCard({ tool, compareList = [], toggleCompare }) {
                         />
                         <h2 className="text-2xl font-bold">{tool.Name}</h2>
                     </div>
-                    {tool["Base_Model"] && (
-                        <p className="text-gray-300 mb-2 mt-6">
-                            Powered by {tool["Base_Model"]}
-                        </p>
-                    )}
-                    <p className="mx-2 mb-4">
-                        {tool.Description?.length > 100
-                            ? tool.Description.slice(0, 100) + "..."
-                            : tool.Description}
-                    </p>
-                    <h2 className="text-xl font-bold mb-1">Why it matters:</h2>
-                    <p className="mx-2 mb-6">
-                        {tool.Why?.length > 100 ? tool.Why.slice(0, 100) + "..." : tool.Why}
-                    </p>
 
-                    <div className="mt-auto w-full">
-                        <div className="flex justify-around w-full mb-6">
+                                         <div className="flex justify-around w-full mb-2">
                             <button
                                 onClick={(e) => {
                                     e.preventDefault();
@@ -77,6 +62,23 @@ export default function ToolCard({ tool, compareList = [], toggleCompare }) {
                                 Use Cases
                             </button>
                         </div>
+
+                    {tool["Base_Model"] && (
+                        <p className="text-gray-300 mb-2 mt-6">
+                            Powered by {tool["Base_Model"]}
+                        </p>
+                    )}
+                    <p className="mx-2 mb-4">
+                        {tool.Description?.length > 100
+                            ? tool.Description.slice(0, 100) + "..."
+                            : tool.Description}
+                    </p>
+                    <h2 className="text-xl font-bold mb-1">Why it matters:</h2>
+                    <p className="mx-2 mb-6">
+                        {tool.Why?.length > 100 ? tool.Why.slice(0, 100) + "..." : tool.Why}
+                    </p>
+
+                    <div className="mt-auto w-full">
 
                         <div className="flex justify-between items-center w-full">
                             <div className="flex flex-col">
