@@ -36,7 +36,7 @@ export const MarkdownLink = ({ node, ...props }) => {
     return (
         <a
             {...props}
-            className="text-gray-100 no-underline hover:text-gray-300 transition-colors"
+            className="text-gray-100 hover:underline transition-colors"
             target={props.href?.startsWith("http") ? "_blank" : undefined}
             rel={
                 props.href?.startsWith("http")

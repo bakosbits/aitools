@@ -39,7 +39,7 @@ export default function FoundationalModelsPage() {
                     Created by:{" "}
                     <a
                         href="https://openai.com/"
-                        className="text-gray-100 hover:text-gray-300"
+                        className="text-gray-100 hover:underline"
                     >
                         OpenAI
                     </a>
@@ -73,7 +73,7 @@ export default function FoundationalModelsPage() {
                     Created by:{" "}
                     <a
                         href="https://anthropic.com/"
-                        className="text-gray-100 hover:text-gray-300"
+                        className="text-gray-100 hover:underline"
                     >
                         Anthropic
                     </a>
@@ -106,7 +106,7 @@ export default function FoundationalModelsPage() {
                     Created by:{" "}
                     <a
                         href="https://deepmind.google/"
-                        className="text-gray-100 hover:text-gray-300"
+                        className="text-gray-100 hover:underline"
                     >
                         Google Deep Mind
                     </a>
@@ -139,7 +139,7 @@ export default function FoundationalModelsPage() {
                     Created by:{" "}
                     <a
                         href="https://Mistral.ai/"
-                        className="text-gray-100 hover:text-gray-300"
+                        className="text-gray-100 hover:underline"
                     >
                         Mistral
                     </a>
@@ -172,7 +172,7 @@ export default function FoundationalModelsPage() {
                     Created by:{" "}
                     <a
                         href="https://meta.com/"
-                        className="text-gray-100 hover:text-gray-300"
+                        className="text-gray-100 hover:underline"
                     >
                         Meta (FaceBook)
                     </a>
@@ -205,7 +205,7 @@ export default function FoundationalModelsPage() {
                     Created by:{" "}
                     <a
                         href="https://openai.com/"
-                        className="text-gray-100 hover:text-gray-300"
+                        className="text-gray-100 hover:underline"
                     >
                         OpenAI
                     </a>

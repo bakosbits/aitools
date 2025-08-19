@@ -19,7 +19,7 @@ export default function Layout({ children }) {
                 <div className="w-full px-4 py-4 flex items-center justify-between">
                     <Link
                         href="/"
-                        className="text-gray-300 text-3xl font-bold hover:text-gray-400 transition-colors duration-150 tracking-tighter"
+                        className="text-gray-300 text-3xl font-bold hover:underline transition-colors duration-150 tracking-tighter"
                     >
                         <div className="flex justify-left gap-4 md:ml-2 items-center">
                             {/* Logo (always visible) */}
@@ -41,43 +41,43 @@ export default function Layout({ children }) {
                     <nav className="hidden lg:flex items-center md:mr-2 space-x-6 font-semibold">
                         <Link
                             href="/"
-                            className="text-gray-300 hover:text-gray-400 transition-colors duration-150"
+                            className="text-gray-300 hover:underline transition-colors duration-150"
                         >
                             Home
                         </Link>
                         <Link
                             href="/foundational-models"
-                            className="text-gray-300 hover:text-gray-400 transition-colors duration-150"
+                            className="text-gray-300 hover:underline transition-colors duration-150"
                         >
                             Foundational Models
                         </Link>
                         <Link
                             href="/quick-tools"
-                            className="text-gray-300 hover:text-gray-400 transition-colors duration-150"
+                            className="text-gray-300 hover:underline transition-colors duration-150"
                         >
                             Quick Tools
                         </Link>
                         <Link
                             href="/categories"
-                            className="text-gray-300 hover:text-gray-400 transition-colors duration-150"
+                            className="text-gray-300 hover:underline transition-colors duration-150"
                         >
                             Categories
                         </Link>
                         <Link
                             href="/use-cases"
-                            className="text-gray-300 hover:text-gray-400 transition-colors duration-150"
+                            className="text-gray-300 hover:underline transition-colors duration-150"
                         >
                             Use Cases
                         </Link>
                         <Link
                             href="/tools"
-                            className="text-gray-300 hover:text-gray-400 transition-colors duration-150"
+                            className="text-gray-300 hover:underline transition-colors duration-150"
                         >
                             All Tools
                         </Link>
                         <Link
                             href="/blog"
-                            className="text-gray-300 hover:text-gray-400 transition-colors duration-150"
+                            className="text-gray-300 hover:underline transition-colors duration-150"
                         >
                             Blog
                         </Link>
@@ -98,31 +98,31 @@ export default function Layout({ children }) {
                     <nav className="flex flex-wrap justify-center space-x-6">
                         <Link
                             href="/about"
-                            className="text-gray-300 hover:text-gray-400 transition-colors duration-150"
+                            className="text-gray-300 hover:underline transition-colors duration-150"
                         >
                             About
                         </Link>
                         <Link
                             href="/contact"
-                            className="text-gray-300 hover:text-gray-400 transition-colors duration-150"
+                            className="text-gray-300 hover:underline transition-colors duration-150"
                         >
                             Contact
                         </Link>
                         <Link
                             href="/legal"
-                            className="text-gray-300 hover:text-gray-400 transition-colors duration-150"
+                            className="text-gray-300 hover:underline transition-colors duration-150"
                         >
                             Legal
                         </Link>
                         <Link
                             href="/privacy"
-                            className="text-gray-300 hover:text-gray-400 transition-colors duration-150"
+                            className="text-gray-300 hover:underline transition-colors duration-150"
                         >
                             Privacy
                         </Link>
                         <Link
                             href="/terms"
-                            className="text-gray-300 hover:text-gray-400 transition-colors duration-150"
+                            className="text-gray-300 hover:underline transition-colors duration-150"
                         >
                             Terms
                         </Link>

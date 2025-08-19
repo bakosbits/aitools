@@ -38,7 +38,7 @@ export default function CautionsModal({ tool, onClose }) {
             >
                 <button
                     onClick={onClose}
-                    className="absolute top-2 right-2 text-gray-100 hover:text-gray-300 text-xl"
+                    className="absolute top-2 right-2 text-gray-400 hover:text-gray-200 text-xl"
                 >
                     &times;
                 </button>

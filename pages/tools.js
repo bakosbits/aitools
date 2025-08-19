@@ -55,7 +55,7 @@ export default function ToolsPage({ tools }) {
         );
     };
 
-    const toggleCompare = (tool) => {
+    const handleCompare = (tool) => {
         setCompareList((prev) => {
             const exists = prev.find((t) => t.id === tool.id);
             return exists
@@ -131,7 +131,7 @@ export default function ToolsPage({ tools }) {
                 <div className="w-full">
                     <CompareBar
                         compareList={compareList}
-                        toggleCompare={toggleCompare}
+                        handleCompare={handleCompare}
                     />
                 </div>
                 <div className="w-full justify-between items-center mb-4">
@@ -152,7 +152,7 @@ export default function ToolsPage({ tools }) {
                                     <ToolCard
                                         tool={tool}
                                         compareList={compareList}
-                                        toggleCompare={toggleCompare}
+                                        handleCompare={handleCompare}
                                     />
                                 </li>
                             ))

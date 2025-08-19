@@ -1,7 +1,6 @@
 import { createSSEStream } from "@/lib/createSSEStream";
 import { getToolsForTagUpdates, updateUseCaseTags } from "@/lib/airtable/tools";
-import { getAllUseCaseTags } from "@/lib/airtable/use-cases";
-import { getUseCasesByTool } from "@/lib/airtable/use-cases";
+import { getUseCasesByTool, getAllUseCaseTags } from "@/lib/airtable/use-cases";
 import { mapUseCaseTags } from "@/lib/model/providers";
 
 export default async function handler(req, res) {
@@ -22,21 +21,20 @@ export default async function handler(req, res) {
         try {
             const useCases = await getUseCasesByTool(tool.Slug);
 
-            if (useCases?.length > 0) {
-                const useCases = useCases.map((u) => u.UseCase);
-                const result = await mapUseCaseTags(
-                    tool,
-                    availableTagNames,
-                    model,
-                    useCases,
-                );
-                const validTags = (result?.Tags || [])
-                    .map(
-                        (tagName) =>
-                            availableTags.find((tag) => tag.Name === tagName)
-                                ?.id,
-                    )
-                    .filter(Boolean);
+            const result = await mapUseCaseTags(
+                tool,
+                availableTagNames,
+                model,
+                useCases,
+            );
+
+            if (result && result.Tags && result.Tags.length > 0) {
+                const validTags = result.Tags.map((tagName) => {
+                    const foundTag = availableTags.find(
+                        (tag) => tag.Name === tagName,
+                    );
+                    return foundTag ? foundTag.id : null;
+                }).filter(Boolean);
 
                 if (validTags.length > 0) {
                     await updateUseCaseTags(tool.id, validTags);
@@ -44,6 +42,7 @@ export default async function handler(req, res) {
                 }
             }
         } catch (error) {
+            console.error(`Error processing tool ${tool.Name}:`, error.message);            
             sendError(`An error occurred during update: ${error.message}`);
         }
     }

@@ -4,7 +4,7 @@ import UseCasesModal from "./UseCasesModal";
 import FeaturesModal from "./FeaturesModal";
 import CautionsModal from "./CautionsModal";
 
-export default function ToolCard({ tool, compareList = [], toggleCompare }) {
+export default function ToolCard({ tool, handleCompare, compareList = [] }) {
     const isChecked = compareList.some((t) => t.id === tool.id);
 
     const [showUseCasesModal, setShowUseCasesModal] = useState(false);
@@ -87,7 +87,7 @@ export default function ToolCard({ tool, compareList = [], toggleCompare }) {
                                             "noopener,noreferrer",
                                         );
                                     }}
-                                    className="flex items-center text-gray-100 hover:text-gray-300 transition font-medium mb-2 text-left"
+                                    className="flex items-center text-gray-100 hover:underline transition font-medium text-left"
                                 >
                                     <svg
                                         className="w-4 h-4 mr-2 fill-current"
@@ -97,19 +97,6 @@ export default function ToolCard({ tool, compareList = [], toggleCompare }) {
                                     </svg>
                                     Visit {tool.Name}
                                 </button>
-                                <label
-                                    className="flex items-center gap-2 cursor-pointer"
-                                    onClick={(e) => e.stopPropagation()}
-                                >
-                                    <input
-                                        type="checkbox"
-                                        checked={isChecked}
-                                        onChange={() => toggleCompare(tool)}
-                                    />
-                                    <span className="text-gray-100 hover:text-gray-300 transition font-medium">
-                                        Compare
-                                    </span>
-                                </label>
                             </div>
                         </div>
                     </div>

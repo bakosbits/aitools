@@ -1,7 +1,6 @@
 import { createSSEStream } from "@/lib/createSSEStream";
 import { getToolsForTagUpdates, updateCautionTags } from "@/lib/airtable/tools";
-import { getAllCautionTags } from "@/lib/airtable/use-case-tags";
-import { getCautionsByTool } from "@/lib/airtable/cautions";
+import { getCautionsByTool, getAllCautionTags } from "@/lib/airtable/cautions";
 import { mapCautionTags } from "@/lib/model/providers";
 
 export default async function handler(req, res) {
@@ -40,7 +39,7 @@ export default async function handler(req, res) {
                 if (validTags.length > 0) {
                     await updateCautionTags(tool.id, validTags);
                     sendStatus(
-                        `Successfully updated tags for tool: ${tool.Name}`,
+                        `Updated tags for tool: ${tool.Name}`,
                     );
                 }
             }

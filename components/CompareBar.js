@@ -8,7 +8,7 @@ import Link from "next/link";
  * @param {Array<object>} props.compareList - An array of tool objects currently selected for comparison.
  * @param {function(object): void} props.toggleCompare - Function to add or remove a tool from the compare list.
  */
-export default function CompareBar({ compareList = [], toggleCompare }) {
+export default function CompareBar({ compareList = [], handleCompare }) {
     if (compareList.length === 0) {
         return null;
     }
@@ -24,7 +24,7 @@ export default function CompareBar({ compareList = [], toggleCompare }) {
                         <span className="text-gray-300">{tool.Name}</span>
                         <button
                             onClick={() => {
-                                toggleCompare(tool);
+                                handleCompare(tool);
                             }}
                             className="text-red-400 hover:text-red-200 px-1"
                         >

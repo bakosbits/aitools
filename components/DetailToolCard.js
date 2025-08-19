@@ -122,7 +122,7 @@ export default function DetailToolCard({ tool }) {
             <div className="mt-auto text-sm ">
                 <a
                     href={`/go/${tool.Slug}`}
-                    className="flex items-center text-sm text-gray-100 hover:text-gray-300 transition mt-6 mb-2"
+                    className="flex items-center text-sm text-gray-100 hover:underline transition mt-6 mb-2"
                     target="_blank"
                     rel="noopener noreferrer"
                 >

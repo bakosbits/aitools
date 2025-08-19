@@ -3,7 +3,7 @@ import { useRouter } from "next/router";
 import { getCategorySlugs } from "@/lib/airtable/categories";
 import { getToolsByCategory } from "@/lib/airtable/tools";
 
-import ToolCard from "@/components/ToolCard";
+import ToolCompareCard from "@/components/ToolCompareCard";
 import MetaProps from "@/components/MetaProps";
 import CompareBar from "@/components/CompareBar";
 import Pagination from "@/components/Pagination";
@@ -114,7 +114,7 @@ export default function CategoryPage({ tools, category, slug }) {
             <div className="w-full mb-6">
                 <CompareBar
                     compareList={compareList}
-                    toggleCompare={toggleCompare}
+                    handleCompare={toggleCompare}
                 />
             </div>
             <div className="max-w-7xl mx-auto">
@@ -132,10 +132,10 @@ export default function CategoryPage({ tools, category, slug }) {
                     <ul className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 items-stretch">
                         {paginatedTools.map((tool) => (
                             <li key={tool.id}>
-                                <ToolCard
+                                <ToolCompareCard
                                     tool={tool}
+                                    handleCompare={toggleCompare}                                    
                                     compareList={compareList}
-                                    toggleCompare={toggleCompare}
                                 />
                             </li>
                         ))}

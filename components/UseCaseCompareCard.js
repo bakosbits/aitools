@@ -57,7 +57,7 @@ export default function ToolCard({
                     <div className="flex flex-col">
                         <a
                             href={`/go/${tool.Slug}`}
-                            className="flex items-center text-gray-100 hover:text-gray-300 transition font-medium mb-2"
+                            className="flex items-center text-gray-100 hover:underline transition font-medium mb-2"
                             target="_blank"
                             rel="noopener noreferrer"
                             onClick={(e) => e.stopPropagation()}

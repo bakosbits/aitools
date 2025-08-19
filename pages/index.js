@@ -46,13 +46,9 @@ export default function Home({ latestTools }) {
             />
             {/* OUTER WRAPPER: 90% of screen width, centered */}
             <div className="w-full md:w-[85%] mx-auto grid grid-cols-1 md:grid-cols-[3fr_2fr] gap-8">
-                {" "}
-                {/* Changed to grid */}
-                {/* LEFT COLUMN */}
                 <div className="w-full md:max-w-[85%] justify-left text-left flex flex-col md:mt-[5%]">
-                    {" "}
                     {/* Changed md:w-[85%] to md:max-w-[85%] and added md:ml-0 for left alignment */}
-                    <div className="block md:hidden mb-4">
+                    <div className="block md:hidden mb-8 mt-4">
                         <SearchBar />
                     </div>
                     <h1 className="text-3xl font-bold mb-2 ">Welcome</h1>
@@ -74,7 +70,7 @@ export default function Home({ latestTools }) {
                         search. To get started browse our
                         <Link
                             href="/categories"
-                            className="text-gray-100 hover:text-gray-300 transition"
+                            className="text-gray-100 hover:underline transition"
                         >
                             {" "}
                             categories{" "}
@@ -82,7 +78,7 @@ export default function Home({ latestTools }) {
                         or define your
                         <Link
                             href="/use-cases"
-                            className="text-gray-100 hover:text-gray-300 transition"
+                            className="text-gray-100 hover:underline transition"
                         >
                             {" "}
                             use case{"."}

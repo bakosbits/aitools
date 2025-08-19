@@ -13,7 +13,7 @@ export default function MobileMenu() {
                 className="p-2 rounded-md focus:outline-none focus:ring-2 focus:ring-inset focus:ring-blue-600"
             >
                 <svg
-                    className="h-6 w-6 text-gray-100 hover:text-gray-300"
+                    className="h-6 w-6 text-gray-100 hover:underline"
                     xmlns="http://www.w3.org/2000/svg"
                     fill="none"
                     viewBox="0 0 24 24"
@@ -55,7 +55,7 @@ export default function MobileMenu() {
                             <Link
                                 href="/"
                                 onClick={() => setOpen(false)}
-                                className="hover:text-gray-300"
+                                className="hover:underline"
                             >
                                 Home
                             </Link>
@@ -64,7 +64,7 @@ export default function MobileMenu() {
                             <Link
                                 href="/foundational-models"
                                 onClick={() => setOpen(false)}
-                                className="hover:text-gray-300"
+                                className="hover:underline"
                             >
                                 Foundational Models
                             </Link>
@@ -73,7 +73,7 @@ export default function MobileMenu() {
                             <Link
                                 href="/quick-tools"
                                 onClick={() => setOpen(false)}
-                                className="hover:text-gray-300"
+                                className="hover:underline"
                             >
                                 Quick Tools
                             </Link>
@@ -82,7 +82,7 @@ export default function MobileMenu() {
                             <Link
                                 href="/categories"
                                 onClick={() => setOpen(false)}
-                                className="hover:text-gray-300"
+                                className="hover:underline"
                             >
                                 Categories
                             </Link>
@@ -91,7 +91,7 @@ export default function MobileMenu() {
                             <Link
                                 href="/use-cases"
                                 onClick={() => setOpen(false)}
-                                className="hover:text-gray-300"
+                                className="hover:underline"
                             >
                                 Use Cases
                             </Link>
@@ -100,7 +100,7 @@ export default function MobileMenu() {
                             <Link
                                 href="/tools"
                                 onClick={() => setOpen(false)}
-                                className="hover:text-gray-300"
+                                className="hover:underline"
                             >
                                 All Tools
                             </Link>
@@ -109,7 +109,7 @@ export default function MobileMenu() {
                             <Link
                                 href="/blog"
                                 onClick={() => setOpen(false)}
-                                className="hover:text-gray-300"
+                                className="hover:underline"
                             >
                                 Blog
                             </Link>
