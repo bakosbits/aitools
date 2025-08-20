@@ -33,14 +33,15 @@ export default function CautionsModal({ tool, onClose }) {
             onClick={onClose}
         >
             <div
-                className="bg-cardDark p-6 rounded-lg shadow-lg max-w-md w-full relative"
+                className="bg-cardDark p-4 rounded-md shadow-md max-w-2xl w-full relative max-h-[90vh] overflow-y-auto"
+                style={{ marginTop: 'env(safe-area-inset-top, 3.5rem)', marginBottom: 'env(safe-area-inset-bottom, 1rem)' }}
                 onClick={(e) => e.stopPropagation()}
             >
                 <button
                     onClick={onClose}
-                    className="absolute top-2 right-2 text-gray-400 hover:text-gray-200 text-xl"
+                    className="bg-teal-600 text-gray-100 hover:bg-teal-700 rounded-md px-2 py-1 font-semibold mb-4"
                 >
-                    &times;
+                    Close
                 </button>
                 <h3 className="text-xl font-bold mb-4">
                     Cautions for {tool.Name}

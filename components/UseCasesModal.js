@@ -33,13 +33,13 @@ export default function UseCasesModal({ tool, onClose }) {
             onClick={onClose}
         >
             <div
-                className="bg-cardDark p-4 rounded-lg shadow-lg max-w-md w-full relative max-h-[90vh] overflow-y-auto"
+                className="bg-cardDark p-4 rounded-md shadow-md max-w-2xl w-full relative max-h-[90vh] overflow-y-auto"
                 style={{ marginTop: 'env(safe-area-inset-top, 3.5rem)', marginBottom: 'env(safe-area-inset-bottom, 1rem)' }}
                 onClick={(e) => e.stopPropagation()}
             >
                 <button
                     onClick={onClose}
-                    className="align-right bg-teal-600 text-gray-100 hover:bg-teal-700 rounded px-2 py-1 font-semibold mb-4"
+                    className="align-right bg-teal-600 text-gray-100 hover:bg-teal-700 rounded-md px-2 py-1 font-semibold mb-4"
                 >
                     Close
                 </button> 

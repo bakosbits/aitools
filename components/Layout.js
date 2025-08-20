@@ -94,7 +94,7 @@ export default function Layout({ children }) {
             </main>
             {/* Footer */}
             <footer className="mb-4 text-gray-300 ">
-                <div className="w-full px-0 md:px-8 max-w-7xl mx-auto font-semibold">
+                <div className="w-full px-0 md:px-6 py-2 max-w-7xl mx-auto font-semibold">
                     <nav className="flex flex-wrap justify-center space-x-6">
                         <Link
                             href="/about"

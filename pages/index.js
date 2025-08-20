@@ -1,5 +1,4 @@
 import { getNewestTools } from "@/lib/airtable/tools";
-import { PartyPopper, ToolCase, Hammer, Wrench } from 'lucide-react';
 import Link from "next/link";
 import SearchBar from "@/components/SearchBar";
 import MiniToolCard from "@/components/MiniToolCard";
@@ -54,7 +53,6 @@ export default function Home({ latestTools }) {
                     </div>
                     <h1 className="text-3xl font-bold mb-2 ">
                         Welcome
-                        <PartyPopper className="hidden md:inline-block ml-2 w-8 h-8 text-gray-300" />
                     </h1>
                     <p className="md:ml-2 mb-4">
                         Here you&apos;ll find tools grouped by profession and/or
@@ -89,9 +87,7 @@ export default function Home({ latestTools }) {
                         </Link>
                     </p>
                     <h2 className="text-2xl font-bold mb-4 mt-4">
-                        A Series Of Quick Content Generation Tools
-                        <Hammer className="hidden md:inline-block ml-2 w-6 h-6 text-gray-300" />
-                        <Wrench className="hidden md:inline-block ml-2 w-6 h-6 text-gray-300" />
+                        Content Generation Tools
                     </h2>
                     <QuickTools />
                 </div>
@@ -104,7 +100,6 @@ export default function Home({ latestTools }) {
                     </div>
                     <h2 className="text-2xl font-bold mb-2">
                         Latest Additions
-                         <ToolCase className="hidden md:inline-block ml-2 w-6 h-6 text-gray-300" />
                     </h2>
                     <div className="grid grid-cols-1 xl:grid-cols-2 gap-4">
                         {latestTools.map((tool) => (

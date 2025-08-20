@@ -1,7 +1,7 @@
 import React, { useState, useCallback } from 'react';
 import ToolCompareCard from '@/components/ToolCompareCard';
 import CompareBar from '@/components/CompareBar';
-import { ChevronLeft, ChevronRight, X, Sparkles, Filter } from 'lucide-react';
+import { ChevronLeft, ChevronRight, X, Filter } from 'lucide-react';
 import { getWizardData } from '@/lib/airtable/use-cases';
 
 export async function getStaticProps() {
@@ -160,7 +160,6 @@ const App = ({ useCaseCategories, allTools }) => {
             <div className="w-full mx-auto md:max-w-7xl">
                 <h1 className="text-3xl font-extrabold text-center mb-6 text-gray-300">
                     Alignment By Use Case | Task | Project 
-                    <Sparkles className="hidden md:inline-block ml-2 w-8 h-8 text-gray-300" />
                 </h1>
 
                 {/* Category Menu Step */}

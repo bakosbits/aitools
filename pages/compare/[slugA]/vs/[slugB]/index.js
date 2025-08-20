@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { getToolBySlug } from "@/lib/airtable/tools";
-import ToolCompareCard from "@/components/ToolCompareCard";
+import DetailToolCard from "@/components/DetailToolCard";
 import UseCaseCompareModal from "@/components/UseCaseCompareModal";
 import MetaProps from "@/components/MetaProps";
 
@@ -80,18 +80,18 @@ export default function ComparePage({ toolA, toolB }) {
                     <h1 className="text-2xl font-bold">
                         Comparing {toolA.Name} -to- {toolB.Name}
                     </h1>
-                    <div className="flex space-x-2">
+                    <div className="flex">
                         <button
                             onClick={() => setShowModal(true)}
-                            className="px-3 py-1 text-sm font-medium text-gray-100 bg-teal-600 rounded-md hover:bg-teal-700"
+                            className="px-3 py-1 text-sm font-semibold text-gray-100 bg-teal-600 rounded-md hover:bg-teal-700"
                         >
-                            View Use Cases
+                            Compare Use Cases
                         </button>
                     </div>
                 </div>
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                     {[toolA, toolB].map((tool) => (
-                        <ToolCompareCard key={tool.id} tool={tool} />
+                        <DetailToolCard key={tool.id} tool={tool} />
                     ))}
                 </div>
             </div>

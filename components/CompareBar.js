@@ -40,21 +40,9 @@ export default function CompareBar({ compareList = [], handleCompare }) {
                         href={`/compare/${compareList[0].Slug}/vs/${compareList[1].Slug}`}
                         className="inline-flex items-center justify-center flex-nowrap
                             bg-teal-600 hover:bg-teal-700 transition-colors text-gray-100 
-                            font-semibold border border-gray-600 p-2 space-x-2 rounded-lg whitespace-nowrap"
+                            font-semibold border border-gray-600 p-2 space-x-2 rounded-md"
                     >
                         <span>Compare Now</span>
-                        <svg
-                            className="w-6 h-6"
-                            fill="currentColor"
-                            viewBox="0 0 20 20"
-                            xmlns="http://www.w3.org/2000/svg"
-                        >
-                            <path
-                                fillRule="evenodd"
-                                d="M10.293 15.707a1 1 0 010-1.414L13.586 11H4a1 1 0 110-2h9.586l-3.293-3.293a1 1 0 011.414-1.414l5 5a1 1 0 010 1.414l-5 5a1 1 0 01-1.414 0z"
-                                clipRule="evenodd"
-                            />
-                        </svg>
                     </Link>
                 )}
         </div>

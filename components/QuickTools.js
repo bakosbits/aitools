@@ -72,7 +72,7 @@ export default function QuickTools() {
             <button
                 onClick={runTool}
                 disabled={loading}
-                className="px-4 py-2 bg-teal-600 text-gray-100 font-semibold rounded-lg hover:bg-teal-700"
+                className="px-3 py-1 bg-teal-600 text-gray-100 font-semibold rounded-lg hover:bg-teal-700"
             >
                 {loading ? "Generating..." : "Generate"}
             </button>
