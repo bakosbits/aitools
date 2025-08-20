@@ -26,7 +26,7 @@ const WizardStep = ({ category, tags, selectedTags, onTagSelect }) => (
                         key={tag}
                         onClick={() => onTagSelect(tag)}
                         className={`
-              px-4 py-3 rounded-full text-sm font-semibold transition-all duration-300 ease-in-out
+              px-3 py-2 rounded-full text-sm font-semibold transition-all duration-300 ease-in-out
               ${isSelected
                                 ? 'bg-blue-600 text-gray-100'
                                 : 'bg-teal-600 text-gray-100 hover:bg-teal-700'
@@ -51,11 +51,11 @@ const SelectionDisplay = ({ selectedTags, onTagRemove, filteredCount }) => (
             <div className="flex flex-wrap items-center gap-2 py-1">
                 {[...selectedTags].length > 0 ? (
                     [...selectedTags].map(tag => (
-                        <div key={tag} className="flex items-center bg-gray-500 text-gray-300 rounded-full px-3 py-1 text-xs font-semibold whitespace-nowrap">
+                        <div key={tag} className="flex items-center bg-gray-500 text-gray-100 hover:bg-gray-600 rounded-full px-3 py-1 text-xs font-semibold whitespace-nowrap">
                             <span>{tag}</span>
                             <button
                                 onClick={() => onTagRemove(tag)}
-                                className="ml-2 text-gray-100 transition-colors duration-200"
+                                className="ml-2 text-gray-100 hover:bg-gray-600 transition-colors duration-200"
                             >
                                 <X className="w-3 h-3" />
                             </button>
@@ -159,7 +159,8 @@ const App = ({ useCaseCategories, allTools }) => {
             />
             <div className="w-full mx-auto md:max-w-7xl">
                 <h1 className="text-3xl font-extrabold text-center mb-6 text-gray-300">
-                    Alignment By Use Case | Task | Project <Sparkles className="inline-block ml-2 w- h-8 text-blue-500" />
+                    Alignment By Use Case | Task | Project 
+                    <Sparkles className="hidden md:inline-block ml-2 w-8 h-8 text-gray-300" />
                 </h1>
 
                 {/* Category Menu Step */}
@@ -181,13 +182,13 @@ const App = ({ useCaseCategories, allTools }) => {
                         </div>
                         <button
                             onClick={() => setCategoryMenu(false)}
-                            className="mt-8 px-4 py-2 bg-blue-600 hover:bg-blue-700 text-gray-100 rounded-full font-semibold shadow"
+                            className="mt-8 px-3 py-2 bg-blue-600 hover:bg-blue-700 text-gray-100 rounded-md font-semibold shadow"
                         >
                             Start from the beginning of the wizard
                         </button>
                     </div>
                 ) : showResults ? (
-                    <div className="flex flex-col items-center p-8 bg-gray-800 w-full max-w-7xl mx-auto">
+                    <div className="flex flex-col items-center bg-gray-800 w-full md:max-w-7xl mx-auto">
                         <h2 className="text-3xl font-extrabold text-center text-gray-300 mb-6">Your Recommended Tools</h2>
                         {filteredTools.length > 0 ? (
                             <div className="w-full grid gap-4">
@@ -214,7 +215,7 @@ const App = ({ useCaseCategories, allTools }) => {
                                 setCompareList([]);
                                 setCategoryMenu(true);
                             }}
-                            className="mt-6 px-4 py-2 bg-blue-600 hover:bg-blue-700 text-gray-100 rounded-full font-semibold shadow"
+                            className="mt-6 px-3 py-2 bg-blue-600 hover:bg-blue-700 text-gray-100 rounded-md font-semibold shadow"
                         >
                             Start Over
                         </button>
@@ -239,7 +240,7 @@ const App = ({ useCaseCategories, allTools }) => {
                                         setCompareList([]);
                                         setCategoryMenu(true);
                                     }}
-                                    className="flex items-center px-4 py-2 bg-blue-600 hover:bg-blue-700 text-gray-100 rounded-full font-semibold shadow"
+                                    className="flex items-center px-3 py-2 bg-blue-600 hover:bg-blue-700 text-gray-100 rounded-md font-semibold shadow"
                                 >
                                     Start Over
                                 </button>
@@ -247,14 +248,14 @@ const App = ({ useCaseCategories, allTools }) => {
                                 {currentStep > 0 && (
                                     <button
                                         onClick={handlePrev}
-                                        className="flex items-center px-4 py-2  bg-blue-600 hover:bg-blue-700 text-gray-100 rounded-full font-semibold shadow"
+                                        className="flex items-center px-3 py-2 bg-blue-600 hover:bg-blue-700 text-gray-100 rounded-md font-semibold shadow"
                                     >
                                         <ChevronLeft className="w-5 h-5 mr-1" /> Previous
                                     </button>
                                 )}
                                 <button
                                     onClick={handleNext}
-                                    className="flex items-center px-4 py-2  bg-blue-600 hover:bg-blue-700 text-gray-100 rounded-full font-semibold shadow"
+                                    className="flex items-center px-3 py-2  bg-blue-600 hover:bg-blue-700 text-gray-100 rounded-md font-semibold shadow"
                                 >
                                     {isLastStep ? 'Show Results' : 'Next Step'} <ChevronRight className="w-5 h-5 ml-1" />
                                 </button>
