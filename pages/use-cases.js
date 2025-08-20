@@ -166,7 +166,7 @@ const App = ({ useCaseCategories, allTools }) => {
                     <div className="flex flex-col items-center justify-center w-full mx-auto md:max-w-3xl">
                     <p className="mb-8 text-center text-gray-400">Each category contains a list of use cases popular to the category. You can start from the beginning of the wizard
                         or jump directly to a category important to your research. You can select as many use cases across categories as you'd like.
-                        We'll keep track of your selections. If your selection would return 0 tools, we'll let you know at the bottom of the screen.
+                        We'll keep track of your selections. If your selections would return 0 tools, we'll let you know at the bottom of the screen.
                     </p>
                                             
                         <div className="flex flex-col items-center justify-center w-full bg-cardDark rounded-lg shadow-lg border border-gray-600 p-6">
