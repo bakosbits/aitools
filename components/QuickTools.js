@@ -31,8 +31,8 @@ export default function QuickTools() {
     };
 
     return (
-        <div className="w-full p-6 space-y-4 bg-cardDark rounded-lg shadow-lg border border-gray-600">
-            <h2 className="text-2xl font-bold mb-4">Quick Tools</h2>
+        <div className="w-full p-6 space-y-4 bg-cardDark rounded-md shadow-md border border-gray-600">
+            <h2 className="text-xl font-bold mb-4">Quick Tools</h2>
             <div className="w-full mb-2 flex">
                 <select
                     id="tool-select"
@@ -64,7 +64,7 @@ export default function QuickTools() {
             <textarea
                 value={inputText}
                 onChange={(e) => setInputText(e.target.value)}
-                className="w-full p-3 border border-gray-600 bg-gray-800 text-gray-400 rounded-lg mb-4"
+                className="w-full p-3 border border-gray-600 bg-gray-800 text-gray-400 rounded-md mb-4"
                 rows={5}
                 placeholder="Enter your text or a URL here..."
             />
@@ -72,7 +72,7 @@ export default function QuickTools() {
             <button
                 onClick={runTool}
                 disabled={loading}
-                className="px-3 py-1 bg-teal-600 text-gray-100 font-semibold rounded-lg hover:bg-teal-700"
+                className="px-3 py-1 bg-teal-600 text-gray-100 font-semibold rounded-md hover:bg-teal-700"
             >
                 {loading ? "Generating..." : "Generate"}
             </button>

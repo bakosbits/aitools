@@ -16,8 +16,8 @@ export async function getStaticProps() {
 }
 
 const WizardStep = ({ category, tags, selectedTags, onTagSelect }) => (
-    <div className="flex flex-col items-center justify-center bg-cardDark p-6 border border-gray-600 rounded-lg shadow-lg w-full max-w-7xl">
-        <h2 className="text-2xl font-extrabold text-center text-gray-300 mb-8">{category}</h2>
+    <div className="flex flex-col items-center justify-center bg-cardDark p-6 border border-gray-600 rounded-md shadow-md w-full max-w-3xl mx-auto">
+        <h2 className="text-xl font-extrabold text-center text-gray-300 mb-8">{category}</h2>
         <div className="flex flex-wrap justify-center gap-4">
             {tags.map(tag => {
                 const isSelected = selectedTags.has(tag);
@@ -51,13 +51,12 @@ const SelectionDisplay = ({ selectedTags, onTagRemove, filteredCount }) => (
             <div className="flex flex-wrap items-center gap-2 py-1">
                 {[...selectedTags].length > 0 ? (
                     [...selectedTags].map(tag => (
-                        <div key={tag} className="flex items-center bg-gray-500 text-gray-100 hover:bg-gray-600 rounded-full px-3 py-1 text-xs font-semibold whitespace-nowrap">
-                            <span>{tag}</span>
+                        <div key={tag} className="flex items-center text-gray-100  whitespace-nowrap">
                             <button
                                 onClick={() => onTagRemove(tag)}
-                                className="ml-2 text-gray-100 hover:bg-gray-600 transition-colors duration-200"
+                                className="ml-2 text-gray-100 bg-gray-500 hover:bg-gray-600 rounded-full px-3 py-1 text-xs font-semibold transition-colors duration-200"
                             >
-                                <X className="w-3 h-3" />
+                                {tag}
                             </button>
                         </div>
                     ))
@@ -152,21 +151,26 @@ const App = ({ useCaseCategories, allTools }) => {
     };
 
     return (
-        <div className="w-full mx-auto flex flex-col items-center justify-center bg-gray-800 text-gray-300 py-6" >
+        <div className="w-full mx-auto flex flex-col items-center justify-center md:max-w-7xl bg-gray-800 text-gray-300 py-6" >
             <CompareBar
                 compareList={compareList}
                 handleCompare={handleCompare}
             />
-            <div className="w-full mx-auto md:max-w-7xl">
-                <h1 className="text-3xl font-extrabold text-center mb-6 text-gray-300">
-                    Alignment By Use Case | Task | Project 
-                </h1>
-
+            <div className="w-full mx-auto">
+                    <h1 className="text-2xl font-extrabold text-center mb-6 text-gray-300">
+                        Alignment By Use Case | Task | Project
+                    </h1>
                 {/* Category Menu Step */}
                 {categoryMenu ? (
+
                     <div className="flex flex-col items-center justify-center w-full mx-auto md:max-w-3xl">
+                    <p className="mb-8 text-center text-gray-400">Each category contains a list of use cases popular to the category. You can start from the beginning of the wizard
+                        or jump directly to a category important to your research. You can select as many use cases across categories as you'd like.
+                        We'll keep track of your selections. If your selection would return 0 tools, we'll let you know at the bottom of the screen.
+                    </p>
+                                            
                         <div className="flex flex-col items-center justify-center w-full bg-cardDark rounded-lg shadow-lg border border-gray-600 p-6">
-                            <h2 className="text-2xl font-extrabold text-center text-gray-300 mb-6">Use Case Categories</h2>
+                            <h2 className="text-xl font-extrabold text-center text-gray-300 mb-6">Use Case Categories</h2>
                             <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 w-full">
                                 {useCaseCategories.map((cat, idx) => (
                                     <button
@@ -188,7 +192,7 @@ const App = ({ useCaseCategories, allTools }) => {
                     </div>
                 ) : showResults ? (
                     <div className="flex flex-col items-center bg-gray-800 w-full md:max-w-7xl mx-auto">
-                        <h2 className="text-3xl font-extrabold text-center text-gray-300 mb-6">Your Recommended Tools</h2>
+                        <h2 className="text-lg font-extrabold text-center text-gray-300 mb-6">Your Recommended Tools</h2>
                         {filteredTools.length > 0 ? (
                             <div className="w-full grid gap-4">
                                 <ul className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 items-stretch">
@@ -256,7 +260,7 @@ const App = ({ useCaseCategories, allTools }) => {
                                     onClick={handleNext}
                                     className="flex items-center px-3 py-2  bg-blue-600 hover:bg-blue-700 text-gray-100 rounded-md font-semibold shadow"
                                 >
-                                    {isLastStep ? 'Show Results' : 'Next Step'} <ChevronRight className="w-5 h-5 ml-1" />
+                                    {isLastStep ? 'Results' : 'Next'} <ChevronRight className="w-5 h-5 ml-1" />
                                 </button>
                             </div>
                             <div className="flex items-center w-full mb-6 mt-6 font-semibold text-gray-300">

@@ -1,7 +1,6 @@
 import Link from "next/link";
 import MetaProps from "@/components/MetaProps";
 import { getAllCategories } from "@/lib/airtable/categories";
-import { Wrench, Hammer } from 'lucide-react';
 
 export async function getStaticProps() {
     try {
@@ -46,10 +45,8 @@ export default function CategoriesPage({ categories }) {
             />
             <div className="max-w-7xl mx-auto">
                 <div className="w-full grid grid-cols-1 justify-between items-center mb-4">
-                    <h1 className="text-3xl font-bold mb-4">
+                    <h1 className="text-2xl font-bold mb-4">
                         Alignment By Profession | Skill | Trade | Craft
-                         <Wrench className="hidden md:inline-block ml-2 w-8 h-8 text-grey-300" />
-                          <Hammer className="hidden md:inline-block ml-2 w-8 h-8 text-gray-300" />
                     </h1>
                     <p className="ml-2 mb-4">
                         Each category below contains a listing of top AI tools
@@ -58,10 +55,15 @@ export default function CategoriesPage({ categories }) {
                         map well into your profession and/or use cases. Many AI
                         tools have similar features but implementation can help
                         or hinder your productivity. Some are better suited for
-                        your use cases than others. We&apos;ve done the heavy
-                        lifting for you. Once you&apos;ve selected a category
+                        your use cases than others. We've done the heavy
+                        lifting for you. Once you've selected a category
                         you can explore individual tools in detail and/or
-                        compare two side-by-side to compare and contrast.
+                        compare two side-by-side to compare and contrast. If you
+                        have use cases in mind, check out our
+                        <Link href="/use-cases" className="text-gray-100 hover:underline">
+                            {' '}use case wizard.
+                        </Link>
+
                     </p>
                 </div>
 

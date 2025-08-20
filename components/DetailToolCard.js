@@ -88,7 +88,7 @@ export default function DetailToolCard({ tool }) {
                     <li key={index}>{item}</li>
                 ))}
             </ul>
-            <h2 className="text-xl font-bold mb-2">Who&apos;s It For?</h2>
+            <h2 className="text-xl font-bold mb-2">Who's It For?</h2>
             <p className="mx-2 mb-4">{tool.Buyer}</p>
             {pricingList.length > 0 && (
                 <div>

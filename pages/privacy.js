@@ -47,7 +47,7 @@ export default function PrivacyPolicyPage() {
                 <h2 className="text-xl font-semibold mb-2">Your Rights</h2>
                 <p className="mb-4 ml-2">
                     You may request to access, correct, or delete any personal
-                    information you&apos;ve provided. Contact us at via the form
+                    information you've provided. Contact us at via the form
                     listed on our Contact page.
                 </p>
                 <h2 className="text-xl font-semibold mb-2">Updates</h2>

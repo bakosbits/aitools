@@ -42,7 +42,7 @@ export default function CompareBar({ compareList = [], handleCompare }) {
                             bg-teal-600 hover:bg-teal-700 transition-colors text-gray-100 
                             font-semibold border border-gray-600 p-2 space-x-2 rounded-md"
                     >
-                        <span>Compare Now</span>
+                        <span>Compare</span>
                     </Link>
                 )}
         </div>
