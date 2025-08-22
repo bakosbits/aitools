@@ -1,13 +1,13 @@
-import Link from "next/link";
 import { useState } from "react";
-import { AI_MODELS } from "@/lib/constants";
 import { usePersistentSSE } from "@/lib/hooks/usePersistentSSE";
+import Link from "next/link";
+import { AI_MODELS } from "@/lib/constants";
 
-export default function UpdateUseCaseTags() {
+export default function BulkUpdateFeatures() {
     const [model, setModel] = useState("google/gemini-2.5-flash");
 
     const { statusLog, error, isLoading, startStream } = usePersistentSSE({
-        url: `/api/admin/map-use-case-tags?model=${model}`,
+        url: `/api/admin/update-features?model=${model}`,
     });
 
     return (
@@ -16,27 +16,25 @@ export default function UpdateUseCaseTags() {
                 <div className="mb-4">
                     <Link
                         href="/admin/bulk-updates"
-                        className="text-gray-300 hover:text-teal-400"
+                        className="text-gray-100 hover:text-gray-300"
                     >
                         &larr; Back to Bulk Updates
                     </Link>
                 </div>
-
                 <h1 className="text-2xl font-bold mb-2">
-                    Bulk Update Use Case Tags
+                    Bulk Update Features
                 </h1>
-                <p>
-                    This process uses AI analyze each tools why, description
-                    and details. It will iterate over every tool, analyze its
-                    purpose, and generate 1-2 single sentence use cases to map
-                    back to Use Case Pillars
+                <p className="mb-4">
+                    This process uses AI to analyze each tool and generate the
+                    top 5 features for it. Each feature will be stored as a
+                    separate record in the Features table.
                 </p>
-
                 <p className="mb-6 text-yellow-400">
                     Warning: This action is irreversible and may take a
                     significant amount of time to complete depending on the
                     number of tools.
                 </p>
+
                 <div className="mb-6">
                     <label
                         htmlFor="model-select"
@@ -48,7 +46,7 @@ export default function UpdateUseCaseTags() {
                         id="model-select"
                         value={model}
                         onChange={(e) => setModel(e.target.value)}
-                        className="w-full mt-1 px-4 py-2 rounded-md bg-gray-800 text-gray-100 placeholder-text-gray-100 border border-gray-600"
+                        className="w-full mt-1 px-4 py-2 rounded-md bg-gray-800 text-gray-300 placeholder-text-gray-100 border border-gray-600"
                     >
                         {[...AI_MODELS]
                             .sort((a, b) => a.name.localeCompare(b.name))

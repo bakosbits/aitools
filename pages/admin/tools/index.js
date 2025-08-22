@@ -1,7 +1,7 @@
 import Link from "next/link";
 import { useRouter } from "next/router";
 import { useMemo, useEffect } from "react";
-import { getAllTools, deleteTool } from "@/lib/airtable/tools";
+import { getToolsForEdit, deleteTool } from "@/lib/airtable/tools";
 import { parseFormBody } from "@/lib/form-helpers";
 import SearchBar from "@/components/SearchBar";
 import Pagination from "@/components/Pagination";
@@ -24,7 +24,7 @@ export async function getServerSideProps({ req, res }) {
         }
     }
 
-    const tools = await getAllTools();
+    const tools = await getToolsForEdit();
     return {
         props: {
             tools,
@@ -73,9 +73,6 @@ export default function ToolsPage({ tools }) {
                 tool.Why,
                 tool.Description,
                 tool.Details,
-                Array.isArray(tool.Features)
-                    ? tool.Features.join(" ")
-                    : (tool.Features ?? ""),
             ];
             return searchableFields.some(
                 (field) =>

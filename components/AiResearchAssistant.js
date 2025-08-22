@@ -17,7 +17,7 @@ export default function AiResearchAssistant({
         setIsResearching(true);
         setClientError(null);
         try {
-            const response = await fetch("/api/research-tool", {
+            const response = await fetch("/api/admin/research-tool", {
                 method: "POST",
                 headers: { "Content-Type": "application/json" },
                 body: JSON.stringify({

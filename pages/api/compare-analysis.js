@@ -7,13 +7,6 @@ export default async function handler(req, res) {
 
     const { toolA, toolB, toolAItems, toolBItems, type } = req.body;
 
-    console.log("API received request body:", req.body);
-    console.log("toolA:", toolA);
-    console.log("toolB:", toolB);
-    console.log("toolAItems:", toolAItems);
-    console.log("toolBItems:", toolBItems);
-    console.log("type:", type);
-
     if (!toolA || !toolB || !toolAItems || !toolBItems || !type) {
         console.error("Missing required parameters in API request.");
         return res.status(400).json({ message: "Missing required parameters." });

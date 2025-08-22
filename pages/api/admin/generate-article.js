@@ -1,4 +1,4 @@
-import { generateArticleContent } from "@/lib/model/providers";
+import { generateArticleContent } from "@/lib/model/generate-article";
 import { ALLOWED_MODELS, ALLOWED_ARTICLE_TYPES } from "@/lib/constants";
 
 export default async function handler(req, res) {
@@ -43,8 +43,8 @@ export default async function handler(req, res) {
     try {
         const articleData = await generateArticleContent(
             topic,
-            model,
-            articleType,
+            requestedModel,
+            requestedArticleType,
         );
         res.status(200).json(articleData);
     } catch (error) {

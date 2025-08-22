@@ -53,14 +53,6 @@ const Pagination = ({ currentPage, totalPages, onPageChange }) => {
 
     return (
         <div className="flex overflow-x-auto space-x-2 sm:flex-wrap justify-center w-full mt-10">
-            <button
-                onClick={() => onPageChange(currentPage - 1)}
-                disabled={currentPage === 1}
-                className="py-2 px-4 rounded-lg text-sm text-center bg-gray-700 text-gray-100 hover:bg-gray-600 disabled:bg-gray-800 disabled:cursor-not-allowed"
-                aria-label="Go to previous page"
-            >
-                Prev
-            </button>
             {visiblePages.map((page, idx) => (
                 <button
                     key={page === "…" ? `ellipsis-${idx}` : page}
@@ -80,14 +72,6 @@ const Pagination = ({ currentPage, totalPages, onPageChange }) => {
                     {page}
                 </button>
             ))}
-            <button
-                onClick={() => onPageChange(currentPage + 1)}
-                disabled={currentPage === totalPages}
-                className="py-2 px-4 rounded-lg text-sm text-center bg-gray-700 text-gray-100 hover:bg-teal-700 disabled:bg-gray-800 disabled:cursor-not-allowed"
-                aria-label="Go to next page"
-            >
-                Next
-            </button>
         </div>
     );
 };

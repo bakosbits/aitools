@@ -1,6 +1,7 @@
 import { createSSEStream } from "@/lib/createSSEStream";
-import { getToolsForTagUpdates, updateUseCaseTags } from "@/lib/airtable/tools";
-import { getUseCasesByTool, getAllUseCaseTags } from "@/lib/airtable/use-cases";
+import { getToolSummaries } from "@/lib/airtable/tools";
+import { getUseCasesByTool } from "@/lib/airtable/use-cases";
+import { getAllUseCaseTags, updateUseCaseTags } from "@/lib/airtable/use-case-tags";
 import { mapUseCaseTags } from "@/lib/model/providers";
 
 export default async function handler(req, res) {
@@ -12,15 +13,15 @@ export default async function handler(req, res) {
     const { model } = req.query;
     const { sendStatus, sendError, close } = createSSEStream(res);
     const [tools, availableTags] = await Promise.all([
-        getToolsForTagUpdates(),
+        getToolSummaries(),
         getAllUseCaseTags(),
     ]);
     const availableTagNames = availableTags.map((tag) => tag.Name);
 
     for (const tool of tools) {
         try {
+       
             const useCases = await getUseCasesByTool(tool.Slug);
-
             const result = await mapUseCaseTags(
                 tool,
                 availableTagNames,
@@ -28,21 +29,26 @@ export default async function handler(req, res) {
                 useCases,
             );
 
+
             if (result && result.Tags && result.Tags.length > 0) {
                 const validTags = result.Tags.map((tagName) => {
                     const foundTag = availableTags.find(
-                        (tag) => tag.Name === tagName,
+                        (tag) => tag.Name.toLowerCase() === tagName.toLowerCase(),
                     );
+                    if (!foundTag) {
+                        console.warn('Tag name from model not found in availableTags:', tagName);
+                    }
                     return foundTag ? foundTag.id : null;
                 }).filter(Boolean);
 
                 if (validTags.length > 0) {
                     await updateUseCaseTags(tool.id, validTags);
                     sendStatus(`Updated tags for tool: ${tool.Name}`);
-                }
+                } 
+
             }
         } catch (error) {
-            console.error(`Error processing tool ${tool.Name}:`, error.message);            
+            console.error(`Error processing tool ${tool.Name}:`, error.message);
             sendError(`An error occurred during update: ${error.message}`);
         }
     }

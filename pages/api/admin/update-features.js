@@ -1,6 +1,6 @@
 import { getToolSummaries } from "@/lib/airtable/tools";
-import { createMany as createCautions } from "@/lib/airtable/cautions";
-import { generateCautions } from "@/lib/model/providers";
+import { createMany as createFeatures } from "@/lib/airtable/features";
+import { generateFeatures } from "@/lib/model/providers";
 import { createSSEStream } from "@/lib/createSSEStream";
 
 async function handler(req, res) {
@@ -15,16 +15,16 @@ async function handler(req, res) {
 
     for (const tool of tools) {
         try {
-            const generatedCautions = await generateCautions(tool, model);
+            const generatedFeatures = await generateFeatures(tool, model);
 
-            const cautionsArray = Array.isArray(generatedCautions.Caution)
-                ? generatedCautions.Caution
-                : generatedCautions;
+            const featuresArray = Array.isArray(generatedFeatures.Feature)
+                ? generatedFeatures.Feature
+                : generatedFeatures;
 
-            if (Array.isArray(cautionsArray) && cautionsArray.length > 0) {
-                await createCautions(cautionsArray.map(c => ({ Caution: c, Tool: tool.Slug })));
+            if (Array.isArray(featuresArray) && featuresArray.length > 0) {
+                await createFeatures(featuresArray.map(f => ({ Feature: f, Tool: tool.Slug })));
 
-                sendStatus(`Added cautions for ${tool.Name}`);
+                sendStatus(`Added features for ${tool.Name}`);
             }
 
 

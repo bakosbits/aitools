@@ -1,45 +1,18 @@
 import { useState } from "react";
 import Link from "next/link";
-import { createTool } from "@/lib/airtable/tools";
 import { getAllCategories } from "@/lib/airtable/categories";
-import { getAllArticles } from "@/lib/airtable/articles";
 import { PRICING_OPTIONS } from "@/lib/constants";
-import { parseToolForm } from "@/lib/form-helpers";
 import ToolForm from "@/components/ToolForm";
 import AiResearchAssistant from "@/components/AiResearchAssistant";
 
 export async function getServerSideProps({ req, res }) {
     const pricingOptions = PRICING_OPTIONS;
 
-    if (req.method === "POST") {
-        try {
-            const data = await parseToolForm(req);
-            await createTool(data);
-            res.writeHead(302, { Location: "/admin/tools" });
-            res.end();
-            return { props: {} };
-        } catch (error) {
-            console.error("Failed to create tool:", error);
-            const categories = await getAllCategories();
-            const articles = await getAllArticles();
-            return {
-                props: {
-                    categories,
-                    articles,
-                    pricingOptions,
-                    error: "Failed to create tool.",
-                },
-            };
-        }
-    }
-
     const categories = await getAllCategories();
-    const articles = await getAllArticles();
 
     return {
         props: {
             categories,
-            articles,
             pricingOptions,
         },
     };
@@ -47,18 +20,18 @@ export async function getServerSideProps({ req, res }) {
 
 export default function NewToolPage({
     categories,
-    articles,
     pricingOptions,
     error,
 }) {
     const [formData, setFormData] = useState({});
+    const [submitError, setSubmitError] = useState(null);
+    const [isSubmitting, setIsSubmitting] = useState(false);
 
     const handleChange = (e) => {
         const { name, value, type, checked } = e.target;
         if (type === "checkbox") {
             if (
                 name === "Categories" ||
-                name === "Articles" ||
                 name === "Pricing"
             ) {
                 const currentValues = formData[name] || [];
@@ -82,14 +55,63 @@ export default function NewToolPage({
     };
 
     const handleResearchComplete = (researchedData) => {
-        const categoryIds =
-            researchedData.Categories?.map((cat) => cat.id) || [];
-
+        let categoryIds = [];
+        if (Array.isArray(researchedData.Categories)) {
+            categoryIds = researchedData.Categories.map((cat) => {
+                if (typeof cat === "object" && cat !== null && cat.id) return cat.id;
+                if (typeof cat === "string") {
+                    // Try to match by ID, Name, or Slug
+                    const match = categories.find(
+                        (c) => c.id === cat || c.Name === cat || c.Slug === cat
+                    );
+                    return match ? match.id : null;
+                }
+                return null;
+            }).filter(Boolean);
+        }
         setFormData((prevData) => ({
             ...prevData,
             ...researchedData,
             Categories: categoryIds,
         }));
+    };
+
+    const handleSubmit = async (e) => {
+        e.preventDefault();
+        setIsSubmitting(true);
+        setSubmitError(null);
+
+        try {
+            const response = await fetch("/api/admin/save-tool", {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify({
+                    toolName: formData.Name, // Assuming Name is in formData
+                    model: formData.model, // Assuming model is in formData from research
+                    toolData: formData, // Pass all form data
+                }),
+            });
+
+            if (!response.ok) {
+                const err = await response.json();
+                throw new Error(err.message || "Failed to create tool.");
+            }
+
+            // Redirect to admin tools page after successful creation
+            window.location.href = "/admin/tools";
+        } catch (error) {
+            setSubmitError(error.message);
+        } finally {
+            setIsSubmitting(false);
+        }
+    };
+
+    // Normalize Categories to always be an array of IDs
+    const normalizedFormData = {
+        ...formData,
+        Categories: Array.isArray(formData.Categories)
+            ? formData.Categories.map((cat) => (typeof cat === "object" && cat !== null ? cat.id : cat))
+            : [],
     };
 
     return (
@@ -107,13 +129,13 @@ export default function NewToolPage({
             </h1>
             <AiResearchAssistant onResearchComplete={handleResearchComplete} />
             <ToolForm
-                tool={formData}
+                tool={normalizedFormData}
                 categories={categories}
-                articles={articles}
-                tags={formData.Tags || []}
                 pricingOptions={pricingOptions}
                 handleChange={handleChange}
-                error={error}
+                handleSubmit={handleSubmit}
+                error={submitError || error}
+                isSubmitting={isSubmitting}
             />
         </div>
     );

@@ -7,7 +7,7 @@ export default function UpdateToolCategories() {
     const [model, setModel] = useState("google/gemini-2.5-flash");
 
     const { statusLog, error, isLoading, startStream } = usePersistentSSE({
-        url: `/api/admin/map-use-case-tags?model=${model}`,
+        url: `/api/admin/update-tool-categories?model=${model}`,
     });
 
     return (

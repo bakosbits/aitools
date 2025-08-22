@@ -14,10 +14,6 @@ export default async function handler(req, res) {
     const ADMIN_USERNAME = process.env.ADMIN_USERNAME;
     const ADMIN_PASSWORD = process.env.ADMIN_PASSWORD;
 
-    // DEBUG LOGGING - REMOVE IN PRODUCTION
-    console.log("Login attempt:", { username, password });
-    console.log("ADMIN_USERNAME (hash):", ADMIN_USERNAME);
-    console.log("ADMIN_PASSWORD (hash):", ADMIN_PASSWORD);
 
     if (!ADMIN_USERNAME || !ADMIN_PASSWORD) {
         return res.status(500).json({ message: "Server configuration error." });
@@ -28,8 +24,6 @@ export default async function handler(req, res) {
     try {
         usernameMatches = await bcrypt.compare(username, ADMIN_USERNAME);
         passwordMatches = await bcrypt.compare(password, ADMIN_PASSWORD);
-        console.log("usernameMatches:", usernameMatches);
-        console.log("passwordMatches:", passwordMatches);
     } catch (err) {
         console.error("bcrypt.compare error:", err);
         return res.status(500).json({ message: "Hash compare error." });

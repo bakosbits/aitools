@@ -7,7 +7,7 @@ export default function BulkUpdateCautions() {
     const [model, setModel] = useState("google/gemini-2.5-flash");
 
     const { statusLog, error, isLoading, startStream } = usePersistentSSE({
-        url: `/api/admin/map-use-case-tags?model=${model}`,
+        url: `/api/admin/update-cautions?model=${model}`,
     });
 
     return (
@@ -26,7 +26,7 @@ export default function BulkUpdateCautions() {
                 </h1>
                 <p className="mb-4">
                     This process uses AI to analyze each tool and generate the
-                    top 5 features for it. Each feature will be stored as a
+                    top 3 cautions for it. Each caution will be stored as a
                     separate record in the Cautions table.
                 </p>
                 <p className="mb-6 text-yellow-400">

@@ -1,14 +1,23 @@
 import Link from "next/link";
+import { useState } from "react";
 
 export default function ToolForm({
     tool,
     categories = [],
     pricingOptions = [],
-    tags = [], // Add tags to props
     handleChange,
+    handleSubmit,
     error,
+    isSubmitting = false,
 }) {
+    // Map tool.Categories (IDs) to a Set for fast lookup
+    const categoryIdSet = new Set(
+        Array.isArray(tool.Categories)
+            ? tool.Categories.map(String)
+            : []
+    );
     const isNew = !tool?.id;
+    const [submitError, setSubmitError] = useState(null);
 
     const handleArrayChange = (e) => {
         const { name, value } = e.target;
@@ -19,14 +28,16 @@ export default function ToolForm({
         handleChange({ target: { name, value: newArray } });
     };
 
+
     return (
         <form
             method="POST"
+            onSubmit={handleSubmit}
             className="space-y-6 bg-cardDark p-8 rounded-lg shadow-lg border border-gray-600"
         >
-            {error && (
+            {(error || submitError) && (
                 <div className="bg-red-800 text-gray-100 p-3 rounded mb-4">
-                    Error: {error}
+                    Error: {error || submitError}
                 </div>
             )}
 
@@ -211,7 +222,7 @@ export default function ToolForm({
                                         tool.Pricing?.includes(option) || false
                                     }
                                     onChange={handleChange}
-                                    className="h-4 w-4 text-green-300 bg-gray-800 border-gray-600 rounded focus:ring-green-300"
+                                    className="h-4 w-4 text-green-300 bg-gray-800 border-gray-600 rounded"
                                 />
                                 <label
                                     htmlFor={`pricing-${option}`}
@@ -246,43 +257,28 @@ export default function ToolForm({
                     Categories
                 </label>
                 <div className="mt-2 grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 max-h-60 overflow-y-auto bg-gray-800 border border-gray-600 p-4 rounded-md">
-                    {categories.map((cat) => (
-                        <div key={cat.id} className="flex items-center">
-                            <input
-                                type="checkbox"
-                                id={`category-${cat.id}`}
-                                name="Categories"
-                                value={cat.id}
-                                checked={
-                                    tool.Categories?.includes(cat.id) || false
-                                }
-                                onChange={handleChange}
-                                className="h-4 w-4 text-gray-300 border-gray-600 rounded focus:ring-green-300"
-                            />
-                            <label
-                                htmlFor={`category-${cat.id}`}
-                                className="ml-2 text-sm text-gray-300"
-                            >
-                                {cat.Name}
-                            </label>
-                        </div>
-                    ))}
-                </div>
-            </div>
-            {/* Tags Section */}
-            <div>
-                <label className="block text-sm font-medium text-gray-300 mb-2">
-                    Tags
-                </label>
-                <div className="mt-2 flex flex-wrap gap-2 bg-gray-800 border border-gray-600 p-4 rounded-md">
-                    {tags.map((tag) => (
-                        <div
-                            key={tag.id}
-                            className="px-3 py-1 rounded-full text-sm font-semibold bg-gray-600 text-gray-300"
-                        >
-                            {tag.Name}
-                        </div>
-                    ))}
+                    {categories.map((cat) => {
+                        const isChecked = categoryIdSet.has(String(cat.id));
+                        return (
+                            <div key={cat.id} className="flex items-center">
+                                <input
+                                    type="checkbox"
+                                    id={`category-${cat.id}`}
+                                    name="Categories"
+                                    value={cat.id}
+                                    checked={isChecked}
+                                    onChange={handleChange}
+                                    className="h-4 w-4 text-gray-300 border-gray-600 rounded"
+                                />
+                                <label
+                                    htmlFor={`category-${cat.id}`}
+                                    className={`ml-2 text-sm text-gray-300${isChecked ? '' : ''}`}
+                                >
+                                    {cat.Name}
+                                </label>
+                            </div>
+                        );
+                    })}
                 </div>
             </div>
 
@@ -292,7 +288,7 @@ export default function ToolForm({
                         type="checkbox"
                         name="Active"
                         id="Active"
-                        className="h-4 w-4 text-gray-300 border-gray-600 rounded focus:ring-green-300"
+                        className="h-4 w-4 text-gray-300 border-gray-600 rounded"
                         checked={tool.Active || false}
                         onChange={handleChange}
                     />
@@ -315,8 +311,13 @@ export default function ToolForm({
                 <button
                     type="submit"
                     className="bg-teal-600 text-gray-100 font-bold py-2 px-4 rounded hover:bg-emerald-600 transition-colors"
+                    disabled={isSubmitting}
                 >
-                    {isNew ? "Create Tool" : "Update Tool"}
+                    {isSubmitting
+                        ? "Saving..."
+                        : isNew
+                        ? "Create Tool"
+                        : "Update Tool"}
                 </button>
             </div>
         </form>

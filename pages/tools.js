@@ -85,9 +85,6 @@ export default function ToolsPage({ tools }) {
                 tool.Why,
                 tool.Description,
                 tool.Details,
-                Array.isArray(tool.Features)
-                    ? tool.Features.join(" ")
-                    : (tool.Features ?? ""),
             ];
             return searchableFields.some(
                 (field) =>

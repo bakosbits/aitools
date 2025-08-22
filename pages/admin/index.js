@@ -4,15 +4,10 @@ import randomQuotes from "random-quotes";
 
 export default function Admin() {
     const resources = [
-        "Aliases",
         "Articles",
         "Bulk Updates",
         "Categories",
-        "Modalities",
-        "Preferences",
-        "Tags",
         "Tools",
-        "Use Cases",
     ].sort();
     const [quote, setQuote] = useState({ text: "", author: "" });
 
@@ -26,7 +21,7 @@ export default function Admin() {
             <h1 className="text-3xl font-bold mb-8 text-center">
                 Admin Dashboard
             </h1>
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-4 max-w-2xl mb-12">
+            <div className="grid grid-cols-1 md:grid-cols-1 gap-4 max-w-2xl mb-12">
                 {resources.map((resource) => {
                     const slug = resource.toLowerCase().replace(/\s+/g, "-");
                     return (

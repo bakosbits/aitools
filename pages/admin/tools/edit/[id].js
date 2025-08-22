@@ -1,10 +1,8 @@
 import { useState } from "react";
 import Link from "next/link";
-import { getToolById, updateTool } from "@/lib/airtable/tools";
+import { getToolById } from "@/lib/airtable/tools";
 import { getAllCategories } from "@/lib/airtable/categories";
-import { getAllArticles } from "@/lib/airtable/articles";
 import { PRICING_OPTIONS } from "@/lib/constants";
-import { parseFormBody } from "@/lib/form-helpers";
 import ToolForm from "@/components/ToolForm";
 import AiResearchAssistant from "@/components/AiResearchAssistant";
 
@@ -12,51 +10,21 @@ export async function getServerSideProps({ req, res, params }) {
     const { id } = params;
     const pricingOptions = PRICING_OPTIONS;
 
-    if (req.method === "POST") {
-        try {
-            const data = await parseFormBody(req);
-            await updateTool(id, data);
-            res.writeHead(302, { Location: "/admin/tools" });
-            res.end();
-            return { props: {} };
-        } catch (error) {
-            console.error("Failed to update tool:", error);
-            const tool = await getToolById(id);
-            const categories = await getAllCategories();
-            const articles = await getAllArticles();
-            return {
-                props: {
-                    tool,
-                    categories,
-                    articles,
-                    pricingOptions,
-                    error: "Failed to update tool.",
-                },
-            };
-        }
-    }
-
     const tool = await getToolById(id);
     const categories = await getAllCategories();
-    const articles = await getAllArticles();
-
+    // Normalize Categories to always be an array of IDs
     const toolWithCategoryIds = {
         ...tool,
-        Categories: tool.Categories,
+        Categories: Array.isArray(tool.Categories)
+            ? tool.Categories.map((cat) => (typeof cat === "object" && cat !== null ? cat.id : cat))
+            : [],
     };
-
-    const tags = tool.TagNames.map((name, index) => ({
-        id: tool.Tags[index],
-        Name: name,
-    }));
 
     return {
         props: {
             tool: toolWithCategoryIds,
             categories,
-            articles,
             pricingOptions,
-            tags,
         },
     };
 }
@@ -64,12 +32,12 @@ export async function getServerSideProps({ req, res, params }) {
 export default function EditToolPage({
     tool,
     categories,
-    articles,
     pricingOptions,
-    tags,
     error,
 }) {
     const [formData, setFormData] = useState(tool);
+    const [submitError, setSubmitError] = useState(null);
+    const [isSubmitting, setIsSubmitting] = useState(false);
 
     // Expose formData and categories globally for debugging
     if (typeof window !== "undefined") {
@@ -82,9 +50,7 @@ export default function EditToolPage({
         if (type === "checkbox") {
             if (
                 name === "Categories" ||
-                name === "Articles" ||
-                name === "Pricing" ||
-                name === "Tags"
+                name === "Pricing"
             ) {
                 const currentValues = formData[name] || [];
                 if (checked) {
@@ -106,6 +72,37 @@ export default function EditToolPage({
         }
     };
 
+    const handleSubmit = async (e) => {
+        e.preventDefault();
+        setIsSubmitting(true);
+        setSubmitError(null);
+
+        try {
+            const response = await fetch("/api/admin/save-tool", {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify({
+                    toolId: tool.id, // Pass tool ID for update
+                    toolName: formData.Name, // Assuming Name is in formData
+                    model: formData.model, // Assuming model is in formData from research
+                    toolData: formData, // Pass all form data
+                }),
+            });
+
+            if (!response.ok) {
+                const err = await response.json();
+                throw new Error(err.message || "Failed to update tool.");
+            }
+
+            // Redirect to admin tools page after successful update
+            window.location.href = "/admin/tools";
+        } catch (error) {
+            setSubmitError(error.message);
+        } finally {
+            setIsSubmitting(false);
+        }
+    };
+
     return (
         <div className="w-full md:w-[75%] mx-auto">
             <div>
@@ -121,15 +118,18 @@ export default function EditToolPage({
             </h1>
             <AiResearchAssistant
                 onResearchComplete={(researchedData) => {
-                    const categoryIds =
-                        researchedData.Categories?.map((cat) => cat.id) || [];
-                    const tagIds =
-                        researchedData.Tags?.map((tag) => tag.id) || [];
+                    let categoryIds = [];
+                    if (Array.isArray(researchedData.Categories)) {
+                        categoryIds = researchedData.Categories.map((cat) => {
+                            if (typeof cat === "object" && cat !== null && cat.id) return cat.id;
+                            if (typeof cat === "string") return cat;
+                            return null;
+                        }).filter(Boolean);
+                    }
                     setFormData((prevData) => ({
                         ...prevData,
                         ...researchedData,
                         Categories: categoryIds,
-                        Tags: tagIds,
                     }));
                 }}
                 initialResearchTerm={tool.Name}
@@ -137,12 +137,12 @@ export default function EditToolPage({
             <ToolForm
                 tool={formData}
                 categories={categories}
-                articles={articles}
-                pricingOptions={pricingOptions}
-                tags={tags}
                 handleChange={handleChange}
-                error={error}
+                handleSubmit={handleSubmit}
+                error={submitError || error}
+                isSubmitting={isSubmitting}
             />
         </div>
     );
 }
+

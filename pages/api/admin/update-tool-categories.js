@@ -1,6 +1,7 @@
-import { getAllTools, updateToolCategories } from "@/lib/airtable/tools";
+import { getToolSummaries, updateToolCategories } from "@/lib/airtable/tools";
 import { getAllCategories } from "@/lib/airtable/categories";
-import { generateToolCategories } from "@/lib/model/providers";
+import { getAllFeatures } from "@/lib/airtable/features"
+import { mapToolCategories } from "@/lib/model/providers";
 import { createSSEStream } from "@/lib/createSSEStream";
 
 async function handler(req, res) {
@@ -12,21 +13,34 @@ async function handler(req, res) {
     const { model } = req.query;
     const { sendStatus, sendError, close } = createSSEStream(res);
 
-    const [tools, categories] = await Promise.all([
-        getAllTools(),
+    const [tools, categories, features] = await Promise.all([
+        getToolSummaries(),
         getAllCategories(),
+        getAllFeatures()
     ]);
+
+    const featuresByTool = new Map();
+    for (const feature of features) {
+        if (!featuresByTool.has(feature.Tool)) {
+            featuresByTool.set(feature.Tool, []);
+        }
+        featuresByTool.get(feature.Tool).push(feature);
+    }
 
     const categoryNameMap = new Map(
         categories.map((cat) => [cat.Name, cat.id]),
     );
-    const availableCategoryNames = categories.map((cat) => cat.Name);
 
+    const availableCategoryNames = categories.map((cat) => cat.Name);
     for (const tool of tools) {
         try {
-            const generatedCategories = await generateToolCategories(
+
+            const toolFeatures = featuresByTool.get(tool.Slug);
+            const availableFeatures = toolFeatures.map((feat) => feat.Feature );
+            const generatedCategories = await mapToolCategories(
                 tool,
                 availableCategoryNames,
+                availableFeatures,
                 model,
             );
 

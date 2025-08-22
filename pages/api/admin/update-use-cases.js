@@ -1,4 +1,4 @@
-import { getAllTools } from "@/lib/airtable/tools";
+import { getToolSummaries } from "@/lib/airtable/tools";
 import { createUseCase } from "@/lib/airtable/use-cases";
 import { generateUseCases } from "@/lib/model/providers";
 import { createSSEStream } from "@/lib/createSSEStream";
@@ -12,7 +12,7 @@ async function handler(req, res) {
     const { model } = req.query;
     const { sendStatus, sendError, close } = createSSEStream(res);
 
-    const tools = await getAllTools();
+    const tools = await getToolSummaries();
     for (const tool of tools) {
         try {
             const generatedUseCases = await generateUseCases(tool, model);

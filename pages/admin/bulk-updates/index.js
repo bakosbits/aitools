@@ -9,7 +9,7 @@ export default function Admin() {
         "Map Caution Tags",
         "Update Use Cases",
         "Update Cautions",
-        "Update Use Case Tags",
+        "Update Features",
     ].sort();
     const [quote, setQuote] = useState({ text: "", author: "" });
 

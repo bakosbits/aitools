@@ -1,79 +1,77 @@
-import { categoriesTable, useCaseTagsTable } from "@/lib/airtable/base";
 import { generateToolResearch } from "@/lib/model/providers";
-import { ALLOWED_MODELS } from "@/lib/constants";
+import { getAllCategories } from "@/lib/airtable/categories";
+import { getAllUseCaseTags } from "@/lib/airtable/use-case-tags";
+import { getAllCautionTags } from "@/lib/airtable/caution-tags";
 
 export default async function handler(req, res) {
-    if (req.method !== "GET") {
-        res.setHeader("Allow", ["GET"]);
+    if (req.method !== "POST") {
+        res.setHeader("Allow", ["POST"]);
         return res.status(405).end(`Method ${req.method} Not Allowed`);
     }
 
-    const { toolName, model: requestedModel } = req.body;
+    const { toolName, model } = req.body;
 
     if (!toolName) {
         return res.status(400).json({ message: "toolName is required" });
     }
 
     let categories = [];
-    let tags = [];
+    let useCaseTags = [];
+    let cautionTags = [];
 
     try {
-        // Fetch both categories and tags in parallel
-        const [categoryRecords, tagRecords] = await Promise.all([
-            categoriesTable.select({ fields: ["Name"] }).all(),
-            useCaseTagsTable.select({ fields: ["Name"] }).all(),
+        [categories, useCaseTags, cautionTags] = await Promise.all([
+            getAllCategories(),
+            getAllUseCaseTags(),
+            getAllCautionTags(),
         ]);
-
-        categories = categoryRecords.map((record) => ({
-            id: record.id,
-            Name: record.get("Name"),
-        }));
-        tags = tagRecords.map((record) => ({
-            id: record.id,
-            Name: record.get("Name"),
-        }));
-
-        if (!categories || categories.length === 0) {
-            console.error("No categories found in Airtable.");
-            return res.status(500).json({
-                message:
-                    "Could not find any tool categories in the database. Please add categories before researching.",
-            });
-        }
-
-        if (!tags || tags.length === 0) {
-            console.error("No tags found in Airtable.");
-            return res.status(500).json({
-                message:
-                    "Could not find any tool tags in the database. Please add tags before researching.",
-            });
-        }
     } catch (error) {
         console.error("Error fetching data from Airtable:", error);
         return res.status(500).json({
-            message:
-                "Failed to fetch required data from the database. Please check the Airtable connection.",
+            message: "Failed to fetch required data from the database. Please check the Airtable connection.",
         });
     }
 
+    if (!categories || categories.length === 0) {
+        return res.status(500).json({ message: "Could not find any tool categories in the database. Please add categories before researching." });
+    }
+    if (!useCaseTags || useCaseTags.length === 0) {
+        return res.status(500).json({ message: "Could not find any tool tags in the database. Please add tags before researching." });
+    }
+    if (!cautionTags || cautionTags.length === 0) {
+        return res.status(500).json({ message: "Could not find any caution tags in the database. Please add caution tags before researching." });
+    }
+
     try {
-        const toolData = await generateToolResearch(
-            toolName,
-            model,
-            categories, // Pass full category objects
-            tags, // Pass full tag objects
-        );
-        res.status(200).json(toolData);
+        // 1. Run all research/generation and mapping first (NO DB SAVES YET)
+        const researchResult = await generateToolResearch(toolName, model, categories, useCaseTags, cautionTags);
+
+
+        // 2. Now save the tool and related data to Airtable
+        // Map category names to their IDs         
+        const categoryIds = (researchResult.Categories || [])
+            .map(catName => {
+                const found = categories.find(cat => cat.Name === catName);
+                return found ? found.id : null;
+            })
+            .filter(Boolean);
+
+        // Always overwrite Categories in the response with IDs, never names
+        const response = {
+            ...researchResult,
+            Categories: categoryIds,
+        };
+        // Remove any possible Categories with names from the spread
+        if (Array.isArray(response.Categories)) {
+            response.Categories = categoryIds;
+        }
+        res.status(200).json(response);
     } catch (error) {
-        console.error(
-            "Full error from AI provider:",
-            JSON.stringify(error, null, 2),
-        );
+        console.error("Full error from AI provider:", JSON.stringify(error, null, 2));
         const errorMessage = error.message || "An unknown error occurred";
         if (errorMessage.includes("API key not valid")) {
             return res.status(401).json({
-                message:
-                    "API key is not valid or missing. Please check your environment variables.",
+                message: "API key is not valid or missing. Please check your environment variables.",
             });
         }
         return res.status(500).json({
