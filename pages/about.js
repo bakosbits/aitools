@@ -26,7 +26,7 @@ export default function AboutPage() {
                     be overwhelming. We intend to cut through the noise,
                     providing a focused and reliable resource that empowers
                     professionals to leverage AI effectively in their daily
-                    tasks. It won't be too far off into the future where
+                    tasks. It won&apos;t be too far off into the future where
                     every individual and business is looking to integrate AI to
                     their daily routine. We want to help you avoid the paradox
                     of choice.
@@ -37,7 +37,7 @@ export default function AboutPage() {
                     assessing its core functionality, unique features, target
                     audience, and real-world benefits. Our goal is to provide
                     insights that help you understand what the tool is, who
-                    it's for, and why it matters to someone in that role.
+                    it&apos;s for, and why it matters to someone in that role.
                     We prioritize tools that offer clear value and solve
                     specific problems, ensuring our directory remains a
                     high-quality resource.
@@ -54,7 +54,7 @@ export default function AboutPage() {
                     always to transparency and unbiased information.
                 </p>
                 <p className="mb-4 ml-2 text-gray-400">
-                    We’re building a smarter, more practical way to explore the
+                    We&apos;re building a smarter, more practical way to explore the
                     AI landscape.
                 </p>
                 <h2 className="text-2xl font-semibold mb-2">Our Future</h2>
@@ -62,7 +62,7 @@ export default function AboutPage() {
                     As the world of AI continues to evolve, so too will AI Tool
                     Pouch. We will continue to add new tools, refine our
                     categories, and work to make our platform simple and
-                    affective so you're able to integrate AI into your
+                    effective so you&apos;re able to integrate AI into your
                     professional life quickly.
                 </p>
             </InfoPageLayout>

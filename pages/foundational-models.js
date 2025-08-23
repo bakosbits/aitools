@@ -116,7 +116,7 @@ export default function FoundationalModelsPage() {
                     search
                 </p>
                 <p className="mt-4 mb-4 ml-2">
-                    Gemini is Google's evolution of the Bard model,
+                    Gemini is Google&apos;s evolution of the Bard model,
                     designed to blend traditional language modeling with
                     up-to-date web results. It plays a major role in Google
                     Docs, Gmail, and search-enhanced products. Its core strength
@@ -225,7 +225,7 @@ export default function FoundationalModelsPage() {
                     Why Foundational Models Matter
                 </h1>
                 <p className="mt-4 mb-4 ml-2">
-                    These models are called foundational because they're
+                    These models are called foundational because they&apos;re
                     not trained for one job, they enable many. Tools like
                     Jasper, Notion AI, Midjourney, and GitHub Copilot are all
                     built on top of one or more of these foundational systems.
@@ -233,7 +233,7 @@ export default function FoundationalModelsPage() {
                     helps professionals choose the right platform to build on.
                 </p>
                 <p className="mb-4 ml-2">
-                    Whether you're developing new tools, deploying AI in
+                    Whether you&apos;re developing new tools, deploying AI in
                     business workflows, or just exploring capabilities,
                     foundational models are where it all begins.
                 </p>

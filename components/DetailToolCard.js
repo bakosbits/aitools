@@ -14,8 +14,8 @@ import UseCasesModal from "@/components/UseCasesModal";
  * @param {string} [props.tool.Base_Model] - The base model the tool is powered by (optional).
  * @param {string} props.tool.Why - The reason why the tool is important.
  * @param {string} props.tool.Details - Further details about the tool.
- * @param {string} props.tool.Features - A newline-separated string of the tool's top features.
- * @param {string} props.tool.Cautions - A newline-separated string of the tool's top cautions.
+ * @param {Array<string>} props.tool.Features - An array of the tool's top features.
+ * @param {Array<string>} props.tool.Cautions - An array of the tool's top cautions.
  * @param {string} props.tool.Buyer - A description of the target audience for the tool.
  * @param {Array<string>} [props.tool.Pricing] - An array of pricing options (optional).
  * @param {string} props.tool.Slug - The URL slug for the tool's affiliate link.
@@ -26,15 +26,8 @@ export default function DetailToolCard({ tool }) {
 
     const [showUseCasesModal, setShowUseCasesModal] = useState(false);
 
-    const featuresText = tool.Features;
-    const featuresList = featuresText
-        ? featuresText.split("\n").filter((line) => line.trim() !== "")
-        : [];
-
-    const cautionsText = tool.Cautions;
-    const cautionsList = cautionsText
-        ? cautionsText.split("\n").filter((line) => line.trim() !== "")
-        : [];
+    const featuresList = Array.isArray(tool.Features) ? tool.Features : [];
+    const cautionsList = Array.isArray(tool.Cautions) ? tool.Cautions : [];
 
     const pricingList = Array.isArray(tool.Pricing) ? tool.Pricing : [];
     // Use the modern Intl.ListFormat for cleaner, internationally-friendly list formatting.
@@ -79,16 +72,16 @@ export default function DetailToolCard({ tool }) {
             <h2 className="text-xl font-bold mb-2">Top Features:</h2>
             <ul className="list-disc ml-6 space-y-2 mb-4">
                 {featuresList.map((item, index) => (
-                    <li key={index}>{item}</li>
+                    <li key={index}>{item.Feature}</li>
                 ))}
             </ul>
             <h2 className="text-xl font-bold mb-2">Top Cautions:</h2>
             <ul className="list-disc ml-6 space-y-2 mb-4">
                 {cautionsList.map((item, index) => (
-                    <li key={index}>{item}</li>
+                    <li key={index}>{item.Caution}</li>
                 ))}
             </ul>
-            <h2 className="text-xl font-bold mb-2">Who's It For?</h2>
+            <h2 className="text-xl font-bold mb-2">Who&apos;s It For?</h2>
             <p className="mx-2 mb-4">{tool.Buyer}</p>
             {pricingList.length > 0 && (
                 <div>

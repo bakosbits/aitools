@@ -54,7 +54,7 @@ export default function BlogPost({ title, summary, content, author, date }) {
                         >
                             {content}
                         </ReactMarkdown>
-                        <p>That's all for now.</p>
+                        <p>That&apos;s all for now.</p>
                         <p>
                             Cheers!
                             <br />

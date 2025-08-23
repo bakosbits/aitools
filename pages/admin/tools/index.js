@@ -1,7 +1,7 @@
 import Link from "next/link";
 import { useRouter } from "next/router";
 import { useMemo, useEffect } from "react";
-import { getToolsForEdit, deleteTool } from "@/lib/airtable/tools";
+import { getToolSummaries, deleteTool } from "@/lib/airtable/tools";
 import { parseFormBody } from "@/lib/form-helpers";
 import SearchBar from "@/components/SearchBar";
 import Pagination from "@/components/Pagination";
@@ -24,7 +24,7 @@ export async function getServerSideProps({ req, res }) {
         }
     }
 
-    const tools = await getToolsForEdit();
+    const tools = await getToolSummaries();
     return {
         props: {
             tools,
@@ -85,13 +85,10 @@ export default function ToolsPage({ tools }) {
     const startIndex = (currentPage - 1) * ITEMS_PER_PAGE;
     const endIndex = startIndex + ITEMS_PER_PAGE;
     const paginatedTools = filteredTools.slice(startIndex, endIndex);
-    const totalTools = filteredTools.length;
 
     useEffect(() => {
         window.scrollTo({ top: 0, behavior: "smooth" });
     }, [currentPage]);
-
-    const isSearch = query.trim() !== "";
 
     return (
         <>

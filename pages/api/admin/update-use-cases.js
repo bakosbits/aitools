@@ -16,18 +16,16 @@ async function handler(req, res) {
     for (const tool of tools) {
         try {
             const generatedUseCases = await generateUseCases(tool, model);
-
             if (
                 generatedUseCases &&
-                generatedUseCases.UseCases &&
+                Array.isArray(generatedUseCases.UseCases) &&
                 generatedUseCases.UseCases.length > 0
             ) {
                 for (const useCaseText of generatedUseCases.UseCases) {
-                    await createUseCase({
-                        Tool: tool.Slug,
-                        "Use Case": useCaseText,
-                    });
-                    sendStatus(`Added use case for ${tool.Name}`);
+                    if (useCaseText && useCaseText.trim()) {
+                        await createUseCase({ Tool: tool.Slug, UseCase: useCaseText });
+                        sendStatus(`Added use case for ${tool.Name}`);
+                    }
                 }
             }
         } catch (error) {

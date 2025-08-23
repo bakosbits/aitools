@@ -55,9 +55,9 @@ export default function Home({ latestTools }) {
                         Welcome
                     </h1>
                     <p className="md:ml-2 mb-4">
-                        Here you'll find tools grouped by profession and/or
-                        use case. Why? So you don't have to fumble through
-                        feature lists to find a solution. We've organized
+                        Here you&apos;ll find tools grouped by profession and/or
+                        use case. Why? So you don&apos;t have to fumble through
+                        feature lists to find a solution. We&apos;ve organized
                         everything in a way that enables you to make quick, well
                         informed choices.
                     </p>
@@ -66,7 +66,7 @@ export default function Home({ latestTools }) {
                         or use case
                     </h2>
                     <p className="md:ml-2 mb-4">
-                        We'll show you who, what and why to help you
+                        We&apos;ll show you who, what and why to help you
                         determine which tools belong in your tool pouch.
                         Leverage our side-by-side comparisons to narrow your
                         search. To get started browse our

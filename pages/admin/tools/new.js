@@ -86,9 +86,8 @@ export default function NewToolPage({
                 method: "POST",
                 headers: { "Content-Type": "application/json" },
                 body: JSON.stringify({
-                    toolName: formData.Name, // Assuming Name is in formData
-                    model: formData.model, // Assuming model is in formData from research
-                    toolData: formData, // Pass all form data
+                    toolName: formData.Name,
+                    toolData: formData
                 }),
             });
 

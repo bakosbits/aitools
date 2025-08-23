@@ -82,10 +82,9 @@ export default function EditToolPage({
                 method: "POST",
                 headers: { "Content-Type": "application/json" },
                 body: JSON.stringify({
-                    toolId: tool.id, // Pass tool ID for update
-                    toolName: formData.Name, // Assuming Name is in formData
-                    model: formData.model, // Assuming model is in formData from research
-                    toolData: formData, // Pass all form data
+                    toolId: tool.id,
+                    toolName: formData.Name,
+                    toolData: formData
                 }),
             });
 
@@ -93,9 +92,9 @@ export default function EditToolPage({
                 const err = await response.json();
                 throw new Error(err.message || "Failed to update tool.");
             }
-
             // Redirect to admin tools page after successful update
             window.location.href = "/admin/tools";
+
         } catch (error) {
             setSubmitError(error.message);
         } finally {
@@ -137,6 +136,7 @@ export default function EditToolPage({
             <ToolForm
                 tool={formData}
                 categories={categories}
+                pricingOptions={pricingOptions}
                 handleChange={handleChange}
                 handleSubmit={handleSubmit}
                 error={submitError || error}

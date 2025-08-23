@@ -17,7 +17,7 @@ export default function Admin() {
     }, []);
 
     return (
-        <div className="flex flex-col w-full items-center justify-center h-full py-12">
+        <div className="hidden md:flex flex-col w-full items-center justify-center h-full py-12">
             <h1 className="text-3xl font-bold mb-8 text-center">
                 Admin Dashboard
             </h1>

@@ -55,8 +55,8 @@ export default function CategoriesPage({ categories }) {
                         map well into your profession and/or use cases. Many AI
                         tools have similar features but implementation can help
                         or hinder your productivity. Some are better suited for
-                        your use cases than others. We've done the heavy
-                        lifting for you. Once you've selected a category
+                        your use cases than others. We&apos;ve done the heavy
+                        lifting for you. Once you&apos;ve selected a category
                         you can explore individual tools in detail and/or
                         compare two side-by-side to compare and contrast. If you
                         have use cases in mind, check out our
