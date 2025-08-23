@@ -78,13 +78,15 @@ export default function EditToolPage({
         setSubmitError(null);
 
         try {
+            // Remove 'id' from toolData before sending
+            const { id, ...toolDataWithoutId } = formData;
             const response = await fetch("/api/admin/save-tool", {
                 method: "POST",
                 headers: { "Content-Type": "application/json" },
                 body: JSON.stringify({
                     toolId: tool.id,
                     toolName: formData.Name,
-                    toolData: formData
+                    toolData: toolDataWithoutId
                 }),
             });
 
