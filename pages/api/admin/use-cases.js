@@ -1,4 +1,4 @@
-import { createMany } from "@/lib/airtable/use-cases";
+import { createManyUseCases } from "@/lib/airtable";
 
 export default async function handler(req, res) {
     if (req.method !== "POST") {

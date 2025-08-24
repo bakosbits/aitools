@@ -1,6 +1,6 @@
 import Link from "next/link";
 import MetaProps from "@/components/MetaProps";
-import { getAllCategories } from "@/lib/airtable/categories";
+import { getAllCategories } from "@/lib/airtable";
 
 export async function getStaticProps() {
     try {
@@ -60,10 +60,13 @@ export default function CategoriesPage({ categories }) {
                         you can explore individual tools in detail and/or
                         compare two side-by-side to compare and contrast. If you
                         have use cases in mind, check out our
-                        <Link href="/use-cases" className="text-gray-100 hover:underline">
-                            {' '}use case wizard.
+                        <Link
+                            href="/use-cases"
+                            className="text-gray-100 hover:underline"
+                        >
+                            {" "}
+                            use case wizard.
                         </Link>
-
                     </p>
                 </div>
 

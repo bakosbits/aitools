@@ -1,6 +1,6 @@
 import { useState } from "react";
 import Link from "next/link";
-import { getAllCategories } from "@/lib/airtable/categories";
+import { getAllCategories } from "@/lib/airtable";
 import { PRICING_OPTIONS } from "@/lib/constants";
 import ToolForm from "@/components/ToolForm";
 import AiResearchAssistant from "@/components/AiResearchAssistant";
@@ -18,11 +18,7 @@ export async function getServerSideProps({ req, res }) {
     };
 }
 
-export default function NewToolPage({
-    categories,
-    pricingOptions,
-    error,
-}) {
+export default function NewToolPage({ categories, pricingOptions, error }) {
     const [formData, setFormData] = useState({});
     const [submitError, setSubmitError] = useState(null);
     const [isSubmitting, setIsSubmitting] = useState(false);
@@ -30,10 +26,7 @@ export default function NewToolPage({
     const handleChange = (e) => {
         const { name, value, type, checked } = e.target;
         if (type === "checkbox") {
-            if (
-                name === "Categories" ||
-                name === "Pricing"
-            ) {
+            if (name === "Categories" || name === "Pricing") {
                 const currentValues = formData[name] || [];
                 if (checked) {
                     setFormData((prev) => ({
@@ -58,11 +51,12 @@ export default function NewToolPage({
         let categoryIds = [];
         if (Array.isArray(researchedData.Categories)) {
             categoryIds = researchedData.Categories.map((cat) => {
-                if (typeof cat === "object" && cat !== null && cat.id) return cat.id;
+                if (typeof cat === "object" && cat !== null && cat.id)
+                    return cat.id;
                 if (typeof cat === "string") {
                     // Try to match by ID, Name, or Slug
                     const match = categories.find(
-                        (c) => c.id === cat || c.Name === cat || c.Slug === cat
+                        (c) => c.id === cat || c.Name === cat || c.Slug === cat,
                     );
                     return match ? match.id : null;
                 }
@@ -87,7 +81,7 @@ export default function NewToolPage({
                 headers: { "Content-Type": "application/json" },
                 body: JSON.stringify({
                     toolName: formData.Name,
-                    toolData: formData
+                    toolData: formData,
                 }),
             });
 
@@ -109,7 +103,9 @@ export default function NewToolPage({
     const normalizedFormData = {
         ...formData,
         Categories: Array.isArray(formData.Categories)
-            ? formData.Categories.map((cat) => (typeof cat === "object" && cat !== null ? cat.id : cat))
+            ? formData.Categories.map((cat) =>
+                  typeof cat === "object" && cat !== null ? cat.id : cat,
+              )
             : [],
     };
 

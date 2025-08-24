@@ -26,8 +26,8 @@ export default function UpdateUseCaseTags() {
                     Bulk Update Use Case Tags
                 </h1>
                 <p>
-                    This process uses AI analyze each tools why, description
-                    and details. It will iterate over every tool, analyze its
+                    This process uses AI analyze each tools why, description and
+                    details. It will iterate over every tool, analyze its
                     purpose, and generate 1-2 single sentence use cases to map
                     back to Use Case Pillars
                 </p>

@@ -10,7 +10,9 @@ export default function UseCasesModal({ tool, onClose }) {
             setIsLoading(true);
             setError(null);
             try {
-                const response = await fetch(`/api/tool/${tool.Slug}/use-cases`);
+                const response = await fetch(
+                    `/api/tool/${tool.Slug}/use-cases`,
+                );
                 if (!response.ok) {
                     throw new Error(`HTTP error! status: ${response.status}`);
                 }
@@ -22,7 +24,7 @@ export default function UseCasesModal({ tool, onClose }) {
             } finally {
                 setIsLoading(false);
             }
-        }
+        };
 
         fetchData();
     }, [tool.Slug]);
@@ -34,7 +36,10 @@ export default function UseCasesModal({ tool, onClose }) {
         >
             <div
                 className="bg-cardDark p-4 rounded-md shadow-md max-w-2xl w-full relative max-h-[90vh] overflow-y-auto"
-                style={{ marginTop: 'env(safe-area-inset-top, 3.5rem)', marginBottom: 'env(safe-area-inset-bottom, 1rem)' }}
+                style={{
+                    marginTop: "env(safe-area-inset-top, 3.5rem)",
+                    marginBottom: "env(safe-area-inset-bottom, 1rem)",
+                }}
                 onClick={(e) => e.stopPropagation()}
             >
                 <button
@@ -42,11 +47,10 @@ export default function UseCasesModal({ tool, onClose }) {
                     className="align-right bg-teal-600 text-gray-100 hover:bg-teal-700 rounded-md px-2 py-1 font-semibold mb-4"
                 >
                     Close
-                </button> 
+                </button>
 
                 <h3 className="text-xl font-bold mb-4">
                     Use Cases for {tool.Name}
-                   
                 </h3>
                 {isLoading && <p>Loading use cases...</p>}
                 {error && <p className="text-red-400">{error}</p>}
@@ -57,9 +61,10 @@ export default function UseCasesModal({ tool, onClose }) {
                         ))}
                     </ul>
                 ) : (
-                    !isLoading && !error && <p>No use cases found for this tool.</p>
+                    !isLoading &&
+                    !error && <p>No use cases found for this tool.</p>
                 )}
             </div>
         </div>
-    )
-}    
+    );
+}

@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { getAllArticles, deleteArticle } from "@/lib/airtable/articles";
+import { getAllArticles, deleteArticle } from "@/lib/airtable";
 import { parseFormBody } from "@/lib/form-helpers";
 
 export async function getServerSideProps({ req, res }) {

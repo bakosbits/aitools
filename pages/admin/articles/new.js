@@ -1,6 +1,6 @@
 import { useState } from "react";
 import Link from "next/link";
-import { createArticle } from "@/lib/airtable/articles";
+import { createArticle } from "@/lib/airtable";
 import { parseFormBody } from "@/lib/form-helpers";
 import { AI_MODELS, ARTICLE_TYPES } from "@/lib/constants";
 

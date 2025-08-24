@@ -1,6 +1,6 @@
 import { useRouter } from "next/router";
 import { useEffect, useState, useMemo } from "react";
-import { getAllTools } from "@/lib/airtable/tools";
+import { getToolSummaries } from "@/lib/airtable";
 import ToolCard from "@/components/ToolCard";
 import CompareBar from "@/components/CompareBar";
 import SearchBar from "@/components/SearchBar";
@@ -11,12 +11,12 @@ const ITEMS_PER_PAGE = 24;
 
 export async function getStaticProps() {
     try {
-        const tools = await getAllTools();
+        const tools = await getToolSummaries();
         return {
             props: {
                 tools,
             },
-            revalidate: 1800, // Revalidate every 30 minutes (in seconds)
+            revalidate: 900, // Revalidate every 15 minutes (in seconds)
         };
     } catch (error) {
         console.error(

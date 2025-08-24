@@ -1,4 +1,4 @@
-import { getCautionsByTool } from "@/lib/airtable/cautions";
+import { getCautionsByTool } from "@/lib/airtable";
 
 export default async function handler(req, res) {
     if (req.method === "GET") {

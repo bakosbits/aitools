@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { useRouter } from "next/router";
 import Link from "next/link";
-import { getCategoryById, updateCategory } from "@/lib/airtable/categories";
+import { getCategoryById, updateCategory } from "@/lib/airtable";
 import { parseFormBody } from "@/lib/form-helpers";
 
 export async function getServerSideProps({ req, res, params }) {

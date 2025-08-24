@@ -70,11 +70,12 @@ export default function ToolCard({ tool, handleCompare, compareList = [] }) {
                     </p>
                     <h2 className="text-xl font-bold mb-1">Why it matters:</h2>
                     <p className="mx-2 mb-6">
-                        {tool.Why?.length > 100 ? tool.Why.slice(0, 100) + "..." : tool.Why}
+                        {tool.Why?.length > 100
+                            ? tool.Why.slice(0, 100) + "..."
+                            : tool.Why}
                     </p>
 
                     <div className="mt-auto w-full">
-
                         <div className="flex justify-between items-center w-full">
                             <div className="flex flex-col">
                                 <button
@@ -98,12 +99,13 @@ export default function ToolCard({ tool, handleCompare, compareList = [] }) {
                                         handleCompare(tool);
                                     }}
                                     className={`px-3 py-1 rounded-md text-sm font-semibold transition-all duration-300
-                                        ${isSelected
-                                            ? 'bg-blue-600 text-gray-100'
-                                            : 'bg-teal-600 text-gray-100 hover:bg-teal-700'
+                                        ${
+                                            isSelected
+                                                ? "bg-blue-600 text-gray-100"
+                                                : "bg-teal-600 text-gray-100 hover:bg-teal-700"
                                         }`}
                                 >
-                                    {isSelected ? 'In Compare Bar' : 'Compare'}
+                                    {isSelected ? "In Compare Bar" : "Compare"}
                                 </button>
                             </div>
                         </div>
@@ -112,13 +114,22 @@ export default function ToolCard({ tool, handleCompare, compareList = [] }) {
             </Link>
 
             {showFeaturesModal && (
-                <FeaturesModal tool={tool} onClose={() => setShowFeaturesModal(false)} />
+                <FeaturesModal
+                    tool={tool}
+                    onClose={() => setShowFeaturesModal(false)}
+                />
             )}
             {showCautionsModal && (
-                <CautionsModal tool={tool} onClose={() => setShowCautionsModal(false)} />
+                <CautionsModal
+                    tool={tool}
+                    onClose={() => setShowCautionsModal(false)}
+                />
             )}
             {showUseCasesModal && (
-                <UseCasesModal tool={tool} onClose={() => setShowUseCasesModal(false)} />
+                <UseCasesModal
+                    tool={tool}
+                    onClose={() => setShowUseCasesModal(false)}
+                />
             )}
         </>
     );

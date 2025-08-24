@@ -1,4 +1,4 @@
-import { generateArticleContent } from "@/lib/modelss/generate-article";
+import { generateArticleContent } from "@/lib/models/generate-article";
 import { ALLOWED_MODELS, ALLOWED_ARTICLE_TYPES } from "@/lib/constants";
 
 export default async function handler(req, res) {

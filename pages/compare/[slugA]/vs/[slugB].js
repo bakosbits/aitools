@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { getToolBySlug } from "@/lib/airtable/tools";
+import { getToolBySlug } from "@/lib/airtable";
 import DetailToolCard from "@/components/DetailToolCard";
 import UseCaseCompareModal from "@/components/UseCaseCompareModal";
 import MetaProps from "@/components/MetaProps";
@@ -44,7 +44,6 @@ export async function getStaticProps({ params }) {
 export default function ComparePage({ toolA, toolB }) {
     const [showModal, setShowModal] = useState(false);
 
-
     if (
         !toolA ||
         !toolB ||
@@ -71,9 +70,10 @@ export default function ComparePage({ toolA, toolB }) {
             <MetaProps
                 title={`Compare ${toolA.Name} Against ${toolB.Name}`}
                 description={`Compare ${toolA.Name} and ${toolB.Name} across features, pricing, and ideal use cases.`}
-                url={`${process.env.NEXT_PUBLIC_BASE_URL ||
+                url={`${
+                    process.env.NEXT_PUBLIC_BASE_URL ||
                     "https://aitoolpouch.com"
-                    }/compare/${toolA.Slug}/vs/${toolB.Slug}`}
+                }/compare/${toolA.Slug}/vs/${toolB.Slug}`}
             />
             <div className="max-w-7xl mx-auto">
                 <div className="h-full flex items-center justify-between mb-6">

@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import { useRouter } from "next/router";
-import { Search } from 'lucide-react'
+import { Search } from "lucide-react";
 
 /**
  * Renders a search input field and a submit button.

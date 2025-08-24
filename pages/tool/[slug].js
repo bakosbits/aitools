@@ -1,6 +1,5 @@
-import { getAllToolSlugs, getToolBySlug } from "@/lib/airtable/tools";
-import { getCategoriesByTool } from "@/lib/airtable/categories";
-
+import { getAllToolSlugs, getToolBySlug } from "@/lib/airtable";
+import { getCategoriesByTool } from "@/lib/airtable";
 import React from "react";
 import Link from "next/link";
 import DetailToolCard from "@/components/DetailToolCard";
@@ -43,7 +42,7 @@ export async function getStaticProps({ params }) {
     }
 }
 
-export default function ToolPage({ tool, categories}) {
+export default function ToolPage({ tool, categories }) {
     return (
         <>
             <MetaProps

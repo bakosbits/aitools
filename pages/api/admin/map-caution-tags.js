@@ -1,8 +1,11 @@
 import { createSSEStream } from "@/lib/createSSEStream";
-import { getToolSummaries, updateCautionTags } from "@/lib/airtable/tools";
-import { getCautionsByTool } from "@/lib/airtable/cautions";
-import { mapCautionTags } from "@/lib/modelss/providers";
-import { getAllCautionTags } from "@/lib/airtable/caution-tags";
+import {
+    getToolSummaries,
+    updateCautionTags,
+    getCautionsByTool,
+    getAllCautionTags,
+} from "@/lib/airtable";
+import { mapCautionTags } from "@/lib/models/providers";
 
 export default async function handler(req, res) {
     if (req.method !== "GET") {
@@ -13,7 +16,7 @@ export default async function handler(req, res) {
     const { model } = req.query;
     const { sendStatus, sendError, close } = createSSEStream(res);
     const [tools, availableTags] = await Promise.all([
-        getToolSummaries(),
+        getToolSummaries(), // Reverted to getToolSummaries()
         getAllCautionTags(),
     ]);
     const availableTagNames = availableTags.map((tag) => tag.Name);
@@ -39,9 +42,7 @@ export default async function handler(req, res) {
 
                 if (validTags.length > 0) {
                     await updateCautionTags(tool.id, validTags);
-                    sendStatus(
-                        `Updated tags for tool: ${tool.Name}`,
-                    );
+                    sendStatus(`Updated tags for tool: ${tool.Name}`);
                 }
             }
         } catch (error) {

@@ -21,9 +21,7 @@ import UseCasesModal from "@/components/UseCasesModal";
  * @param {string} props.tool.Slug - The URL slug for the tool's affiliate link.
  */
 
-
 export default function DetailToolCard({ tool }) {
-
     const [showUseCasesModal, setShowUseCasesModal] = useState(false);
 
     const featuresList = Array.isArray(tool.Features) ? tool.Features : [];
@@ -106,7 +104,10 @@ export default function DetailToolCard({ tool }) {
                 </button>
             </div>
             {showUseCasesModal && (
-                <UseCasesModal tool={tool} onClose={() => setShowUseCasesModal(false)} />
+                <UseCasesModal
+                    tool={tool}
+                    onClose={() => setShowUseCasesModal(false)}
+                />
             )}
         </div>
     );

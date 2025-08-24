@@ -12,9 +12,7 @@ export default function ToolForm({
 }) {
     // Map tool.Categories (IDs) to a Set for fast lookup
     const categoryIdSet = new Set(
-        Array.isArray(tool.Categories)
-            ? tool.Categories.map(String)
-            : []
+        Array.isArray(tool.Categories) ? tool.Categories.map(String) : [],
     );
     const isNew = !tool?.id;
     const [submitError, setSubmitError] = useState(null);
@@ -27,7 +25,6 @@ export default function ToolForm({
             .filter((item) => item !== "");
         handleChange({ target: { name, value: newArray } });
     };
-
 
     return (
         <form
@@ -272,7 +269,7 @@ export default function ToolForm({
                                 />
                                 <label
                                     htmlFor={`category-${cat.id}`}
-                                    className={`ml-2 text-sm text-gray-300${isChecked ? '' : ''}`}
+                                    className={`ml-2 text-sm text-gray-300${isChecked ? "" : ""}`}
                                 >
                                     {cat.Name}
                                 </label>
@@ -316,8 +313,8 @@ export default function ToolForm({
                     {isSubmitting
                         ? "Saving..."
                         : isNew
-                        ? "Create Tool"
-                        : "Update Tool"}
+                          ? "Create Tool"
+                          : "Update Tool"}
                 </button>
             </div>
         </form>

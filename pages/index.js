@@ -1,4 +1,4 @@
-import { getNewestTools } from "@/lib/airtable/tools";
+import { getNewestTools } from "@/lib/airtable";
 import Link from "next/link";
 import SearchBar from "@/components/SearchBar";
 import MiniToolCard from "@/components/MiniToolCard";
@@ -51,9 +51,7 @@ export default function Home({ latestTools }) {
                     <div className="block md:hidden mb-8 mt-4">
                         <SearchBar />
                     </div>
-                    <h1 className="text-3xl font-bold mb-2 ">
-                        Welcome
-                    </h1>
+                    <h1 className="text-3xl font-bold mb-2 ">Welcome</h1>
                     <p className="md:ml-2 mb-4">
                         Here you&apos;ll find tools grouped by profession and/or
                         use case. Why? So you don&apos;t have to fumble through

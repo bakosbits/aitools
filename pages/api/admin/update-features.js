@@ -1,8 +1,10 @@
-import { getToolSummaries } from "@/lib/airtable/tools";
-import { createMany as createFeatures } from "@/lib/airtable/features";
-import { generateFeatures } from "@/lib/modelss/providers";
+import {
+    getToolSummaries,
+    createManyFeatures,
+    deleteAllFeatures,
+} from "@/lib/airtable";
+import { generateFeatures } from "@/lib/models/providers";
 import { createSSEStream } from "@/lib/createSSEStream";
-import { deleteAllFeatures } from "@/lib/airtable/bulk-delete";
 
 export default async function handler(req, res) {
     if (req.method !== "GET") {
@@ -14,7 +16,7 @@ export default async function handler(req, res) {
     const { sendStatus, sendError, close } = createSSEStream(res);
     const clearedFeatures = await deleteAllFeatures();
 
-    if (clearedFeatures) {  
+    if (clearedFeatures) {
         const tools = await getToolSummaries();
 
         for (const tool of tools) {
@@ -26,14 +28,19 @@ export default async function handler(req, res) {
                     : generatedFeatures;
 
                 if (Array.isArray(featuresArray) && featuresArray.length > 0) {
-                    await createFeatures(featuresArray.map(f => ({ Feature: f, Tool: tool.Slug })));
+                    await createManyFeatures(
+                        featuresArray.map((f) => ({
+                            Feature: f,
+                            Tool: tool.Slug,
+                        })),
+                    );
 
                     sendStatus(`Added features for ${tool.Name}`);
                 }
-
-
             } catch (error) {
-                sendError(`Error processing tool ${tool.Name}: ${error.message}`);
+                sendError(
+                    `Error processing tool ${tool.Name}: ${error.message}`,
+                );
                 close();
             }
         }
@@ -44,5 +51,3 @@ export default async function handler(req, res) {
     sendStatus("Bulk update for features completed.");
     close();
 }
-
-

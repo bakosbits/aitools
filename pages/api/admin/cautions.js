@@ -1,4 +1,4 @@
-import { cautionTable } from "@/lib/airtable/base";
+import { createManyCautions } from "@/lib/airtable";
 
 export default async function handler(req, res) {
     if (req.method !== "POST") {
@@ -16,8 +16,10 @@ export default async function handler(req, res) {
                 Tool: c.Tool,
             },
         }));
-        const created = await cautionTable.create(recordsToCreate);
-        res.status(201).json({ created: created.map((r) => ({ id: r.id, ...r.fields })) });
+        const created = await createManyCautions(recordsToCreate);
+        res.status(201).json({
+            created: created.map((r) => ({ id: r.id, ...r.fields })),
+        });
     } catch (error) {
         console.error("[cautions API] Error:", error);
         res.status(500).json({ message: "Failed to create cautions." });

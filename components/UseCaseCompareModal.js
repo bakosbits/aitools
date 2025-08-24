@@ -1,4 +1,3 @@
-
 import { useState, useEffect } from "react";
 
 export default function UseCaseCompareModal({ toolA, toolB, onClose }) {
@@ -32,11 +31,10 @@ export default function UseCaseCompareModal({ toolA, toolB, onClose }) {
             } finally {
                 setIsLoading(false);
             }
-        }
+        };
 
         fetchData();
     }, [toolA.Slug, toolB.Slug]);
-
 
     return (
         <div
@@ -45,7 +43,10 @@ export default function UseCaseCompareModal({ toolA, toolB, onClose }) {
         >
             <div
                 className="bg-cardDark p-4 rounded-md shadow-md max-w-4xl w-full relative max-h-[90vh] overflow-y-auto"
-                style={{ marginTop: 'env(safe-area-inset-top, 3.5rem)', marginBottom: 'env(safe-area-inset-bottom, 1rem)' }}
+                style={{
+                    marginTop: "env(safe-area-inset-top, 3.5rem)",
+                    marginBottom: "env(safe-area-inset-bottom, 1rem)",
+                }}
                 onClick={(e) => e.stopPropagation()}
             >
                 <button
@@ -59,7 +60,9 @@ export default function UseCaseCompareModal({ toolA, toolB, onClose }) {
                 </h3>
                 <div className="grid grid-cols-2 gap-4">
                     <div>
-                        <h4 className="text-lg font-semibold mb-2">{toolA.Name}</h4>
+                        <h4 className="text-lg font-semibold mb-2">
+                            {toolA.Name}
+                        </h4>
                         {isLoading && <p>Loading...</p>}
                         {error && <p className="text-red-400">{error}</p>}
                         {dataA && dataA.length > 0 ? (
@@ -73,7 +76,9 @@ export default function UseCaseCompareModal({ toolA, toolB, onClose }) {
                         )}
                     </div>
                     <div>
-                        <h4 className="text-lg font-semibold mb-2">{toolB.Name}</h4>
+                        <h4 className="text-lg font-semibold mb-2">
+                            {toolB.Name}
+                        </h4>
                         {isLoading && <p>Loading...</p>}
                         {error && <p className="text-red-400">{error}</p>}
                         {dataB && dataB.length > 0 ? (

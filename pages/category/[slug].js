@@ -1,7 +1,7 @@
 import { useState, useEffect, useCallback, useMemo } from "react";
 import { useRouter } from "next/router";
-import { getCategorySlugs } from "@/lib/airtable/categories";
-import { getToolsByCategory } from "@/lib/airtable/tools";
+import { getCategorySlugs } from "@/lib/airtable";
+import { getToolsByCategory } from "@/lib/airtable";
 
 import ToolCompareCard from "@/components/ToolCompareCard";
 import MetaProps from "@/components/MetaProps";
@@ -134,7 +134,7 @@ export default function CategoryPage({ tools, category, slug }) {
                             <li key={tool.id}>
                                 <ToolCompareCard
                                     tool={tool}
-                                    handleCompare={toggleCompare}                                    
+                                    handleCompare={toggleCompare}
                                     compareList={compareList}
                                 />
                             </li>

@@ -1,8 +1,10 @@
-import { getToolSummaries } from "@/lib/airtable/tools";
-import { createUseCase } from "@/lib/airtable/use-cases";
-import { generateUseCases } from "@/lib/modelss/providers";
+import {
+    getToolSummaries,
+    createManyUseCases,
+    deleteAllUseCases,
+} from "@/lib/airtable";
+import { generateUseCases } from "@/lib/models/providers";
 import { createSSEStream } from "@/lib/createSSEStream";
-import { deleteAllUseCases } from "@/lib/airtable/bulk-delete";
 
 export default async function handler(req, res) {
     if (req.method !== "GET") {
@@ -26,7 +28,10 @@ export default async function handler(req, res) {
                 ) {
                     for (const useCaseText of generatedUseCases.UseCases) {
                         if (useCaseText && useCaseText.trim()) {
-                            await createUseCase({ Tool: tool.Slug, UseCase: useCaseText });
+                            await createManyUseCases({
+                                Tool: tool.Slug,
+                                UseCase: useCaseText,
+                            });
                             sendStatus(`Added use case for ${tool.Name}`);
                         }
                     }
@@ -35,7 +40,6 @@ export default async function handler(req, res) {
                 sendError(`An error occurred during update: ${error.message}`);
             }
         }
-        
     } else {
         sendStatus("Use cases were not cleared.");
         close();

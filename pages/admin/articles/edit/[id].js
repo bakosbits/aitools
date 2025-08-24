@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import { useRouter } from "next/router";
 import Link from "next/link";
-import { getArticleById, updateArticle } from "@/lib/airtable/articles";
+import { getArticleById, updateArticle } from "@/lib/airtable";
 import { parseFormBody } from "@/lib/form-helpers";
 import { AI_MODELS } from "@/lib/constants";
 

@@ -1,7 +1,9 @@
-import { generateToolResearch } from "@/lib/modelss/providers";
-import { getAllCategories } from "@/lib/airtable/categories";
-import { getAllUseCaseTags } from "@/lib/airtable/use-case-tags";
-import { getAllCautionTags } from "@/lib/airtable/caution-tags";
+import { generateToolResearch } from "@/lib/models/providers";
+import {
+    getAllCategories,
+    getAllUseCaseTags,
+    getAllCautionTags,
+} from "@/lib/airtable";
 
 export default async function handler(req, res) {
     if (req.method !== "POST") {
@@ -28,30 +30,51 @@ export default async function handler(req, res) {
     } catch (error) {
         console.error("Error fetching data from Airtable:", error);
         return res.status(500).json({
-            message: "Failed to fetch required data from the database. Please check the Airtable connection.",
+            message:
+                "Failed to fetch required data from the database. Please check the Airtable connection.",
         });
     }
 
     if (!categories || categories.length === 0) {
-        return res.status(500).json({ message: "Could not find any tool categories in the database. Please add categories before researching." });
+        return res
+            .status(500)
+            .json({
+                message:
+                    "Could not find any tool categories in the database. Please add categories before researching.",
+            });
     }
     if (!useCaseTags || useCaseTags.length === 0) {
-        return res.status(500).json({ message: "Could not find any tool tags in the database. Please add tags before researching." });
+        return res
+            .status(500)
+            .json({
+                message:
+                    "Could not find any tool tags in the database. Please add tags before researching.",
+            });
     }
     if (!cautionTags || cautionTags.length === 0) {
-        return res.status(500).json({ message: "Could not find any caution tags in the database. Please add caution tags before researching." });
+        return res
+            .status(500)
+            .json({
+                message:
+                    "Could not find any caution tags in the database. Please add caution tags before researching.",
+            });
     }
 
     try {
         // 1. Run all research/generation and mapping first (NO DB SAVES YET)
-        const researchResult = await generateToolResearch(toolName, model, categories, useCaseTags, cautionTags);
-
+        const researchResult = await generateToolResearch(
+            toolName,
+            model,
+            categories,
+            useCaseTags,
+            cautionTags,
+        );
 
         // 2. Now save the tool and related data to Airtable
-        // Map category names to their IDs         
+        // Map category names to their IDs
         const categoryIds = (researchResult.Categories || [])
-            .map(catName => {
-                const found = categories.find(cat => cat.Name === catName);
+            .map((catName) => {
+                const found = categories.find((cat) => cat.Name === catName);
                 return found ? found.id : null;
             })
             .filter(Boolean);
@@ -67,11 +90,15 @@ export default async function handler(req, res) {
         }
         res.status(200).json(response);
     } catch (error) {
-        console.error("Full error from AI provider:", JSON.stringify(error, null, 2));
+        console.error(
+            "Full error from AI provider:",
+            JSON.stringify(error, null, 2),
+        );
         const errorMessage = error.message || "An unknown error occurred";
         if (errorMessage.includes("API key not valid")) {
             return res.status(401).json({
-                message: "API key is not valid or missing. Please check your environment variables.",
+                message:
+                    "API key is not valid or missing. Please check your environment variables.",
             });
         }
         return res.status(500).json({

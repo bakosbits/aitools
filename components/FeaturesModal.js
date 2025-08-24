@@ -22,7 +22,7 @@ export default function FeaturesModal({ tool, onClose }) {
             } finally {
                 setIsLoading(false);
             }
-        }
+        };
 
         fetchData();
     }, [tool.Slug]);
@@ -34,7 +34,10 @@ export default function FeaturesModal({ tool, onClose }) {
         >
             <div
                 className="bg-cardDark p-4 rounded-md shadow-md max-w-2xl w-full relative max-h-[90vh] overflow-y-auto"
-                style={{ marginTop: 'env(safe-area-inset-top, 3.5rem)', marginBottom: 'env(safe-area-inset-bottom, 1rem)' }}
+                style={{
+                    marginTop: "env(safe-area-inset-top, 3.5rem)",
+                    marginBottom: "env(safe-area-inset-bottom, 1rem)",
+                }}
                 onClick={(e) => e.stopPropagation()}
             >
                 <button
@@ -42,7 +45,7 @@ export default function FeaturesModal({ tool, onClose }) {
                     className="bg-teal-600 text-gray-100 hover:bg-teal-700 rounded-md px-2 py-1 font-semibold mb-4"
                 >
                     Close
-                </button> 
+                </button>
                 <h3 className="text-xl font-bold mb-4">
                     Features for {tool.Name}
                 </h3>
@@ -55,7 +58,8 @@ export default function FeaturesModal({ tool, onClose }) {
                         ))}
                     </ul>
                 ) : (
-                    !isLoading && !error && <p>No features found for this tool.</p>
+                    !isLoading &&
+                    !error && <p>No features found for this tool.</p>
                 )}
             </div>
         </div>

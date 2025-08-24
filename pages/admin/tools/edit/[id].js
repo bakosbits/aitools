@@ -1,7 +1,6 @@
 import { useState } from "react";
 import Link from "next/link";
-import { getToolById } from "@/lib/airtable/tools";
-import { getAllCategories } from "@/lib/airtable/categories";
+import { getToolById, getAllCategories } from "@/lib/airtable";
 import { PRICING_OPTIONS } from "@/lib/constants";
 import ToolForm from "@/components/ToolForm";
 import AiResearchAssistant from "@/components/AiResearchAssistant";
@@ -16,7 +15,9 @@ export async function getServerSideProps({ req, res, params }) {
     const toolWithCategoryIds = {
         ...tool,
         Categories: Array.isArray(tool.Categories)
-            ? tool.Categories.map((cat) => (typeof cat === "object" && cat !== null ? cat.id : cat))
+            ? tool.Categories.map((cat) =>
+                  typeof cat === "object" && cat !== null ? cat.id : cat,
+              )
             : [],
     };
 
@@ -48,10 +49,7 @@ export default function EditToolPage({
     const handleChange = (e) => {
         const { name, value, type, checked } = e.target;
         if (type === "checkbox") {
-            if (
-                name === "Categories" ||
-                name === "Pricing"
-            ) {
+            if (name === "Categories" || name === "Pricing") {
                 const currentValues = formData[name] || [];
                 if (checked) {
                     setFormData((prev) => ({
@@ -86,7 +84,7 @@ export default function EditToolPage({
                 body: JSON.stringify({
                     toolId: tool.id,
                     toolName: formData.Name,
-                    toolData: toolDataWithoutId
+                    toolData: toolDataWithoutId,
                 }),
             });
 
@@ -96,7 +94,6 @@ export default function EditToolPage({
             }
             // Redirect to admin tools page after successful update
             window.location.href = "/admin/tools";
-
         } catch (error) {
             setSubmitError(error.message);
         } finally {
@@ -122,7 +119,12 @@ export default function EditToolPage({
                     let categoryIds = [];
                     if (Array.isArray(researchedData.Categories)) {
                         categoryIds = researchedData.Categories.map((cat) => {
-                            if (typeof cat === "object" && cat !== null && cat.id) return cat.id;
+                            if (
+                                typeof cat === "object" &&
+                                cat !== null &&
+                                cat.id
+                            )
+                                return cat.id;
                             if (typeof cat === "string") return cat;
                             return null;
                         }).filter(Boolean);
@@ -147,4 +149,3 @@ export default function EditToolPage({
         </div>
     );
 }
-

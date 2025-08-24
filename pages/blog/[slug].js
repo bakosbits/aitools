@@ -1,4 +1,4 @@
-import { getArticleBySlug } from "@/lib/airtable/articles";
+import { getArticleBySlug } from "@/lib/airtable";
 import { MarkdownImage, MarkdownLink } from "@/components/MarkdownComponents";
 import ReactMarkdown from "react-markdown";
 import MetaProps from "@/components/MetaProps";

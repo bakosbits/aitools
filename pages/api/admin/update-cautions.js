@@ -1,8 +1,10 @@
-import { getToolSummaries } from "@/lib/airtable/tools";
-import { createMany as createCautions } from "@/lib/airtable/cautions";
-import { generateCautions } from "@/lib/modelss/providers";
+import {
+    createManyCautions,
+    getAllTools,
+    deleteAllCautions,
+} from "@/lib/airtable";
+import { generateCautions } from "@/lib/models/providers";
 import { createSSEStream } from "@/lib/createSSEStream";
-import { deleteAllCautions } from "@/lib/airtable/bulk-delete";
 
 export default async function handler(req, res) {
     if (req.method !== "GET") {
@@ -15,7 +17,7 @@ export default async function handler(req, res) {
     const clearedCautions = await deleteAllCautions();
 
     if (clearedCautions) {
-        const tools = await getToolSummaries();
+        const tools = await getAllTools(); // Use getAllTools from airtable.js
         for (const tool of tools) {
             try {
                 const generatedCautions = await generateCautions(tool, model);
@@ -25,14 +27,19 @@ export default async function handler(req, res) {
                     : generatedCautions;
 
                 if (Array.isArray(cautionsArray) && cautionsArray.length > 0) {
-                    await createCautions(cautionsArray.map(c => ({ Caution: c, Tool: tool.Slug })));
+                    await createManyCautions(
+                        cautionsArray.map((c) => ({
+                            Caution: c,
+                            Tool: tool.Slug,
+                        })),
+                    );
 
                     sendStatus(`Added cautions for ${tool.Name}`);
                 }
-
-
             } catch (error) {
-                sendError(`Error processing tool ${tool.Name}: ${error.message}`);
+                sendError(
+                    `Error processing tool ${tool.Name}: ${error.message}`,
+                );
                 close();
             }
         }
@@ -43,5 +50,3 @@ export default async function handler(req, res) {
     sendStatus("Bulk update for features completed.");
     close();
 }
-
-

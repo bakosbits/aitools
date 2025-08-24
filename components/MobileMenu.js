@@ -104,7 +104,7 @@ export default function MobileMenu() {
                             >
                                 Quick Tools
                             </Link>
-                        </li>                        
+                        </li>
                         <li>
                             <Link
                                 href="/blog"

@@ -1,7 +1,7 @@
 import Link from "next/link";
 import { useRouter } from "next/router";
 import { useMemo, useEffect } from "react";
-import { getToolSummaries, deleteTool } from "@/lib/airtable/tools";
+import { getAllTools, deleteTool } from "@/lib/airtable";
 import { parseFormBody } from "@/lib/form-helpers";
 import SearchBar from "@/components/SearchBar";
 import Pagination from "@/components/Pagination";

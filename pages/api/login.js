@@ -14,7 +14,6 @@ export default async function handler(req, res) {
     const ADMIN_USERNAME = process.env.ADMIN_USERNAME;
     const ADMIN_PASSWORD = process.env.ADMIN_PASSWORD;
 
-
     if (!ADMIN_USERNAME || !ADMIN_PASSWORD) {
         return res.status(500).json({ message: "Server configuration error." });
     }

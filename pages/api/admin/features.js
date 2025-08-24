@@ -1,4 +1,4 @@
-import { featuresTable } from "@/lib/airtable/base";
+import { createManyFeatures } from "@/lib/airtable";
 
 export default async function handler(req, res) {
     if (req.method !== "POST") {
@@ -16,8 +16,10 @@ export default async function handler(req, res) {
                 Tool: f.Tool,
             },
         }));
-        const created = await featuresTable.create(recordsToCreate);
-        res.status(201).json({ created: created.map((r) => ({ id: r.id, ...r.fields })) });
+        const created = await createManyFeatures(recordsToCreate);
+        res.status(201).json({
+            created: created.map((r) => ({ id: r.id, ...r.fields })),
+        });
     } catch (error) {
         console.error("[features API] Error:", error);
         res.status(500).json({ message: "Failed to create features." });

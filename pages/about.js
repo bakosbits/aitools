@@ -54,8 +54,8 @@ export default function AboutPage() {
                     always to transparency and unbiased information.
                 </p>
                 <p className="mb-4 ml-2 text-gray-400">
-                    We&apos;re building a smarter, more practical way to explore the
-                    AI landscape.
+                    We&apos;re building a smarter, more practical way to explore
+                    the AI landscape.
                 </p>
                 <h2 className="text-2xl font-semibold mb-2">Our Future</h2>
                 <p className="mb-4 ml-2 text-gray-400">

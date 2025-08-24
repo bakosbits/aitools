@@ -5,7 +5,6 @@ import FeaturesModal from "@/components/FeaturesModal";
 import CautionsModal from "@/components/CautionsModal";
 
 export default function ToolCard({ tool, handleCompare, compareList = [] }) {
-
     const [showUseCasesModal, setShowUseCasesModal] = useState(false);
     const [showFeaturesModal, setShowFeaturesModal] = useState(false);
     const [showCautionsModal, setShowCautionsModal] = useState(false);
@@ -69,7 +68,9 @@ export default function ToolCard({ tool, handleCompare, compareList = [] }) {
                     </p>
                     <h2 className="text-xl font-bold mb-1">Why it matters:</h2>
                     <p className="mx-2 mb-6">
-                        {tool.Why?.length > 100 ? tool.Why.slice(0, 100) + "..." : tool.Why}
+                        {tool.Why?.length > 100
+                            ? tool.Why.slice(0, 100) + "..."
+                            : tool.Why}
                     </p>
                     <div className="w-full mt-auto">
                         <button
@@ -90,13 +91,22 @@ export default function ToolCard({ tool, handleCompare, compareList = [] }) {
                 </div>
             </Link>
             {showFeaturesModal && (
-                <FeaturesModal tool={tool} onClose={() => setShowFeaturesModal(false)} />
+                <FeaturesModal
+                    tool={tool}
+                    onClose={() => setShowFeaturesModal(false)}
+                />
             )}
             {showCautionsModal && (
-                <CautionsModal tool={tool} onClose={() => setShowCautionsModal(false)} />
+                <CautionsModal
+                    tool={tool}
+                    onClose={() => setShowCautionsModal(false)}
+                />
             )}
             {showUseCasesModal && (
-                <UseCasesModal tool={tool} onClose={() => setShowUseCasesModal(false)} />
+                <UseCasesModal
+                    tool={tool}
+                    onClose={() => setShowUseCasesModal(false)}
+                />
             )}
         </>
     );
