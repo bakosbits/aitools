@@ -52,10 +52,10 @@ export default function Layout({ children }) {
                             Foundational Models
                         </Link>
                         <Link
-                            href="/quick-tools"
+                            href="/tools"
                             className="text-gray-300 hover:underline transition-colors duration-150"
                         >
-                            Quick Tools
+                            All Tools
                         </Link>
                         <Link
                             href="/categories"
@@ -70,10 +70,10 @@ export default function Layout({ children }) {
                             Use Cases
                         </Link>
                         <Link
-                            href="/tools"
+                            href="/quick-tools"
                             className="text-gray-300 hover:underline transition-colors duration-150"
                         >
-                            All Tools
+                            Quick Tools
                         </Link>
                         <Link
                             href="/blog"

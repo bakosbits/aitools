@@ -48,7 +48,7 @@ const getVisiblePages = (current, total) => {
  * @param {number} props.totalPages - The total number of pages available.
  * @param {function(number): void} props.onPageChange - Callback function that is invoked when a page button is clicked. It receives the new page number as an argument.
  */
-const Pagination = ({ currentPage, totalPages, onPageChange }) => {
+export default function Pagination({ currentPage, totalPages, onPageChange }) {
     const visiblePages = getVisiblePages(currentPage, totalPages);
 
     return (
@@ -76,4 +76,4 @@ const Pagination = ({ currentPage, totalPages, onPageChange }) => {
     );
 };
 
-export default Pagination;
+

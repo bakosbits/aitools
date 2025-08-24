@@ -2,7 +2,7 @@ import { createSSEStream } from "@/lib/createSSEStream";
 import { getToolSummaries } from "@/lib/airtable/tools";
 import { getUseCasesByTool } from "@/lib/airtable/use-cases";
 import { getAllUseCaseTags, updateUseCaseTags } from "@/lib/airtable/use-case-tags";
-import { mapUseCaseTags } from "@/lib/model/providers";
+import { mapUseCaseTags } from "@/lib/modelss/providers";
 
 export default async function handler(req, res) {
     if (req.method !== "GET") {

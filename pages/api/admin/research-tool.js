@@ -1,4 +1,4 @@
-import { generateToolResearch } from "@/lib/model/providers";
+import { generateToolResearch } from "@/lib/modelss/providers";
 import { getAllCategories } from "@/lib/airtable/categories";
 import { getAllUseCaseTags } from "@/lib/airtable/use-case-tags";
 import { getAllCautionTags } from "@/lib/airtable/caution-tags";

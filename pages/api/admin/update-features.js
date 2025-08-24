@@ -1,9 +1,10 @@
 import { getToolSummaries } from "@/lib/airtable/tools";
 import { createMany as createFeatures } from "@/lib/airtable/features";
-import { generateFeatures } from "@/lib/model/providers";
+import { generateFeatures } from "@/lib/modelss/providers";
 import { createSSEStream } from "@/lib/createSSEStream";
+import { deleteAllFeatures } from "@/lib/airtable/bulk-delete";
 
-async function handler(req, res) {
+export default async function handler(req, res) {
     if (req.method !== "GET") {
         res.setHeader("Allow", ["GET"]);
         return res.status(405).end(`Method ${req.method} Not Allowed`);
@@ -11,30 +12,37 @@ async function handler(req, res) {
 
     const { model } = req.query;
     const { sendStatus, sendError, close } = createSSEStream(res);
-    const tools = await getToolSummaries();
+    const clearedFeatures = await deleteAllFeatures();
 
-    for (const tool of tools) {
-        try {
-            const generatedFeatures = await generateFeatures(tool, model);
+    if (clearedFeatures) {  
+        const tools = await getToolSummaries();
 
-            const featuresArray = Array.isArray(generatedFeatures.Feature)
-                ? generatedFeatures.Feature
-                : generatedFeatures;
+        for (const tool of tools) {
+            try {
+                const generatedFeatures = await generateFeatures(tool, model);
 
-            if (Array.isArray(featuresArray) && featuresArray.length > 0) {
-                await createFeatures(featuresArray.map(f => ({ Feature: f, Tool: tool.Slug })));
+                const featuresArray = Array.isArray(generatedFeatures.Feature)
+                    ? generatedFeatures.Feature
+                    : generatedFeatures;
 
-                sendStatus(`Added features for ${tool.Name}`);
+                if (Array.isArray(featuresArray) && featuresArray.length > 0) {
+                    await createFeatures(featuresArray.map(f => ({ Feature: f, Tool: tool.Slug })));
+
+                    sendStatus(`Added features for ${tool.Name}`);
+                }
+
+
+            } catch (error) {
+                sendError(`Error processing tool ${tool.Name}: ${error.message}`);
+                close();
             }
-
-
-        } catch (error) {
-            sendError(`Error processing tool ${tool.Name}: ${error.message}`);
         }
+    } else {
+        sendStatus("Features were not cleared.");
+        close();
     }
-
     sendStatus("Bulk update for features completed.");
     close();
 }
 
-export default handler;
+

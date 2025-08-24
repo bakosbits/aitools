@@ -1,7 +1,7 @@
 import { createSSEStream } from "@/lib/createSSEStream";
 import { getToolSummaries, updateCautionTags } from "@/lib/airtable/tools";
 import { getCautionsByTool } from "@/lib/airtable/cautions";
-import { mapCautionTags } from "@/lib/model/providers";
+import { mapCautionTags } from "@/lib/modelss/providers";
 import { getAllCautionTags } from "@/lib/airtable/caution-tags";
 
 export default async function handler(req, res) {

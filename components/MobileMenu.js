@@ -71,11 +71,11 @@ export default function MobileMenu() {
                         </li>
                         <li>
                             <Link
-                                href="/quick-tools"
+                                href="/tools"
                                 onClick={() => setOpen(false)}
                                 className="hover:underline"
                             >
-                                Quick Tools
+                                All Tools
                             </Link>
                         </li>
                         <li>
@@ -98,13 +98,13 @@ export default function MobileMenu() {
                         </li>
                         <li>
                             <Link
-                                href="/tools"
+                                href="/quick-tools"
                                 onClick={() => setOpen(false)}
                                 className="hover:underline"
                             >
-                                All Tools
+                                Quick Tools
                             </Link>
-                        </li>
+                        </li>                        
                         <li>
                             <Link
                                 href="/blog"

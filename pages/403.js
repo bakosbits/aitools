@@ -1,4 +1,3 @@
-import Head from "next/head";
 import MetaProps from "@/components/MetaProps";
 import randomQuotes from "random-quotes";
 import { useState, useEffect } from "react";

@@ -1,6 +1,6 @@
-import { createTool } from "@/lib/airtable/tools";
-import { createMany as createFeatures } from "@/lib/airtable/features";
-import { createMany as createCautions } from "@/lib/airtable/cautions";
+import { createTool, updateTool } from "@/lib/airtable/tools";
+import { createMany as createFeatures, getFeaturesByTool, deleteMany as deleteFeatures } from "@/lib/airtable/features";
+import { createMany as createCautions, getCautionsByTool, deleteMany as deleteCautions } from "@/lib/airtable/cautions";
 import { createMany as createUseCases } from "@/lib/airtable/use-cases";
 import { getAllCategories } from "@/lib/airtable/categories";
 import { getAllUseCaseTags } from "@/lib/airtable/use-case-tags";
@@ -12,7 +12,7 @@ export default async function handler(req, res) {
         return res.status(405).end(`Method ${req.method} Not Allowed`);
     }
 
-    const { toolData } = req.body;
+    const { toolId, toolData } = req.body;
     if (!toolData || !toolData.Name) {
         return res.status(400).json({ message: "toolData with Name is required" });
     }
@@ -29,7 +29,7 @@ export default async function handler(req, res) {
         const categoryIds = (toolData.Categories || []).map(cat => {
             if (typeof cat === "object" && cat !== null && cat.id) return cat.id;
             if (typeof cat === "string") {
-                const found = categories.find(c => c.id === cat || c.Name === cat || c.Slug === cat);
+                const found = categories.find(c => c.id === cat || c.Name === cat);
                 return found ? found.id : null;
             }
             return null;
@@ -55,8 +55,8 @@ export default async function handler(req, res) {
             return null;
         }).filter(Boolean);
 
-        // Remove Features, Cautions, and UseCases from toolFields before saving
-        const { Features, Cautions, UseCases, ...rest } = toolData;
+        // Remove Slug, Features, Cautions, and UseCases from toolFields before saving
+        const { id, Slug, Features, Cautions, UseCases, ...rest } = toolData;
         const toolFields = {
             ...rest,
             Categories: categoryIds,
@@ -64,20 +64,43 @@ export default async function handler(req, res) {
             CautionTags: cautionTagIds,
         };
 
-        // Save the tool
-        const createdTool = await createTool(toolFields);
+        // Save or update the tool
+        let savedTool;
+        if (toolId) {
+            savedTool = await updateTool(toolId, toolFields);
+        } else {
+            savedTool = await createTool(toolFields);
+        }
 
         // Optionally save related data if present
-        if (Array.isArray(Features) && Features.length > 0) {
-            await createFeatures(Features.map(f => ({ Feature: f, Tool: createdTool.Slug })));
+        if (Array.isArray(Features)) {
+            // On update, delete all existing features for this tool before adding new
+            if (toolId) {
+                const existingFeatures = await getFeaturesByTool(savedTool.Slug);
+                if (existingFeatures.length > 0) {
+                    await deleteFeatures(existingFeatures.map(f => f.id).filter(Boolean));
+                }
+            }
+            if (Features.length > 0) {
+                await createFeatures(Features.map(f => ({ Feature: f, Tool: savedTool.Slug })));
+            }
         }
-        if (Array.isArray(Cautions) && Cautions.length > 0) {
-            await createCautions(Cautions.map(c => ({ Caution: c, Tool: createdTool.Slug })));
+        if (Array.isArray(Cautions)) {
+            // On update, delete all existing cautions for this tool before adding new
+            if (toolId) {
+                const existingCautions = await getCautionsByTool(savedTool.Slug);
+                if (existingCautions.length > 0) {
+                    await deleteCautions(existingCautions.map(c => c.id).filter(Boolean));
+                }
+            }
+            if (Cautions.length > 0) {
+                await createCautions(Cautions.map(c => ({ Caution: c, Tool: savedTool.Slug })));
+            }
         }
         if (Array.isArray(UseCases) && UseCases.length > 0) {
-            await createUseCases(UseCases.map(uc => ({ UseCase: uc, Tool: createdTool.Slug })));
+            await createUseCases(UseCases.map(uc => ({ UseCase: uc, Tool: savedTool.Slug })));
         }
-        res.status(200).json({ tool: createdTool });
+        res.status(200).json({ tool: savedTool });
     } catch (error) {
         console.error("Error saving tool:", error);
         res.status(500).json({ message: error.message || "Failed to save tool" });

@@ -9,12 +9,8 @@ import Image from "next/image";
  * @param {string} props.imageSrc - The path to the image for the right column.
  * @param {string} props.imageAlt - The alt text for the image.
  */
-export default function InfoPageLayout({
-    title,
-    children,
-    imageSrc,
-    imageAlt,
-}) {
+export default function InfoPageLayout({ title, children, imageSrc, imageAlt }) {
+    
     return (
         // OUTER WRAPPER: 90% of screen width, centered
         <div className="w-[90%] mx-auto flex flex-col md:flex-row gap-6">

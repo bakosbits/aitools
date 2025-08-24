@@ -96,7 +96,6 @@ export default function ComparePage({ toolA, toolB }) {
                 </div>
             </div>
             {/* Modal for Use Cases */}
-
             {showModal && (
                 <UseCaseCompareModal
                     toolA={toolA}

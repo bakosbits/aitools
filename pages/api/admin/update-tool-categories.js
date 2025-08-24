@@ -1,10 +1,10 @@
 import { getToolSummaries, updateToolCategories } from "@/lib/airtable/tools";
 import { getAllCategories } from "@/lib/airtable/categories";
 import { getAllFeatures } from "@/lib/airtable/features"
-import { mapToolCategories } from "@/lib/model/providers";
+import { mapToolCategories } from "@/lib/modelss/providers";
 import { createSSEStream } from "@/lib/createSSEStream";
 
-async function handler(req, res) {
+export default async function handler(req, res) {
     if (req.method !== "GET") {
         res.setHeader("Allow", ["GET"]);
         return res.status(405).end(`Method ${req.method} Not Allowed`);
@@ -36,7 +36,7 @@ async function handler(req, res) {
         try {
 
             const toolFeatures = featuresByTool.get(tool.Slug);
-            const availableFeatures = toolFeatures.map((feat) => feat.Feature );
+            const availableFeatures = toolFeatures.map((feat) => feat.Feature);
             const generatedCategories = await mapToolCategories(
                 tool,
                 availableCategoryNames,
@@ -66,4 +66,4 @@ async function handler(req, res) {
     close();
 }
 
-export default handler;
+
