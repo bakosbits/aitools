@@ -1,4 +1,4 @@
-import { getUseCasesByTool } from "@/lib/airtable";
+import { getUseCasesByTool } from "@/lib/airtable/useCases";
 
 export default async function handler(req, res) {
     if (req.method === "GET") {

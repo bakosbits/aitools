@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { getAllCategories, deleteCategory } from "@/lib/airtable";
+import { getAllCategories, deleteCategory } from "@/lib/airtable/categories";
 import { parseFormBody } from "@/lib/form-helpers";
 
 export async function getServerSideProps({ req, res }) {
@@ -43,7 +43,7 @@ export default function CategoriesPage({ categories }) {
                 </h1>
                 <Link
                     href="/admin/categories/new"
-                    className="bg-teal-600 text-gray-100 font-bold py-2 px-4 rounded hover:bg-teal-700 transition-colors"
+                    className="bg-teal-600 text-gray-100 font-bold py-2 px-4 rounded hover:bg-blue-600 transition-colors"
                 >
                     + New Category
                 </Link>

@@ -1,6 +1,6 @@
 import { useState } from "react";
 import Link from "next/link";
-import { getAllCategories } from "@/lib/airtable";
+import { getAllCategories } from "@/lib/airtable/categories";
 import { PRICING_OPTIONS } from "@/lib/constants";
 import ToolForm from "@/components/ToolForm";
 import AiResearchAssistant from "@/components/AiResearchAssistant";

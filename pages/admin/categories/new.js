@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { useRouter } from "next/router";
 import Link from "next/link";
-import { createCategory } from "@/lib/airtable";
+import { createCategory } from "@/lib/airtable/categories";
 import { parseFormBody } from "@/lib/form-helpers";
 
 export async function getServerSideProps({ req, res }) {
@@ -71,7 +71,7 @@ export default function NewCategoryPage({ error }) {
                     <button
                         type="submit"
                         disabled={isSubmitting}
-                        className="bg-teal-600 text-gray-100 font-bold py-2 px-4 rounded hover:bg-teal-700 transition-colors focus:outline-none focus:shadow-outline"
+                        className="bg-teal-600 text-gray-100 font-bold py-2 px-4 rounded hover:bg-blue-600 transition-colors focus:outline-none focus:shadow-outline"
                     >
                         {isSubmitting ? "Creating..." : "Create Category"}
                     </button>

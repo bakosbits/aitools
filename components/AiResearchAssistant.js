@@ -58,7 +58,7 @@ export default function AiResearchAssistant({
                     <button
                         onClick={handleResearch}
                         disabled={isResearching}
-                        className="bg-teal-600 text-gray-100 font-bold mt-1 px-4 rounded hover:bg-teal-700 transition-colors disabled:bg-gray-500 disabled:cursor-not-allowed"
+                        className="bg-teal-600 text-gray-100 font-bold mt-1 px-4 rounded hover:bg-blue-600 transition-colors disabled:bg-gray-500 disabled:cursor-not-allowed"
                     >
                         {isResearching ? "Researching..." : "Research"}
                     </button>

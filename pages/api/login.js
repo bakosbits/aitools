@@ -13,7 +13,7 @@ export default async function handler(req, res) {
 
     const ADMIN_USERNAME = process.env.ADMIN_USERNAME;
     const ADMIN_PASSWORD = process.env.ADMIN_PASSWORD;
-
+    
     if (!ADMIN_USERNAME || !ADMIN_PASSWORD) {
         return res.status(500).json({ message: "Server configuration error." });
     }
@@ -25,6 +25,7 @@ export default async function handler(req, res) {
         passwordMatches = await bcrypt.compare(password, ADMIN_PASSWORD);
     } catch (err) {
         console.error("bcrypt.compare error:", err);
+        console.error("Error details:", err.message);
         return res.status(500).json({ message: "Hash compare error." });
     }
 
@@ -43,3 +44,4 @@ export default async function handler(req, res) {
 
     return res.status(401).json({ message: "Invalid credentials" });
 }
+

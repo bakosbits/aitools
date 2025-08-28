@@ -1,4 +1,4 @@
-import { getFeaturesByTool } from "@/lib/airtable";
+import { getFeaturesByTool } from "@/lib/airtable/features";
 
 export default async function handler(req, res) {
     if (req.method === "GET") {

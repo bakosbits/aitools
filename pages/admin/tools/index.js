@@ -1,7 +1,7 @@
 import Link from "next/link";
 import { useRouter } from "next/router";
 import { useMemo, useEffect } from "react";
-import { getAllTools, deleteTool } from "@/lib/airtable";
+import { getAllTools, deleteTool } from "@/lib/airtable/tools";
 import { parseFormBody } from "@/lib/form-helpers";
 import SearchBar from "@/components/SearchBar";
 import Pagination from "@/components/Pagination";
@@ -24,7 +24,7 @@ export async function getServerSideProps({ req, res }) {
         }
     }
 
-    const tools = await getToolSummaries();
+    const tools = await getAllTools();
     return {
         props: {
             tools,
@@ -107,7 +107,7 @@ export default function ToolsPage({ tools }) {
                     </h1>
                     <Link
                         href="/admin/tools/new"
-                        className="bg-teal-600 text-gray-100 font-bold py-2 px-4 rounded hover:bg-teal-700 transition-colors"
+                        className="bg-teal-600 text-gray-100 font-bold py-2 px-4 rounded hover:bg-blue-600 transition-colors"
                     >
                         + New Tool
                     </Link>
@@ -115,7 +115,7 @@ export default function ToolsPage({ tools }) {
                 <div className="w-full mx-auto flex justify-between items-center mb-6 gap-4">
                     <Link
                         href="/admin/tools"
-                        className="bg-teal-600 text-gray-100 font-bold py-2 px-4 rounded hover:bg-teal-700 transition-colors"
+                        className="bg-teal-600 text-gray-100 font-bold py-2 px-4 rounded hover:bg-blue-600 transition-colors"
                     >
                         Reset
                     </Link>

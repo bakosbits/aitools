@@ -1,5 +1,7 @@
-import { getAllToolSlugs, getToolBySlug } from "@/lib/airtable";
-import { getCategoriesByTool } from "@/lib/airtable";
+import { getAllToolSlugs, getToolBySlug } from "@/lib/airtable/tools";
+import { getFeaturesByTool } from "@/lib/airtable/features";
+import { getCautionsByTool } from "@/lib/airtable/cautions";
+import { getCategoriesByTool } from "@/lib/airtable/categories";
 import React from "react";
 import Link from "next/link";
 import DetailToolCard from "@/components/DetailToolCard";
@@ -31,9 +33,11 @@ export async function getStaticProps({ params }) {
         }
 
         const categories = await getCategoriesByTool(params.slug);
+        const features = await getFeaturesByTool(params.slug);
+        const cautions = await getCautionsByTool(params.slug);
 
         return {
-            props: { tool, categories },
+            props: { tool, categories, features, cautions },
             revalidate: 300,
         };
     } catch (error) {
@@ -42,7 +46,7 @@ export async function getStaticProps({ params }) {
     }
 }
 
-export default function ToolPage({ tool, categories }) {
+export default function ToolPage({ tool, categories, features, cautions }) {
     return (
         <>
             <MetaProps
@@ -64,7 +68,10 @@ export default function ToolPage({ tool, categories }) {
                     {/* Left column */}
                     <div className="flex flex-col md:flex-row gap-6">
                         <div className="w-full md:w-[80%] flex">
-                            <DetailToolCard tool={tool} />
+                            <DetailToolCard tool={tool}
+                                features={features}
+                                cautions={cautions}
+                            />
                         </div>
                         {/* Right column */}
                         <div className="w-full md:w-[20%] flex flex-col items-start text-left">

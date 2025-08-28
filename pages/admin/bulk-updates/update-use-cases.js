@@ -60,7 +60,7 @@ export default function BulkUpdateUseCases() {
                 <button
                     onClick={startStream}
                     disabled={isLoading}
-                    className="bg-teal-600 text-gray-100 font-bold py-3 px-6 rounded hover:bg-teal-700 transition-colors disabled:bg-gray-500 disabled:cursor-not-allowed"
+                    className="bg-teal-600 text-gray-100 font-bold py-3 px-6 rounded hover:bg-blue-600 transition-colors disabled:bg-gray-500 disabled:cursor-not-allowed"
                 >
                     {isLoading ? "Updating..." : "Start"}
                 </button>

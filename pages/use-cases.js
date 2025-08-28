@@ -2,7 +2,7 @@ import React, { useState, useCallback } from "react";
 import ToolCompareCard from "@/components/ToolCompareCard";
 import CompareBar from "@/components/CompareBar";
 import { ChevronLeft, ChevronRight, X, Filter } from "lucide-react";
-import { getWizardData } from "@/lib/airtable";
+import { getWizardData } from "@/lib/airtable/useCases";
 
 export async function getStaticProps() {
     const wizardData = await getWizardData();
@@ -32,7 +32,7 @@ const WizardStep = ({ category, tags, selectedTags, onTagSelect }) => (
               ${
                   isSelected
                       ? "bg-blue-600 text-gray-100"
-                      : "bg-teal-600 text-gray-100 hover:bg-teal-700"
+                      : "bg-teal-600 text-gray-100 hover:bg-blue-600"
               }
             `}
                     >
@@ -197,7 +197,7 @@ const App = ({ useCaseCategories, allTools }) => {
                                         onClick={() =>
                                             handleCategorySelect(idx)
                                         }
-                                        className="w-full px-6 py-4 bg-teal-600 hover:bg-teal-700 text-gray-100 rounded-lg font-semibold text-lg shadow-md transition-colors duration-200"
+                                        className="w-full px-6 py-4 bg-teal-600 hover:bg-blue-600 text-gray-100 rounded-lg font-semibold text-lg shadow-md transition-colors duration-200"
                                     >
                                         {cat.category}
                                     </button>

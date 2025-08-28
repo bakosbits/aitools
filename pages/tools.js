@@ -1,6 +1,6 @@
 import { useRouter } from "next/router";
 import { useEffect, useState, useMemo } from "react";
-import { getToolSummaries } from "@/lib/airtable";
+import { getToolSummaries } from "@/lib/airtable/tools";
 import ToolCard from "@/components/ToolCard";
 import CompareBar from "@/components/CompareBar";
 import SearchBar from "@/components/SearchBar";

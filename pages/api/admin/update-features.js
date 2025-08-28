@@ -1,8 +1,5 @@
-import {
-    getToolSummaries,
-    createManyFeatures,
-    deleteAllFeatures,
-} from "@/lib/airtable";
+import { getToolSummaries } from "@/lib/airtable/tools";
+import { createManyFeatures, deleteAllFeatures } from "@/lib/airtable/features";
 import { generateFeatures } from "@/lib/models/providers";
 import { createSSEStream } from "@/lib/createSSEStream";
 
@@ -38,9 +35,7 @@ export default async function handler(req, res) {
                     sendStatus(`Added features for ${tool.Name}`);
                 }
             } catch (error) {
-                sendError(
-                    `Error processing tool ${tool.Name}: ${error.message}`,
-                );
+                sendError(`Error processing tool ${tool.Name}: ${error.message}`);
                 close();
             }
         }
@@ -48,6 +43,6 @@ export default async function handler(req, res) {
         sendStatus("Features were not cleared.");
         close();
     }
-    sendStatus("Bulk update for features completed.");
+    sendStatus("Task Complete.");
     close();
 }

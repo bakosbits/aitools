@@ -1,6 +1,6 @@
 import { useState } from "react";
 import Link from "next/link";
-import { createArticle } from "@/lib/airtable";
+import { createArticle } from "@/lib/airtable/articles";
 import { parseFormBody } from "@/lib/form-helpers";
 import { AI_MODELS, ARTICLE_TYPES } from "@/lib/constants";
 
@@ -164,7 +164,7 @@ export default function NewArticlePage({ error }) {
                             <button
                                 onClick={generateContentWithAI}
                                 disabled={isGenerating || !aiTopic}
-                                className="bg-teal-600 text-gray-100 font-bold mt-1 px-4 rounded hover:bg-teal-700 transition-colors disabled:bg-gray-500 disabled:cursor-not-allowed"
+                                className="bg-teal-600 text-gray-100 font-bold mt-1 px-4 rounded hover:bg-blue-600 transition-colors disabled:bg-gray-500 disabled:cursor-not-allowed"
                             >
                                 {isGenerating ? "Generating..." : "Generate"}
                             </button>
@@ -243,7 +243,7 @@ export default function NewArticlePage({ error }) {
                     <button
                         type="submit"
                         disabled={isSubmitting}
-                        className="bg-teal-600 text-gray-100 font-bold py-2 px-4 rounded hover:bg-teal-700 transition-colors focus:outline-none focus:shadow-outline"
+                        className="bg-teal-600 text-gray-100 font-bold py-2 px-4 rounded hover:bg-blue-600 transition-colors focus:outline-none focus:shadow-outline"
                     >
                         {isSubmitting ? "Creating..." : "Create Article"}
                     </button>

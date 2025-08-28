@@ -1,12 +1,8 @@
 import { createSSEStream } from "@/lib/createSSEStream";
-import {
-    getAllTools,
-    updateTool,
-    getUseCasesByTool,
-    getAllUseCaseTags,
-    updateUseCaseTags,
-} from "@/lib/airtable";
+import { getToolSummaries } from "@/lib/airtable/tools";
+import { getUseCasesByTool, getAllUseCaseTags, updateUseCaseTags } from "@/lib/airtable/useCases";
 import { mapUseCaseTags } from "@/lib/models/providers";
+
 
 export default async function handler(req, res) {
     if (req.method !== "GET") {
@@ -25,6 +21,7 @@ export default async function handler(req, res) {
     for (const tool of tools) {
         try {
             const useCases = await getUseCasesByTool(tool.Slug);
+
             const result = await mapUseCaseTags(
                 tool,
                 availableTagNames,
@@ -35,15 +32,8 @@ export default async function handler(req, res) {
             if (result && result.Tags && result.Tags.length > 0) {
                 const validTags = result.Tags.map((tagName) => {
                     const foundTag = availableTags.find(
-                        (tag) =>
-                            tag.Name.toLowerCase() === tagName.toLowerCase(),
+                        (tag) => tag.Name === tagName,
                     );
-                    if (!foundTag) {
-                        console.warn(
-                            "Tag name from model not found in availableTags:",
-                            tagName,
-                        );
-                    }
                     return foundTag ? foundTag.id : null;
                 }).filter(Boolean);
 
@@ -53,7 +43,7 @@ export default async function handler(req, res) {
                 }
             }
         } catch (error) {
-            console.error(`Error processing tool ${tool.Name}:`, error.message);
+            console.error(`Error processing tool ${tool.Name}:`, error.message);            
             sendError(`An error occurred during update: ${error.message}`);
         }
     }

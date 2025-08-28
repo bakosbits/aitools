@@ -28,7 +28,7 @@ export default function Admin() {
                         <Link
                             key={resource}
                             href={`/admin/${slug}`}
-                            className="bg-teal-600 text-gray-100 font-bold p-6 hover:bg-teal-700 rounded-lg border border-gray-600 transition-colors text-center"
+                            className="bg-teal-600 text-gray-100 font-bold p-6 hover:bg-blue-600 rounded-lg border border-gray-600 transition-colors text-center"
                         >
                             <h2 className="text-xl">Manage {resource}</h2>
                         </Link>

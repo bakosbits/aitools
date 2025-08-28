@@ -33,19 +33,14 @@ export default function CautionsModal({ tool, onClose }) {
             onClick={onClose}
         >
             <div
-                className="bg-cardDark p-4 rounded-md shadow-md max-w-2xl w-full relative max-h-[90vh] overflow-y-auto"
+                className="bg-cardDark p-4 border border-gray-600 rounded-md shadow-md max-w-2xl w-full relative max-h-[90vh] overflow-y-auto"
                 style={{
                     marginTop: "env(safe-area-inset-top, 3.5rem)",
                     marginBottom: "env(safe-area-inset-bottom, 1rem)",
                 }}
                 onClick={(e) => e.stopPropagation()}
             >
-                <button
-                    onClick={onClose}
-                    className="bg-teal-600 text-gray-100 hover:bg-teal-700 rounded-md px-2 py-1 font-semibold mb-4"
-                >
-                    Close
-                </button>
+
                 <h3 className="text-xl font-bold mb-4">
                     Cautions for {tool.Name}
                 </h3>
@@ -61,7 +56,17 @@ export default function CautionsModal({ tool, onClose }) {
                     !isLoading &&
                     !error && <p>No cautions found for this tool.</p>
                 )}
+            <div className="items-center mt-4">
+                <button
+                    id="ok-btn"
+                    className="w-full px-4 py-2 bg-teal-600 text-gray-100 font-medium rounded-md shadow-sm hover:bg-blue-600"
+                    onClick={onClose}
+                >
+                    Close
+                </button>
             </div>
+            </div>
+
         </div>
     );
 }

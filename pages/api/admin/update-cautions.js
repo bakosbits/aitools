@@ -1,8 +1,5 @@
-import {
-    createManyCautions,
-    getAllTools,
-    deleteAllCautions,
-} from "@/lib/airtable";
+import { getToolSummaries } from "@/lib/airtable/tools";
+import { createManyCautions, deleteAllCautions } from "@/lib/airtable/cautions";
 import { generateCautions } from "@/lib/models/providers";
 import { createSSEStream } from "@/lib/createSSEStream";
 
@@ -17,7 +14,8 @@ export default async function handler(req, res) {
     const clearedCautions = await deleteAllCautions();
 
     if (clearedCautions) {
-        const tools = await getAllTools(); // Use getAllTools from airtable.js
+        const tools = await getToolSummaries();
+
         for (const tool of tools) {
             try {
                 const generatedCautions = await generateCautions(tool, model);
@@ -28,8 +26,8 @@ export default async function handler(req, res) {
 
                 if (Array.isArray(cautionsArray) && cautionsArray.length > 0) {
                     await createManyCautions(
-                        cautionsArray.map((c) => ({
-                            Caution: c,
+                        cautionsArray.map((f) => ({
+                            Caution: f,
                             Tool: tool.Slug,
                         })),
                     );
@@ -37,9 +35,7 @@ export default async function handler(req, res) {
                     sendStatus(`Added cautions for ${tool.Name}`);
                 }
             } catch (error) {
-                sendError(
-                    `Error processing tool ${tool.Name}: ${error.message}`,
-                );
+                sendError(`Error processing tool ${tool.Name}: ${error.message}`);
                 close();
             }
         }
@@ -47,6 +43,6 @@ export default async function handler(req, res) {
         sendStatus("Cautions were not cleared.");
         close();
     }
-    sendStatus("Bulk update for features completed.");
+    sendStatus("Task Complete.");
     close();
 }

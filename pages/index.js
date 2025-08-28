@@ -1,4 +1,4 @@
-import { getNewestTools } from "@/lib/airtable";
+import { getNewestTools } from "@/lib/airtable/tools";
 import Link from "next/link";
 import SearchBar from "@/components/SearchBar";
 import MiniToolCard from "@/components/MiniToolCard";
@@ -70,7 +70,7 @@ export default function Home({ latestTools }) {
                         search. To get started browse our
                         <Link
                             href="/categories"
-                            className="text-gray-100 hover:underline transition"
+                            className="text-gray-100 hover:text-blue-500 transition"
                         >
                             {" "}
                             categories{" "}
@@ -78,7 +78,7 @@ export default function Home({ latestTools }) {
                         or define your
                         <Link
                             href="/use-cases"
-                            className="text-gray-100 hover:underline transition"
+                            className="text-gray-100 hover:text-blue-500 transition"
                         >
                             {" "}
                             use case{"."}

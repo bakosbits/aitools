@@ -40,12 +40,6 @@ export default function FeaturesModal({ tool, onClose }) {
                 }}
                 onClick={(e) => e.stopPropagation()}
             >
-                <button
-                    onClick={onClose}
-                    className="bg-teal-600 text-gray-100 hover:bg-teal-700 rounded-md px-2 py-1 font-semibold mb-4"
-                >
-                    Close
-                </button>
                 <h3 className="text-xl font-bold mb-4">
                     Features for {tool.Name}
                 </h3>
@@ -61,7 +55,17 @@ export default function FeaturesModal({ tool, onClose }) {
                     !isLoading &&
                     !error && <p>No features found for this tool.</p>
                 )}
+                    <div className="items-center mt-4">
+                        <button
+                            id="ok-btn"
+                            className="w-full px-4 py-2 bg-teal-600 text-gray-100 font-medium rounded-md shadow-sm hover:bg-blue-600"
+                            onClick={onClose}
+                        >
+                            Close
+                        </button>
+                    </div>  
             </div>
+           
         </div>
     );
 }

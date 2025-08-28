@@ -72,7 +72,7 @@ export default function QuickTools() {
             <button
                 onClick={runTool}
                 disabled={loading}
-                className="px-3 py-1 bg-teal-600 text-gray-100 font-semibold rounded-md hover:bg-teal-700"
+                className="px-3 py-1 bg-teal-600 text-gray-100 font-semibold rounded-md hover:bg-blue-600"
             >
                 {loading ? "Generating..." : "Generate"}
             </button>
@@ -94,7 +94,7 @@ export default function QuickTools() {
                                 );
                             }
                         }}
-                        className="absolute top-2 right-2 px-3 py-1 bg-teal-600 text-gray-100 rounded hover:bg-teal-700 text-sm font-semibold shadow z-10"
+                        className="absolute top-2 right-2 px-3 py-1 bg-teal-600 text-gray-100 rounded hover:bg-blue-600 text-sm font-semibold shadow z-10"
                         title="Copy to clipboard"
                     >
                         {copied ? "Copied!" : "Copy"}

@@ -7,7 +7,7 @@ export default function UpdateToolCategories() {
     const [model, setModel] = useState("google/gemini-2.5-flash");
 
     const { statusLog, error, isLoading, startStream } = usePersistentSSE({
-        url: `/api/admin/update-tool-categories?model=${model}`,
+        url: `/api/admin/map-tool-categories?model=${model}`,
     });
 
     return (
@@ -62,7 +62,7 @@ export default function UpdateToolCategories() {
                 <button
                     onClick={startStream}
                     disabled={isLoading}
-                    className="bg-teal-600 text-gray-100 font-bold py-3 px-6 rounded hover:bg-teal-700 transition-colors disabled:bg-gray-500 disabled:cursor-not-allowed"
+                    className="bg-teal-600 text-gray-100 font-bold py-3 px-6 rounded hover:bg-blue-600 transition-colors disabled:bg-gray-500 disabled:cursor-not-allowed"
                 >
                     {isLoading ? "Updating..." : "Start"}
                 </button>

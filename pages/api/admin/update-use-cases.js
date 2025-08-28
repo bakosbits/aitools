@@ -1,8 +1,5 @@
-import {
-    getToolSummaries,
-    createManyUseCases,
-    deleteAllUseCases,
-} from "@/lib/airtable";
+import { getToolSummaries } from "@/lib/airtable/tools";
+import { createManyUseCases } from "@/lib/airtable/use-cases";
 import { generateUseCases } from "@/lib/models/providers";
 import { createSSEStream } from "@/lib/createSSEStream";
 
@@ -18,33 +15,34 @@ export default async function handler(req, res) {
 
     if (clearedUseCases) {
         const tools = await getToolSummaries();
+
         for (const tool of tools) {
             try {
                 const generatedUseCases = await generateUseCases(tool, model);
-                if (
-                    generatedUseCases &&
-                    Array.isArray(generatedUseCases.UseCases) &&
-                    generatedUseCases.UseCases.length > 0
-                ) {
-                    for (const useCaseText of generatedUseCases.UseCases) {
-                        if (useCaseText && useCaseText.trim()) {
-                            await createManyUseCases({
-                                Tool: tool.Slug,
-                                UseCase: useCaseText,
-                            });
-                            sendStatus(`Added use case for ${tool.Name}`);
-                        }
-                    }
+
+                const useCasesArray = Array.isArray(generatedUseCases.UseCase)
+                    ? generatedUseCases.UseCase
+                    : generatedUseCases;
+
+                if (Array.isArray(useCasesArray) && useCasesArray.length > 0) {
+                    await createManyUseCases(
+                        useCasesArray.map((f) => ({
+                            UseCase: f,
+                            Tool: tool.Slug,
+                        })),
+                    );
+
+                    sendStatus(`Added useCases for ${tool.Name}`);
                 }
             } catch (error) {
-                sendError(`An error occurred during update: ${error.message}`);
+                sendError(`Error processing tool ${tool.Name}: ${error.message}`);
+                close();
             }
         }
     } else {
         sendStatus("Use cases were not cleared.");
         close();
     }
-
     sendStatus("Task Complete.");
     close();
 }

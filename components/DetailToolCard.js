@@ -21,11 +21,11 @@ import UseCasesModal from "@/components/UseCasesModal";
  * @param {string} props.tool.Slug - The URL slug for the tool's affiliate link.
  */
 
-export default function DetailToolCard({ tool }) {
+export default function DetailToolCard({ tool, features, cautions }) {
     const [showUseCasesModal, setShowUseCasesModal] = useState(false);
 
-    const featuresList = Array.isArray(tool.Features) ? tool.Features : [];
-    const cautionsList = Array.isArray(tool.Cautions) ? tool.Cautions : [];
+    const featuresList = Array.isArray(features) ? features : [];
+    const cautionsList = Array.isArray(cautions) ? cautions : [];
 
     const pricingList = Array.isArray(tool.Pricing) ? tool.Pricing : [];
     // Use the modern Intl.ListFormat for cleaner, internationally-friendly list formatting.
@@ -52,7 +52,7 @@ export default function DetailToolCard({ tool }) {
                         e.stopPropagation();
                         setShowUseCasesModal(true);
                     }}
-                    className="px-3 py-1 text-sm font-semibold text-gray-100 bg-teal-600 rounded-md hover:bg-teal-700"
+                    className="px-3 py-1 text-sm font-semibold text-gray-100 bg-teal-600 rounded-md hover:bg-blue-600"
                 >
                     Use Cases
                 </button>
@@ -98,7 +98,7 @@ export default function DetailToolCard({ tool }) {
                             "noopener,noreferrer",
                         );
                     }}
-                    className="px-3 py-1 text-sm font-semibold text-gray-100 bg-teal-600 rounded-md hover:bg-teal-700"
+                    className="px-3 py-1 text-sm font-semibold text-gray-100 bg-teal-600 rounded-md hover:bg-blue-600"
                 >
                     Visit {tool.Name}
                 </button>

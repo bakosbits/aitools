@@ -39,7 +39,7 @@ export default function CompareBar({ compareList = [], handleCompare }) {
                     <Link
                         href={`/compare/${compareList[0].Slug}/vs/${compareList[1].Slug}`}
                         className="inline-flex items-center justify-center flex-nowrap
-                            bg-teal-600 hover:bg-teal-700 transition-colors text-gray-100 
+                            bg-teal-600 hover:bg-blue-600 transition-colors text-gray-100 
                             font-semibold border border-gray-600 p-2 space-x-2 rounded-md"
                     >
                         <span>Compare</span>

@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { getAllArticles, deleteArticle } from "@/lib/airtable";
+import { getAllArticles, deleteArticle } from "@/lib/airtable/articles";
 import { parseFormBody } from "@/lib/form-helpers";
 
 export async function getServerSideProps({ req, res }) {
@@ -47,7 +47,7 @@ export default function ArticlesPage({ articles }) {
                 </h1>
                 <Link
                     href="/admin/articles/new"
-                    className="bg-teal-600 text-gray-100 font-bold py-2 px-4 rounded hover:bg-teal-700 transition-colors"
+                    className="bg-teal-600 text-gray-100 font-bold py-2 px-4 rounded hover:bg-blue-600 transition-colors"
                 >
                     + New Article
                 </Link>

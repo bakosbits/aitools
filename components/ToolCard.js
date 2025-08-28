@@ -35,7 +35,7 @@ export default function ToolCard({ tool, handleCompare, compareList = [] }) {
                                 e.stopPropagation();
                                 setShowUseCasesModal(true);
                             }}
-                            className="px-3 py-1 text-sm font-semibold text-gray-100 bg-teal-600 rounded-md hover:bg-teal-700"
+                            className="px-3 py-1 text-sm font-semibold text-gray-100 bg-teal-600 rounded-md hover:bg-blue-600"
                         >
                             Use Cases
                         </button>
@@ -45,7 +45,7 @@ export default function ToolCard({ tool, handleCompare, compareList = [] }) {
                                 e.stopPropagation();
                                 setShowFeaturesModal(true);
                             }}
-                            className="px-3 py-1 text-sm font-semibold text-gray-100 bg-teal-600 rounded-md hover:bg-teal-700"
+                            className="px-3 py-1 text-sm font-semibold text-gray-100 bg-teal-600 rounded-md hover:bg-blue-600"
                         >
                             Features
                         </button>
@@ -55,7 +55,7 @@ export default function ToolCard({ tool, handleCompare, compareList = [] }) {
                                 e.stopPropagation();
                                 setShowCautionsModal(true);
                             }}
-                            className="px-3 py-1 text-sm font-semibold text-gray-100 bg-teal-600 rounded-md hover:bg-teal-700"
+                            className="px-3 py-1 text-sm font-semibold text-gray-100 bg-teal-600 rounded-md hover:bg-blue-600"
                         >
                             Cautions
                         </button>
@@ -83,7 +83,7 @@ export default function ToolCard({ tool, handleCompare, compareList = [] }) {
                                     "noopener,noreferrer",
                                 );
                             }}
-                            className="px-3 py-1 text-sm font-semibold text-gray-100 bg-teal-600 rounded-md hover:bg-teal-700"
+                            className="px-3 py-1 text-sm font-semibold text-gray-100 bg-teal-600 rounded-md hover:bg-blue-600"
                         >
                             Visit {tool.Name}
                         </button>

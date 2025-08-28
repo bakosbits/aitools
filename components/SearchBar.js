@@ -44,7 +44,7 @@ export default function SearchBar({ initialQuery = "", path = "/tools" }) {
                 </div>
                 <button
                     type="submit"
-                    className="flex items-center gap-2 px-3 py-1 rounded-md font-semibold bg-teal-600 text-gray-100 hover:bg-teal-700 transition"
+                    className="flex items-center gap-2 px-3 py-1 rounded-md font-semibold bg-teal-600 text-gray-100 hover:bg-blue-600 transition"
                     aria-label="Search"
                 >
                     <Search className="hidden md:inline-block w-5 h-5 text-gray-100" />

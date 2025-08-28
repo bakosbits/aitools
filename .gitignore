@@ -26,6 +26,10 @@ yarn-error.log*
 # Database
 db.json
 
+# Jest
+__tests__
+jest.*
+
 # Others
 .env
 .env.test 
@@ -38,3 +42,4 @@ next.config.json
 jsconfig.json
 vercel.json
 GEMINI.md
+Global-Rules.md

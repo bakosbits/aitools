@@ -4,7 +4,7 @@ import randomQuotes from "random-quotes";
 
 export default function Admin() {
     const resources = [
-        "Update Tool Categories",
+        "Map Tool Categories",
         "Map Use Case Tags",
         "Map Caution Tags",
         "Update Use Cases",
@@ -40,7 +40,7 @@ export default function Admin() {
                         <Link
                             key={resource}
                             href={`/admin/bulk-updates/${slug}`}
-                            className="bg-teal-600 text-gray-100 font-bold p-6 hover:bg-teal-700 rounded-lg border border-gray-600 transition-colors text-center"
+                            className="bg-teal-600 text-gray-100 font-bold p-6 hover:bg-blue-600 rounded-lg border border-gray-600 transition-colors text-center"
                         >
                             <h2 className="text-xl">{resource}</h2>
                         </Link>

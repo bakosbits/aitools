@@ -1,15 +1,10 @@
-import {
-    createTool,
-    updateTool,
-    getFeaturesByTool,
-    deleteManyFeatures,
-    getCautionsByTool,
-    deleteManyCautions,
-    createManyUseCases,
-    getAllCategories,
-    getAllUseCaseTags,
-    getAllCautionTags,
-} from "@/lib/airtable";
+import { createTool, updateTool } from "@/lib/airtable/tools";
+import { getFeaturesByTool, deleteManyFeatures, createManyFeatures } from "@/lib/airtable/features";
+import { getCautionsByTool, deleteManyCautions, createManyCautions } from "@/lib/airtable/cautions";
+import { createManyUseCases } from "@/lib/airtable/useCases";
+import { getAllCategories } from "@/lib/airtable/categories";
+import { getAllUseCaseTags } from "@/lib/airtable/useCases";
+import { getAllCautionTags } from "@/lib/airtable/cautions";
 
 export default async function handler(req, res) {
     if (req.method !== "POST") {
@@ -78,7 +73,7 @@ export default async function handler(req, res) {
             .filter(Boolean);
 
         // Remove Slug, Features, Cautions, and UseCases from toolFields before saving
-        const { id, Slug, Features, Cautions, UseCases, ...rest } = toolData;
+        const { id, Slug, Logo, Features, Cautions, UseCases, ...rest } = toolData;
         const toolFields = {
             ...rest,
             Categories: categoryIds,

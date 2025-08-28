@@ -4,7 +4,7 @@ import UseCasesModal from "@/components/UseCasesModal";
 import FeaturesModal from "@/components/FeaturesModal";
 import CautionsModal from "@/components/CautionsModal";
 
-export default function ToolCard({ tool, handleCompare, compareList = [] }) {
+export default function ToolCompareCard({ tool, handleCompare, compareList = [] }) {
     const isSelected = compareList.some((t) => t.id === tool.id);
 
     const [showUseCasesModal, setShowUseCasesModal] = useState(false);
@@ -37,7 +37,7 @@ export default function ToolCard({ tool, handleCompare, compareList = [] }) {
                                 e.stopPropagation();
                                 setShowFeaturesModal(true);
                             }}
-                            className="px-3 py-1 text-sm font-semibold text-gray-100 bg-teal-600 rounded-md hover:bg-teal-700"
+                            className="px-3 py-1 text-sm font-semibold text-gray-100 bg-teal-600 rounded-md hover:bg-blue-600"
                         >
                             Features
                         </button>
@@ -47,7 +47,7 @@ export default function ToolCard({ tool, handleCompare, compareList = [] }) {
                                 e.stopPropagation();
                                 setShowCautionsModal(true);
                             }}
-                            className="px-3 py-1 text-sm font-semibold text-gray-100 bg-teal-600 rounded-md hover:bg-teal-700"
+                            className="px-3 py-1 text-sm font-semibold text-gray-100 bg-teal-600 rounded-md hover:bg-blue-600"
                         >
                             Cautions
                         </button>
@@ -57,7 +57,7 @@ export default function ToolCard({ tool, handleCompare, compareList = [] }) {
                                 e.stopPropagation();
                                 setShowUseCasesModal(true);
                             }}
-                            className="px-3 py-1 text-sm font-semibold text-gray-100 bg-teal-600 rounded-md hover:bg-teal-700"
+                            className="px-3 py-1 text-sm font-semibold text-gray-100 bg-teal-600 rounded-md hover:bg-blue-600"
                         >
                             Use Cases
                         </button>
@@ -88,7 +88,7 @@ export default function ToolCard({ tool, handleCompare, compareList = [] }) {
                                             "noopener,noreferrer",
                                         );
                                     }}
-                                    className="px-3 py-1 text-sm font-semibold text-gray-100 bg-teal-600 rounded-md hover:bg-teal-700 mb-2"
+                                    className="px-3 py-1 text-sm font-semibold text-gray-100 bg-teal-600 rounded-md hover:bg-blue-600 mb-2"
                                 >
                                     Visit {tool.Name}
                                 </button>
@@ -102,7 +102,7 @@ export default function ToolCard({ tool, handleCompare, compareList = [] }) {
                                         ${
                                             isSelected
                                                 ? "bg-blue-600 text-gray-100"
-                                                : "bg-teal-600 text-gray-100 hover:bg-teal-700"
+                                                : "bg-teal-600 text-gray-100 hover:bg-blue-600"
                                         }`}
                                 >
                                     {isSelected ? "In Compare Bar" : "Compare"}
