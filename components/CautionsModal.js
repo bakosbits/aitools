@@ -33,7 +33,7 @@ export default function CautionsModal({ tool, onClose }) {
             onClick={onClose}
         >
             <div
-                className="bg-cardDark p-4 border border-gray-600 rounded-md shadow-md max-w-2xl w-full relative max-h-[90vh] overflow-y-auto"
+                className="bg-cardDark p-5 border border-gray-600 rounded-md shadow-md max-w-2xl w-full relative max-h-[90vh] overflow-y-auto"
                 style={{
                     marginTop: "env(safe-area-inset-top, 3.5rem)",
                     marginBottom: "env(safe-area-inset-bottom, 1rem)",
