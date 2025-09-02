@@ -1,5 +1,5 @@
 import { getToolSummaries } from "@/lib/airtable/tools";
-import { createManyUseCases } from "@/lib/airtable/useCases";
+import { createManyUseCases, deleteAllUseCases } from "@/lib/airtable/useCases";
 import { generateUseCases } from "@/lib/models/providers";
 import { createSSEStream } from "@/lib/createSSEStream";
 

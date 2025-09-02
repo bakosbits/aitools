@@ -1,6 +1,6 @@
 import React from "react";
 
-const AnalysisModal = ({ isOpen, onClose, analysisData }) => {
+export default function AnalysisModal({ isOpen, onClose, analysisData }) {
     if (!isOpen) return null;
 
     return (
@@ -9,7 +9,7 @@ const AnalysisModal = ({ isOpen, onClose, analysisData }) => {
             onClick={onClose}
         >
             <div
-                className="bg-cardDark p-5 border border-gray-600 rounded-md shadow-md max-w-4xl w-full relative max-h-[90vh] overflow-y-auto"
+                className="bg-cardDark p-5 border border-gray-600 rounded-md shadow-md max-w-2xl w-full relative max-h-[90vh] overflow-y-auto"
                 style={{
                     marginTop: "env(safe-area-inset-top, 3.5rem)",
                     marginBottom: "env(safe-area-inset-bottom, 1rem)",
@@ -23,26 +23,29 @@ const AnalysisModal = ({ isOpen, onClose, analysisData }) => {
                             <>
                                 <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                                     <div>
-                                        <h4 className="text-lg text-left font-semibold mb-2">{analysisData.toolA_name} Strengths:</h4>
+                                        <h4 className="text-lg text-left font-semibold mb-2">
+                                            {analysisData.toolA_name || "Tool A"} Strengths:
+                                        </h4>
                                         <ul className="list-disc list-inside text-left mb-4 ml-2">
-                                            {analysisData.toolA_strengths.map((strength, index) => (
+                                            {(analysisData.toolA_strengths || []).map((strength, index) => (
                                                 <li key={index}>{strength}</li>
                                             ))}
                                         </ul>
                                     </div>
                                     <div>
-                                        <h4 className="text-lg text-left font-semibold mb-2">{analysisData.toolB_name} Strengths:</h4>
+                                        <h4 className="text-lg text-left font-semibold mb-2">
+                                            {analysisData.toolB_name || "Tool B"} Strengths:
+                                        </h4>
                                         <ul className="list-disc list-inside text-left mb-4 ml-2">
-                                            {analysisData.toolB_strengths.map((strength, index) => (
+                                            {(analysisData.toolB_strengths || []).map((strength, index) => (
                                                 <li key={index}>{strength}</li>
                                             ))}
                                         </ul>
                                     </div>
                                 </div>
-
                                 <div>
                                     <h4 className="text-left text-md font-semibold mb-2">Comparative Summary:</h4>
-                                    <p className="text-left mb-4 ml-2">{analysisData.comparative_summary}</p>
+                                    <p className="text-left mb-4 ml-2">{analysisData.comparative_summary || ""}</p>
                                 </div>
                             </>
                         ) : (
@@ -63,5 +66,3 @@ const AnalysisModal = ({ isOpen, onClose, analysisData }) => {
         </div>
     );
 };
-
-export default AnalysisModal;

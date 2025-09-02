@@ -2,7 +2,7 @@ import Link from "next/link";
 import { useState, useEffect } from "react";
 import randomQuotes from "random-quotes";
 
-export default function Admin() {
+export default function AdminPage() {
     const resources = [
         "Articles",
         "Bulk Updates",
@@ -17,7 +17,7 @@ export default function Admin() {
     }, []);
 
     return (
-        <div className="hidden md:flex flex-col w-full items-center justify-center h-full py-12">
+        <div className="md:flex flex-col w-full items-center justify-center h-full py-12">
             <h1 className="text-3xl font-bold mb-8 text-center">
                 Admin Dashboard
             </h1>

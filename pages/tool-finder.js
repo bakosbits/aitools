@@ -28,7 +28,7 @@ const GoalsStep = ({ data, updateData, nextStep }) => {
                 <p className="text-sm text-gray-500 mt-2 text-center">Step 1 of 5</p>
             </div>
 
-            <h2 className="text-2xl font-semibold text-gray-300">What's your primary goal?</h2>
+            <h2 className="text-2xl font-semibold text-gray-300">What&apos;s your primary goal?</h2>
 
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                 {GOAL_OPTIONS.map(goal => (
@@ -80,7 +80,7 @@ const ExperienceStep = ({ data, updateData, nextStep, prevStep }) => {
                 <p className="text-sm text-gray-500 mt-2 text-center">Step 2 of 5</p>
             </div>
 
-            <h2 className="text-2xl font-semibold text-gray-300">What's your experience level with AI tools?</h2>
+            <h2 className="text-2xl font-semibold text-gray-300">What&apos;s your experience level with AI tools?</h2>
             <p className="text-gray-400">This helps us recommend tools that match your comfort level.</p>
 
             <div className="grid grid-cols-1 gap-4">
@@ -391,7 +391,7 @@ const ResultsStep = ({ wizardData, resetWizard }) => {
                 <div className="border border-teal-600 rounded-lg p-6 bg-cardDark">
                     <h3 className="text-xl font-bold mb-4 text-gray-300">{result.recommendedTool}</h3>
 
-                    <h4 className="font-semibold mt-4 text-gray-300">Why it's perfect for you:</h4>
+                    <h4 className="font-semibold mt-4 text-gray-300">Why it&apos;s perfect for you:</h4>
                     <ul className="list-disc pl-5 mt-2 text-gray-400">
                         {result.reasons.map((reason, i) => (
                             <li key={i}>{reason}</li>

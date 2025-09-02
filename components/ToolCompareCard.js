@@ -35,6 +35,16 @@ export default function ToolCompareCard({ tool, handleCompare, compareList = [] 
                             onClick={(e) => {
                                 e.preventDefault();
                                 e.stopPropagation();
+                                setShowUseCasesModal(true);
+                            }}
+                            className="px-3 py-1 text-sm font-semibold text-gray-100 bg-teal-600 rounded-md hover:bg-blue-600"
+                        >
+                            Use Cases
+                        </button>
+                        <button
+                            onClick={(e) => {
+                                e.preventDefault();
+                                e.stopPropagation();
                                 setShowFeaturesModal(true);
                             }}
                             className="px-3 py-1 text-sm font-semibold text-gray-100 bg-teal-600 rounded-md hover:bg-blue-600"
@@ -50,16 +60,6 @@ export default function ToolCompareCard({ tool, handleCompare, compareList = [] 
                             className="px-3 py-1 text-sm font-semibold text-gray-100 bg-teal-600 rounded-md hover:bg-blue-600"
                         >
                             Cautions
-                        </button>
-                        <button
-                            onClick={(e) => {
-                                e.preventDefault();
-                                e.stopPropagation();
-                                setShowUseCasesModal(true);
-                            }}
-                            className="px-3 py-1 text-sm font-semibold text-gray-100 bg-teal-600 rounded-md hover:bg-blue-600"
-                        >
-                            Use Cases
                         </button>
                     </div>
 
@@ -99,10 +99,9 @@ export default function ToolCompareCard({ tool, handleCompare, compareList = [] 
                                         handleCompare(tool);
                                     }}
                                     className={`px-3 py-1 rounded-md text-sm font-semibold transition-all duration-300
-                                        ${
-                                            isSelected
-                                                ? "bg-blue-600 text-gray-100"
-                                                : "bg-teal-600 text-gray-100 hover:bg-blue-600"
+                                        ${isSelected
+                                            ? "bg-blue-600 text-gray-100"
+                                            : "bg-teal-600 text-gray-100 hover:bg-blue-600"
                                         }`}
                                 >
                                     {isSelected ? "In Compare Bar" : "Compare"}

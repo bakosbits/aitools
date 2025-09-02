@@ -31,8 +31,8 @@ const WizardStep = ({ category, tags, selectedTags, onTagSelect }) => (
               px-3 py-2 rounded-full text-sm font-semibold transition-all duration-300 ease-in-out
               ${
                   isSelected
-                      ? "bg-blue-600 text-gray-100"
-                      : "bg-teal-600 text-gray-100 hover:bg-blue-600"
+                      ? "bg-blue-500 text-gray-100"
+                      : "bg-teal-600 text-gray-100 hover:bg-blue-500"
               }
             `}
                     >
@@ -197,7 +197,7 @@ const App = ({ useCaseCategories, allTools }) => {
                                         onClick={() =>
                                             handleCategorySelect(idx)
                                         }
-                                        className="w-full px-6 py-4 bg-teal-600 hover:bg-blue-600 text-gray-100 rounded-lg font-semibold text-lg shadow-md transition-colors duration-200"
+                                        className="w-full px-6 py-4 bg-teal-600 hover:bg-blue-500 text-gray-100 rounded-lg font-semibold text-lg shadow-md transition-colors duration-200"
                                     >
                                         {cat.category}
                                     </button>
@@ -206,7 +206,7 @@ const App = ({ useCaseCategories, allTools }) => {
                         </div>
                         <button
                             onClick={() => setCategoryMenu(false)}
-                            className="mt-8 px-3 py-2 bg-blue-600 hover:bg-blue-700 text-gray-100 rounded-md font-semibold shadow"
+                            className="mt-8 px-3 py-2 bg-teal-600 hover:bg-blue-500 text-gray-100 rounded-md font-semibold shadow"
                         >
                             Start from the beginning of the wizard
                         </button>
@@ -259,7 +259,7 @@ const App = ({ useCaseCategories, allTools }) => {
                                 setCompareList([]);
                                 setCategoryMenu(true);
                             }}
-                            className="mt-6 px-3 py-2 bg-blue-600 hover:bg-blue-700 text-gray-100 rounded-md font-semibold shadow"
+                            className="mt-6 px-3 py-2 bg-teal-600 hover:bg-blue-500 text-gray-100 rounded-md font-semibold shadow"
                         >
                             Start Over
                         </button>
@@ -283,7 +283,7 @@ const App = ({ useCaseCategories, allTools }) => {
                                         setCompareList([]);
                                         setCategoryMenu(true);
                                     }}
-                                    className="flex items-center px-3 py-2 bg-blue-600 hover:bg-blue-700 text-gray-100 rounded-md font-semibold shadow"
+                                    className="flex items-center px-3 py-2 bg-teal-600 hover:bg-blue-500 text-gray-100 rounded-md font-semibold shadow"
                                 >
                                     Start Over
                                 </button>
@@ -291,7 +291,7 @@ const App = ({ useCaseCategories, allTools }) => {
                                 {currentStep > 0 && (
                                     <button
                                         onClick={handlePrev}
-                                        className="flex items-center px-3 py-2 bg-blue-600 hover:bg-blue-700 text-gray-100 rounded-md font-semibold shadow"
+                                        className="flex items-center px-3 py-2 bg-teal-600 hover:bg-blue-500 text-gray-100 rounded-md font-semibold shadow"
                                     >
                                         <ChevronLeft className="w-5 h-5 mr-1" />{" "}
                                         Previous
@@ -299,7 +299,7 @@ const App = ({ useCaseCategories, allTools }) => {
                                 )}
                                 <button
                                     onClick={handleNext}
-                                    className="flex items-center px-3 py-2  bg-blue-600 hover:bg-blue-700 text-gray-100 rounded-md font-semibold shadow"
+                                    className="flex items-center px-3 py-2  bg-teal-600 hover:bg-blue-500 text-gray-100 rounded-md font-semibold shadow"
                                 >
                                     {isLastStep ? "Results" : "Next"}{" "}
                                     <ChevronRight className="w-5 h-5 ml-1" />
@@ -309,7 +309,7 @@ const App = ({ useCaseCategories, allTools }) => {
                                 <div className="flex-1 flex justify-end">
                                     <button
                                         onClick={handleSkip}
-                                        className="px-4 text-gray-300 hover:underline transition-colors duration-200"
+                                        className="px-4 text-gray-300 hover:text-blue-500 transition-colors duration-200"
                                     >
                                         Skip Category
                                     </button>
@@ -322,7 +322,7 @@ const App = ({ useCaseCategories, allTools }) => {
                                 <div className="flex-1 flex justify-start">
                                     <button
                                         onClick={handleSkipToEnd}
-                                        className="px-4 text-gray-300 font-semibold hover:underline transition-colors duration-200"
+                                        className="px-4 text-gray-300 font-semibold hover:text-blue-500 transition-colors duration-200"
                                     >
                                         Skip to End
                                     </button>

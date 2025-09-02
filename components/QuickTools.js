@@ -15,7 +15,7 @@ export default function QuickTools() {
         setOutput("");
 
         try {
-            const res = await fetch("/api/quick-tools/quick-tools", {
+            const res = await fetch("/api/quick-tools", {
                 method: "POST",
                 headers: { "Content-Type": "application/json" },
                 body: JSON.stringify({ toolType: activeTool, inputText }),
