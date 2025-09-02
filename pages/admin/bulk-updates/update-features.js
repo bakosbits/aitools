@@ -7,7 +7,7 @@ export default function BulkUpdateFeatures() {
     const [model, setModel] = useState("google/gemini-2.5-flash");
 
     const { statusLog, error, isLoading, startStream } = usePersistentSSE({
-        url: `/api/admin/update-features?model=${model}`,
+        url: `/api/admin/bulk-updates/update-features?model=${model}`,
     });
 
     return (

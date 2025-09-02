@@ -34,7 +34,7 @@ jest.*
 .env
 .env.test 
 .notes*
-.design
+.plans
 .eslintrc*
 .cspell
 

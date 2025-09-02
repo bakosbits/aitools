@@ -7,7 +7,7 @@ export default function UpdateUseCaseTagsPage() {
     const [model, setModel] = useState("google/gemini-2.5-flash");
 
     const { statusLog, error, isLoading, startStream } = usePersistentSSE({
-        url: `/api/admin/map-caution-tags?model=${model}`,
+        url: `/api/admin/bulk-updates/map-caution-tags?model=${model}`,
     });
 
     return (

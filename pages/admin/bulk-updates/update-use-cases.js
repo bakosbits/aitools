@@ -7,7 +7,7 @@ export default function BulkUpdateUseCases() {
     const [model, setModel] = useState("google/gemini-2.5-flash");
 
     const { statusLog, error, isLoading, startStream } = usePersistentSSE({
-        url: `/api/admin/update-use-cases?model=${model}`,
+        url: `/api/admin/bulk-updates/update-use-cases?model=${model}`,
     });
 
     return (
