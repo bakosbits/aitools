@@ -31,8 +31,8 @@ const WizardStep = ({ category, tags, selectedTags, onTagSelect }) => (
               px-3 py-2 rounded-full text-sm font-semibold transition-all duration-300 ease-in-out
               ${
                   isSelected
-                      ? "bg-blue-500 text-gray-100"
-                      : "bg-teal-600 text-gray-100 hover:bg-blue-500"
+                      ? "bg-gray-800 text-gray-100"
+                      : "bg-gray-100 text-gray-800 hover:bg-gray-500"
               }
             `}
                     >

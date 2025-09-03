@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { useState } from "react";
+import EditUseCasesModal from '@/components/EditUseCasesModal';
 
 export default function ToolForm({
     tool,
@@ -16,6 +17,11 @@ export default function ToolForm({
     );
     const isNew = !tool?.id;
     const [submitError, setSubmitError] = useState(null);
+    const [isUseCasesModalOpen, setUseCasesModalOpen] = useState(false);
+
+    const handleSaveUseCases = (updatedUseCases) => {
+        handleChange({ target: { name: 'UseCases', value: updatedUseCases } });
+    };
 
     const handleArrayChange = (e) => {
         const { name, value } = e.target;
@@ -27,6 +33,7 @@ export default function ToolForm({
     };
 
     return (
+        <>
         <form
             method="POST"
             onSubmit={handleSubmit}
@@ -279,6 +286,10 @@ export default function ToolForm({
                 </div>
             </div>
 
+            <div className="flex space-x-4 mt-6">
+                <button type="button" onClick={() => setUseCasesModalOpen(true)} className="px-4 py-2 rounded text-gray-100 bg-teal-600 hover:bg-blue-500">Edit Use Cases</button>
+            </div>
+
             <div className="flex space-x-6  bg-gray-800 border border-gray-600 p-4 rounded-md">
                 <div className="flex items-center">
                     <input
@@ -307,7 +318,7 @@ export default function ToolForm({
                 </Link>
                 <button
                     type="submit"
-                    className="bg-teal-600 text-gray-100 font-bold py-2 px-4 rounded hover:bg-emerald-600 transition-colors"
+                    className="bg-teal-600 text-gray-100 font-bold py-2 px-4 rounded hover:bg-blue-500 transition-colors"
                     disabled={isSubmitting}
                 >
                     {isSubmitting
@@ -318,5 +329,12 @@ export default function ToolForm({
                 </button>
             </div>
         </form>
+        <EditUseCasesModal
+            isOpen={isUseCasesModalOpen}
+            onClose={() => setUseCasesModalOpen(false)}
+            useCases={tool.UseCases}
+            onSave={handleSaveUseCases}
+        />
+        </>
     );
 }
